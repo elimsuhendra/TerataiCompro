@@ -86,20 +86,6 @@ Admin Create - Admin Panel
                             </div>
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-group col-md-6 col-sm-6">
-                                <label for="username">Company</label>
-
-                                <select name="company" class="form-control">
-                                    @foreach ($companies as $company)
-                                        <option value="{{ $company->id }}">{{ $company->name }}</option>
-                                    @endforeach
-                                </select>
-                                
-                               
-                                {{-- <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required> --}}
-                            </div>
-                        </div>
                         
                         <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
                     </form>

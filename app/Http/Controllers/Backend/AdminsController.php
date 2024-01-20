@@ -35,7 +35,7 @@ class AdminsController extends Controller
 
     public function create()
     {
-        $companies = Company::all();
+        // $companies = Company::all();
 
         // exit();
         if (is_null($this->user) || !$this->user->can('admin.create')) {
@@ -43,7 +43,7 @@ class AdminsController extends Controller
         }
 
         $roles  = Role::all();
-        return view('backend.pages.admins.create', compact('roles','companies'));
+        return view('backend.pages.admins.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -55,7 +55,6 @@ class AdminsController extends Controller
         // Validation Data
         $request->validate([
             'name' => 'required|max:50',
-            'company' => 'required|max:50',
             'email' => 'required|max:100|email|unique:admins',
             'username' => 'required|max:100|unique:admins',
             'password' => 'required|min:6|confirmed',
@@ -65,7 +64,6 @@ class AdminsController extends Controller
         $admin->name = $request->name;
         $admin->username = $request->username;
         $admin->email = $request->email;
-        $admin->company = $request->company;
         $admin->password = Hash::make($request->password);
         $admin->save();
 
