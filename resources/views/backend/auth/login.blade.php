@@ -62,6 +62,13 @@
                                         </div>
 
                                         <div class="mt-4">
+
+                                            @if(session('error'))
+                                                <div class="alert alert-danger">
+                                                    {{ session('error') }}
+                                                </div>
+                                            @endif
+
                                             <form method="POST" action="{{ route('admin.login.submit') }}">
                                                 @csrf
                                                 <div class="mb-3">
