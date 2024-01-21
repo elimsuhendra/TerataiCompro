@@ -60,4 +60,11 @@ Route::group(['prefix' => 'admin'], function () {
     // Forget Password Routes
     // Route::get('/password/reset', 'Backend\Auth\ForgetPasswordController@showLinkRequestForm')->name('admin.password.request');
     // Route::post('/password/reset/submit', 'Backend\Auth\ForgetPasswordController@reset')->name('admin.password.update');
+
+    Route::resource('jabatans', 'Backend\JabatanController', ['names' => 'admin.jabatans']);
+    Route::resource('optionmaps', 'Backend\OptionMapController', ['names' => 'admin.optionmaps']);
+    Route::resource('produks', 'Backend\ProdukController', ['names' => 'admin.produks']);
+
+
+
 });

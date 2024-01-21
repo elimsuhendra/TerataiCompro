@@ -68,9 +68,9 @@ Admins - Admin Panel
                                     <td>{{ $admin->company }}</td>
                                     <td>
                                         @foreach ($admin->roles as $role)
-                                            <span class="badge badge-info mr-1">
+                                            {{-- <span class="badge badge-info mr-1"> --}}
                                                 {{ $role->name }}
-                                            </span>
+                                            {{-- </span> --}}
                                         @endforeach
                                     </td>
                                     <td>

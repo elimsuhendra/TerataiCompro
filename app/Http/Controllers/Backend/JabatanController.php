@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Jabatan;
 use Illuminate\Http\Request;
-use App\Models\OptionMap;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
-class OptionMapController extends Controller
+class JabatanController extends Controller
 {
     public $user;
 
@@ -31,7 +31,7 @@ class OptionMapController extends Controller
     
         }
 
-        $datas = OptionMap::all();
+        $datas = Jabatan::all();
 
         return view('backend.pages.jabatan.index', compact('datas'));
     }
@@ -66,7 +66,7 @@ class OptionMapController extends Controller
         try {
           
 
-           OptionMap::create($input);
+           Jabatan::create($input);
             session()->flash('success', 'Data Sudah Ditambahkan !!');
 
         }catch (QueryException $e) {
@@ -93,7 +93,7 @@ class OptionMapController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to edit any admin !');
         }
 
-        $data = OptionMap::where('serial',$serial)->first();
+        $data = Jabatan::where('serial',$serial)->first();
         // $roles  = Role::all();
         return view('backend.pages.jabatan.edit', compact('data'));
 

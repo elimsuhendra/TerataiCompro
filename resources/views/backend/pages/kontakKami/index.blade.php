@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Role Page - Admin Panel
+Admins - Jabatan List
 @endsection
 
 @section('styles')
@@ -21,10 +21,10 @@ Role Page - Admin Panel
     <div class="row align-items-center">
         <div class="col-sm-6">
             <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Roles</h4>
+                <h4 class="page-title pull-left">Jabatan</h4>
                 <ul class="breadcrumbs pull-left">
                     <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li><span>All Roles</span></li>
+                    <li><span>All Jabatan</span></li>
                 </ul>
             </div>
         </div>
@@ -41,51 +41,47 @@ Role Page - Admin Panel
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title float-left">Roles List</h4>
+                    @include('backend.layouts.partials.messages')
+                    <h4 class="header-title float-left">Jabatan List</h4>
                     <p class="float-right mb-2">
-                        @if (Auth::guard('admin')->user()->can('role.create'))
-                            <a class="btn btn-primary text-white" href="{{ route('admin.roles.create') }}">Create New Role</a>
+                        @if (Auth::guard('admin')->user()->can('admin.edit'))
+                            <a class="btn btn-primary text-white" href="{{ route('admin.jabatans.create') }}">Tambah Jabatan Baru</a>
                         @endif
                     </p>
                     <div class="clearfix"></div>
                     <div class="data-tables">
-                        @include('backend.layouts.partials.messages')
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">
                                 <tr>
-                                    <th width="5%">Sl</th>
-                                    <th width="10%">Name</th>
-                                    <th width="60%">Permissions</th>
+                                    <th width="5%">No</th>
+                                    <th width="10%">Nama Jabatan</th>
+                                    <th width="10%">Nama</th>
+                                    <th width="10%">Tanggal Ditambahkan</th>
                                     <th width="15%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                               @foreach ($roles as $role)
+                               @foreach ($datas as $data)
                                <tr>
                                     <td>{{ $loop->index+1 }}</td>
-                                    <td>{{ $role->name }}</td>
-                                    <td>
-                                        @foreach ($role->permissions as $perm)
-                                            {{-- <span class="badge badge-info mr-1"> --}}
-                                                {{ $perm->name }}
-                                            {{-- </span> --}}
-                                        @endforeach
-                                    </td>
+                                    <td>{{ $data->nama_jabatan }}</td>
+                                    <td>{{ $data->nama }}</td>
+                                    <td>{{ $data->created_at }}</td>
+
                                     <td>
                                         @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                            <a class="btn btn-success text-white" href="{{ route('admin.roles.edit', $role->id) }}">Edit</a>
+                                            <a class="btn btn-success text-white" href="{{ route('admin.jabatans.edit', $data->serial) }}">Edit</a>
                                         @endif
-
-                                        @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                            <a class="btn btn-danger text-white" href="{{ route('admin.roles.destroy', $role->id) }}"
-                                            onclick="event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit();">
-                                                Delete
-                                            </a>
-
-                                            <form id="delete-form-{{ $role->id }}" action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" style="display: none;">
-                                                @method('DELETE')
-                                                @csrf
-                                            </form>
+                                        
+                                        @if (Auth::guard('admin')->user()->can('admin.delete'))
+                                        <a class="btn btn-danger text-white" href="{{ route('admin.admins.destroy', $data->serial) }}"
+                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $data->serial }}').submit();">
+                                            Delete
+                                        </a>
+                                        <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.admins.destroy', $data->serial) }}" method="POST" style="display: none;">
+                                            @method('DELETE')
+                                            @csrf
+                                        </form>
                                         @endif
                                     </td>
                                 </tr>
@@ -112,9 +108,7 @@ Role Page - Admin Panel
      <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
      
      <script>
-         /*================================
-        datatable active
-        ==================================*/
+      
         if ($('#dataTable').length) {
             $('#dataTable').DataTable({
                 responsive: true
