@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('produk', function (Blueprint $table) {
-            $table->id(); // This assumes you want an auto-incrementing primary key.
             $table->string('serial');
             $table->string('nama');
             $table->string('serial_kategori');
@@ -23,11 +22,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('produk');

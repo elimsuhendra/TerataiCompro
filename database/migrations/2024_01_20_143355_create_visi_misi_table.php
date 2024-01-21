@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jabatan', function (Blueprint $table) {
+        Schema::create('visi_misi', function (Blueprint $table) {
             $table->string('serial');
-            $table->string('nama_jabatan');
-            $table->string('nama');
-            $table->timestamps(); // This will automatically add created_at and updated_at columns.
-
+            $table->text('visi');
+            $table->text('misi');
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jabatan');
+        Schema::dropIfExists('visi_misi');
     }
 };

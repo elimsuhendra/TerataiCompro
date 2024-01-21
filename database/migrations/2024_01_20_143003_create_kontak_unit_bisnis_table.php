@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jabatan', function (Blueprint $table) {
+        Schema::create('kontak_unit_bisnis', function (Blueprint $table) {
             $table->string('serial');
-            $table->string('nama_jabatan');
             $table->string('nama');
-            $table->timestamps(); // This will automatically add created_at and updated_at columns.
-
+            $table->string('no_tlpn');
+            $table->string('url_facebook')->nullable();
+            $table->string('url_instagram')->nullable();
+            $table->string('url_tiktok')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jabatan');
+        Schema::dropIfExists('kontak_unit_bisnis');
     }
 };
