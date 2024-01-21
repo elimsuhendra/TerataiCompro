@@ -105,9 +105,9 @@ class RolesController extends Controller
      */
     public function edit(int $id)
     {
-        if (is_null($this->user) || !$this->user->can('role.edit')) {
-            abort(403, 'Sorry !! You are Unauthorized to edit any role !');
-        }
+        // if (is_null($this->user) || !$this->user->can('role.edit')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to edit any role !');
+        // }
 
         $role = Role::findById($id, 'admin');
         $all_permissions = Permission::all();
@@ -133,10 +133,10 @@ class RolesController extends Controller
         // TODO: You can delete this in your local. This is for heroku publish.
         // This is only for Super Admin role,
         // so that no-one could delete or disable it by somehow.
-        if ($id === 1) {
-            session()->flash('error', 'Sorry !! You are not authorized to edit this role !');
-            return back();
-        }
+        // if ($id === 1) {
+        //     session()->flash('error', 'Sorry !! You are not authorized to edit this role !');
+        //     return back();
+        // }
 
         // Validation Data
         $request->validate([

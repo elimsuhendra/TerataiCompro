@@ -64,7 +64,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('jabatans', 'Backend\JabatanController', ['names' => 'admin.jabatans']);
     Route::resource('optionmaps', 'Backend\OptionMapController', ['names' => 'admin.optionmaps']);
     Route::resource('produks', 'Backend\ProdukController', ['names' => 'admin.produks']);
-
+    Route::resource('kategoris', 'Backend\KategoriController', ['names' => 'admin.kategoris']);
 
 
 });

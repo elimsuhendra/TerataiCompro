@@ -4,6 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Kategori;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 
 class KategoriController extends Controller
 {
@@ -12,52 +19,89 @@ class KategoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::guard('admin')->user();
+            return $next($request);
+        });
+    }
+
     public function index()
     {
-        //
+        if (is_null($this->user) || !$this->user->can('admin.view')) {
+            abort(403, 'Sorry !! You are Unauthorized to view any admin !');
+    
+        }
+
+        $datas = Kategori::all();
+
+        return view('backend.pages.kategori.index', compact('datas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        if (is_null($this->user) || !$this->user->can('admin.create')) {
+            abort(403, 'Sorry !! You are Unauthorized to create any admin !');
+        }
+
+        return view('backend.pages.jabatan.create');        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+
+        if (is_null($this->user) || !$this->user->can('admin.create')) {
+            abort(403, 'Sorry !! You are Unauthorized to create any admin !');
+        }
+
+        // Validation Data
+        $input = $request->all();
+        $input['serial'] =md5(Str::random(14)) ;
+        $input['created_at'] = now();
+
+        $request->validate([
+            'nama' => 'required|max:50',
+            'nama_jabatan' => 'required|max:100|unique:jabatan',
+        ]);
+
+
+        try {
+          
+
+           Kategori::create($input);
+            session()->flash('success', 'Data Sudah Ditambahkan !!');
+
+        }catch (QueryException $e) {
+
+            session()->flash('error', $e);
+
+        } catch (\Exception $e) {
+
+            session()->flash('error', 'An unexpected error occurred');
+        }
+
+
+        return redirect()->route('admin.jabatans.index');        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+    
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit($serial)
     {
-        //
+        if (is_null($this->user) || !$this->user->can('admin.edit')) {
+            abort(403, 'Sorry !! You are Unauthorized to edit any admin !');
+        }
+
+        $data = Kategori::where('serial',$serial)->first();
+        // $roles  = Role::all();
+        return view('backend.pages.jabatan.edit', compact('data'));
+
     }
 
     /**

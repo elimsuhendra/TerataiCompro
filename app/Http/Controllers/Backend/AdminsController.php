@@ -34,9 +34,7 @@ class AdminsController extends Controller
 
     public function create()
     {
-        // $companies = Company::all();
-
-        // exit();
+       
         if (is_null($this->user) || !$this->user->can('admin.create')) {
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
@@ -118,10 +116,10 @@ class AdminsController extends Controller
         // TODO: You can delete this in your local. This is for heroku publish.
         // This is only for Super Admin role,
         // so that no-one could delete or disable it by somehow.
-        if ($id === 1) {
-            session()->flash('error', 'Sorry !! You are not authorized to update this Admin as this is the Super Admin. Please create new one if you need to test !');
-            return back();
-        }
+        // if ($id === 1) {
+        //     session()->flash('error', 'Sorry !! You are not authorized to update this Admin as this is the Super Admin. Please create new one if you need to test !');
+        //     return back();
+        // }
 
         // Create New Admin
         $admin = Admin::find($id);
