@@ -62,9 +62,12 @@ Route::group(['prefix' => 'admin'], function () {
     // Route::post('/password/reset/submit', 'Backend\Auth\ForgetPasswordController@reset')->name('admin.password.update');
 
     Route::resource('jabatans', 'Backend\JabatanController', ['names' => 'admin.jabatans']);
-    Route::resource('optionmaps', 'Backend\OptionMapController', ['names' => 'admin.optionmaps']);
+    Route::resource('optionMaps', 'Backend\OptionMapController', ['names' => 'admin.optionMaps']);
     Route::resource('produks', 'Backend\ProdukController', ['names' => 'admin.produks']);
     Route::resource('kategoris', 'Backend\KategoriController', ['names' => 'admin.kategoris']);
-
+    Route::resource('kontakKami', 'Backend\KontakKamiController', ['names' => 'admin.kontakKami']);
+    Route::resource('kontakUnitBisnis', 'Backend\KontakUnitBisnisController', ['names' => 'admin.kontakUnitBisnis']);
+    Route::resource('visiMisi', 'Backend\VisiMisiController', ['names' => 'admin.visiMisi']);
+    Route::resource('artikels', 'Backend\ArtikelController', ['names' => 'admin.artikels']);
 
 });

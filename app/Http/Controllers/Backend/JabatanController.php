@@ -99,9 +99,25 @@ class JabatanController extends Controller
 
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $serial)
     {
-        //
+
+        // dd($serial);
+        $input = $request->all();
+        // dd($input);
+        $result = Jabatan::where('serial',$serial)->update(['nama_jabatan'=>$request->nama_jabatan,'nama'=>$request->nama]);
+
+        // dd($result);
+        if($result) {
+
+            session()->flash('success', 'Data Telah Diubah');
+
+        }else{
+
+            session()->flash('error', 'Gagal Update');
+        }
+
+        return redirect()->route('admin.jabatans.index');        
     }
 
     /**

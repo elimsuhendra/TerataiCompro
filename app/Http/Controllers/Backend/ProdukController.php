@@ -34,7 +34,7 @@ class ProdukController extends Controller
 
         $datas = Produk::all();
 
-        return view('backend.pages.jabatan.index', compact('datas'));
+        return view('backend.pages.produk.index', compact('datas'));
     }
 
     public function create()

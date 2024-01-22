@@ -102,15 +102,14 @@ Admin Edit - Admin Panel
                         <form action="{{ route('admin.jabatans.update', $data->serial) }}" method="POST">
                             @method('PUT')
                             @csrf
-                            <input type="hidden" name="_method" value="PUT"> <!-- Use a hidden input field for the method -->
                             <div class="form-row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label for="name">Admin Name</label>
-                                    <input type="text" class="form-control" id="name" name="nama_jabatan" placeholder="Enter Name" value="{{ $data->nama_jabatan }}">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ $data->nama_jabatan }}">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label for="email">Admin Email</label>
-                                    <input type="text" class="form-control" id="email" name="nama" placeholder="Enter Email" value="{{ $data->nama }}">
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email" value="{{ $data->nama }}">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
