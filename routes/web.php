@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@redirectAdmin')->name('index');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'Front\HomeController@index')->name('index');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 /**
  * Admin routes
