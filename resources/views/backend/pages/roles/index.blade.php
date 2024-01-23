@@ -51,7 +51,7 @@ Role Page - Admin Panel
                         </p>
                         <div class="clearfix"></div>
                         <div class="data-tables">
-                            @include('backend.layouts.partials.messages')
+                            {{-- @include('backend.layouts.partials.messages') --}}
                             <table id="dataTable" class="text-center">
                                 <thead class="bg-light text-capitalize">
                                     <tr>

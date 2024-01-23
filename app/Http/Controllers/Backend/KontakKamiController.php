@@ -96,13 +96,26 @@ class KontakKamiController extends Controller
 
         $data = KontakKami::where('serial',$serial)->first();
         // $roles  = Role::all();
-        return view('backend.pages.jabatan.edit', compact('data'));
+        return view('backend.pages.kontakKami.edit', compact('data'));
 
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $serial)
     {
-        //
+
+        $input = $request->all();
+        $result = KontakKami::where('serial',$serial)->update(['nama_jabatan'=>$request->nama_jabatan,'nama'=>$request->nama]);
+
+        if($result) {
+
+            session()->flash('success', 'Data Telah Diubah');
+
+        }else{
+
+            session()->flash('error', 'Gagal Update');
+        }
+
+        return redirect()->route('admin.kontakKami.index');        
     }
 
     /**
@@ -111,8 +124,20 @@ class KontakKamiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($serial)
     {
-        //
+        // dd($serial);
+        $data = KontakKami::Where('serial',$serial)->first();
+        $result = $data->delete();
+        if ($result == true) {
+            session()->flash('success', 'Data Telah Dihapus');
+
+        }else{
+
+            session()->flash('error', 'Gagal Update');
+
+        }
+
+        return redirect()->route('admin.kontakKami.index');        
     }
 }

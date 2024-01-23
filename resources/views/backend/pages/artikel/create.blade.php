@@ -40,11 +40,11 @@ Admin Create - Admin Panel
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">Tambah Kategori</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">Tambah Jabatan</h4>
                     </div><!-- end card header -->
                     <div class="card-body">
 
-                        <form action="{{ route('admin.kategoris.store') }}" method="POST">
+                        <form action="{{ route('admin.jabatans.store') }}" method="POST">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-8 col-sm-12">
@@ -53,12 +53,12 @@ Admin Create - Admin Panel
                                     <input type="text" class="form-control" id="name"  value=" {{ now() }}">
                                 </div>
                                 <div class="form-group col-md-8 col-sm-12">
-                                    <label for="name">Nama Kategori</label>
-                                    <input type="text" class="form-control" id="name" name="nama_kategori" placeholder="Nama Jabatan">
+                                    <label for="name">Nama Jabatan</label>
+                                    <input type="text" class="form-control" id="name" name="nama_jabatan" placeholder="Nama Jabatan">
                                 </div>
                                 <div class="form-group col-md-8 col-sm-12">
-                                    <label for="email">Deskripsi</label>
-                                    <input type="text" class="form-control" id="email" name="deskripsi" placeholder="Nama">
+                                    <label for="email">Nama</label>
+                                    <input type="text" class="form-control" id="email" name="nama" placeholder="Nama">
                                 </div>
                             </div>
     

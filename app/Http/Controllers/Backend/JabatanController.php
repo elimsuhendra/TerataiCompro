@@ -26,7 +26,7 @@ class JabatanController extends Controller
 
     public function index()
     {
-        if (is_null($this->user) || !$this->user->can('admin.view')) {
+        if (is_null($this->user) || !$this->user->can('jabatan.list')) {
             abort(403, 'Sorry !! You are Unauthorized to view any admin !');
     
         }
@@ -38,7 +38,7 @@ class JabatanController extends Controller
 
     public function create()
     {
-        if (is_null($this->user) || !$this->user->can('admin.create')) {
+        if (is_null($this->user) || !$this->user->can('jabatan.create')) {
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
 
@@ -48,7 +48,7 @@ class JabatanController extends Controller
     public function store(Request $request)
     {
 
-        if (is_null($this->user) || !$this->user->can('admin.create')) {
+        if (is_null($this->user) || !$this->user->can('jabatan.create')) {
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
 
@@ -102,12 +102,9 @@ class JabatanController extends Controller
     public function update(Request $request, $serial)
     {
 
-        // dd($serial);
         $input = $request->all();
-        // dd($input);
         $result = Jabatan::where('serial',$serial)->update(['nama_jabatan'=>$request->nama_jabatan,'nama'=>$request->nama]);
 
-        // dd($result);
         if($result) {
 
             session()->flash('success', 'Data Telah Diubah');
@@ -126,8 +123,20 @@ class JabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($serial)
     {
-        //
+        // dd($serial);
+        $data = Jabatan::Where('serial',$serial)->first();
+        $result = $data->delete();
+        if ($result == true) {
+            session()->flash('success', 'Data Telah Dihapus');
+
+        }else{
+
+            session()->flash('error', 'Gagal Update');
+
+        }
+
+        return redirect()->route('admin.jabatans.index');        
     }
 }

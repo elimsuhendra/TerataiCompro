@@ -10,6 +10,9 @@ class Jabatan extends Model
     use HasFactory;
 
     protected $table = 'jabatan';
+    protected $primaryKey = 'serial'; // Specify the primary key
+    public $incrementing = false;
+
     protected $fillable = [
         'serial',
         'nama_jabatan',

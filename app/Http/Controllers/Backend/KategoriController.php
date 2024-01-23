@@ -47,24 +47,26 @@ class KategoriController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
 
-        return view('backend.pages.jabatan.create');        
+        return view('backend.pages.kategori.create');        
     }
 
     public function store(Request $request)
     {
 
-        if (is_null($this->user) || !$this->user->can('admin.create')) {
-            abort(403, 'Sorry !! You are Unauthorized to create any admin !');
-        }
+        // dd($request->all());
+        // if (is_null($this->user) || !$this->user->can('kategori.create')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to create any Kategori !');
+        // }
 
         // Validation Data
         $input = $request->all();
         $input['serial'] =md5(Str::random(14)) ;
         $input['created_at'] = now();
 
+        // dd($input);
         $request->validate([
-            'nama' => 'required|max:50',
-            'nama_jabatan' => 'required|max:100|unique:jabatan',
+            'deskripsi' => 'required|max:50',
+            'nama_kategori' => 'required|max:100|unique:kategori',
         ]);
 
 
@@ -94,13 +96,14 @@ class KategoriController extends Controller
 
     public function edit($serial)
     {
-        if (is_null($this->user) || !$this->user->can('admin.edit')) {
+        if (is_null($this->user) || !$this->user->can('kategori.edit')) {
             abort(403, 'Sorry !! You are Unauthorized to edit any admin !');
         }
 
         $data = Kategori::where('serial',$serial)->first();
+        // dd($data);
         // $roles  = Role::all();
-        return view('backend.pages.jabatan.edit', compact('data'));
+        return view('backend.pages.kategori.edit', compact('data'));
 
     }
 
@@ -111,9 +114,22 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $serial)
     {
-        //
+
+        $input = $request->all();
+        $result = Kategori::where('serial',$serial)->update(['nama_jabatan'=>$request->nama_jabatan,'nama'=>$request->nama]);
+
+        if($result) {
+
+            session()->flash('success', 'Data Telah Diubah');
+
+        }else{
+
+            session()->flash('error', 'Gagal Update');
+        }
+
+        return redirect()->route('admin.kategoris.index');        
     }
 
     /**
@@ -122,8 +138,18 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($serial)
     {
-        //
+        // dd($serial);
+        $data = Kategori::Where('serial',$serial)->first();
+        $result = $data->delete();
+        if ($result == true) {
+            session()->flash('success', 'Data Telah Dihapus');
+
+        }else{
+            session()->flash('error', 'Gagal Update');
+        }
+
+        return redirect()->route('admin.kategoris.index');        
     }
 }

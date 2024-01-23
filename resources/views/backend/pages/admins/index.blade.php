@@ -16,25 +16,6 @@ Admins - Admin Panel
 
 @section('admin-content')
 
-<!-- page title area start -->
-{{-- <div class="page-title-area">
-    <div class="row align-items-center">
-        <div class="col-sm-6">
-            <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Admins</h4>
-                <ul class="breadcrumbs pull-left">
-                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li><span>All Admins</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-6 clearfix">
-            @include('backend.layouts.partials.logout')
-        </div>
-    </div>
-</div> --}}
-<!-- page title area end -->
-
 <div class="page-content">
     <div class="container-fluid">
 
@@ -56,21 +37,20 @@ Admins - Admin Panel
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-12">
                 <div class="card">
+                    @include('backend.layouts.partials.messages')
                     <div class="card-header align-items-center d-flex">
                         <h4 class="card-title mb-0 flex-grow-1">List Admin</h4>
                     </div><!-- end card header -->
                     <div class="card-body">
-
-
-                        @include('backend.layouts.partials.messages')
                         <p class="float-right mb-2">
                             @if (Auth::guard('admin')->user()->can('admin.edit'))
                                 <a class="btn btn-primary text-white" href="{{ route('admin.admins.create') }}">Tambah Admin Baru</a>
                             @endif
                         </p>
+
                         <div class="clearfix"></div>
                         <div class="data-tables">
-                            @include('backend.layouts.partials.messages')
+                            {{-- @include('backend.layouts.partials.messages') --}}
                             <table id="dataTable" class="text-center">
                                 <thead class="bg-light text-capitalize">
                                     <tr>

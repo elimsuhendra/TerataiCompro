@@ -28,7 +28,7 @@ Admins - Kontak Kami List
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">Jabatan</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.kategoris.index') }}">Kategori</a></li>
                             <li class="breadcrumb-item active">List Kategori</li>
                         </ol>
                     </div>
@@ -40,7 +40,7 @@ Admins - Kontak Kami List
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">Tambah Jabatan</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">List Kategori</h4>
                     </div><!-- end card header -->
                     <div class="card-body">
 
@@ -49,7 +49,7 @@ Admins - Kontak Kami List
                         {{-- <h4 class="header-title float-left">Kategir List</h4> --}}
                         <p class="float-right mb-2">
                             @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                <a class="btn btn-primary text-white" href="{{ route('admin.jabatans.create') }}">Tambah Jabatan Baru</a>
+                                <a class="btn btn-primary text-white" href="{{ route('admin.kategoris.create') }}">Tambah Kategori Baru</a>
                             @endif
                         </p>
                         <div class="clearfix"></div>
@@ -74,15 +74,15 @@ Admins - Kontak Kami List
     
                                         <td>
                                             @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                                <a class="btn btn-success text-white" href="{{ route('admin.jabatans.edit', $data->serial) }}">Edit</a>
+                                                <a class="btn btn-success text-white" href="{{ route('admin.kategoris.edit', $data->serial) }}">Edit</a>
                                             @endif
                                             
                                             @if (Auth::guard('admin')->user()->can('admin.delete'))
-                                            <a class="btn btn-danger text-white" href="{{ route('admin.admins.destroy', $data->serial) }}"
+                                            <a class="btn btn-danger text-white" href="{{ route('admin.kategoris.destroy', $data->serial) }}"
                                             onclick="event.preventDefault(); document.getElementById('delete-form-{{ $data->serial }}').submit();">
                                                 Delete
                                             </a>
-                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.admins.destroy', $data->serial) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.kategoris.destroy', $data->serial) }}" method="POST" style="display: none;">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>
