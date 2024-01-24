@@ -244,7 +244,66 @@ $currentRoute = request()->route()->getName();
                     </a>
                 </li>
             @endif
-    
+
+            @if ($usr->can('jabatan.create') || $usr->can('jabatan.view') || $usr->can('jabatan.edit') || $usr->can('jabatan.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.jabatans.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.jabatans.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                        <i class="ri-honour-line"></i> <span data-key="t-widgets">Jabatan</span>
+                    </a>
+                </li>
+            @endif
+
+            @if ($usr->can('kategori.create') || $usr->can('kategori.view') || $usr->can('kategori.edit') || $usr->can('kategori.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.kategoris.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.kategoris.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                        <i class="ri-layout-grid-line"></i> <span data-key="t-widgets">Kategori</span>
+                    </a>
+                </li>
+            @endif
+
+            @if ($usr->can('optionmap.create') || $usr->can('optionmap.view') || $usr->can('optionmap.edit') || $usr->can('optionmap.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.optionmaps.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.optionmaps.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                        <i class="ri-layout-grid-line"></i> <span data-key="t-widgets">Option Map</span>
+                    </a>
+                </li>
+            @endif
+            @if ($usr->can('produk.list') || $usr->can('produk.view') || $usr->can('produk.edit') || $usr->can('produk.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.produks.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.produks.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                        <i class="ri-layout-grid-line"></i> <span data-key="t-widgets">Produk</span>
+                    </a>
+                </li>
+            @endif    
+            @if ($usr->can('kontakKami.list') || $usr->can('kontakKami.view') || $usr->can('kontakKami.edit') || $usr->can('kontakKami.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.produks.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.kontakKami.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                        <i class="bx bxs-user-account"></i> <span data-key="t-widgets">Kontak Kami</span>
+                    </a>
+                </li>
+            @endif
+            @if ($usr->can('optionMap.list') || $usr->can('optionMap.view') || $usr->can('optionMap.edit') || $usr->can('produk.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.optionMaps.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.optionMaps.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                        <i class="ri-stack-line"></i> <span data-key="t-widgets">Option Map</span>
+                    </a>
+                </li>
+            @endif    
+            @if ($usr->can('produk.list') || $usr->can('produk.view') || $usr->can('produk.edit') || $usr->can('produk.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.produks.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.produks.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                        <i class="ri-stack-line"></i> <span data-key="t-widgets">Produk</span>
+                    </a>
+                </li>
+            @endif  
+            @if ($usr->can('artikel.list') || $usr->can('artikel.view') || $usr->can('artikel.edit') || $usr->can('artikel.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.artikels.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.artikels.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                        <i class="ri-stack-line"></i> <span data-key="t-widgets">Artikel</span>
+                    </a>
+                </li>
+            @endif  
+            
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                         <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Layouts</span>

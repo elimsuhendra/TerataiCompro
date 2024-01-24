@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->integer('company');
+        Schema::create('artikel', function (Blueprint $table) {
+            $table->string('serial');
+            $table->string('judul');
+            $table->text('content');
+            $table->timestamps(); // This will automatically add created_at and updated_at columns.
         });
     }
 
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->dropColumn('company');
-        });
+        Schema::dropIfExists('artikel');
     }
 };

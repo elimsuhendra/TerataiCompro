@@ -19,8 +19,6 @@ yarn-error.log
 /.vscode
 /stubs
 /public/document
+/public/front/front.js
 composer.lock
-.htaccess
-assets/js/config.js
-assets/js/general.js
-assets/js/front.js
+/app/Http/Middleware/ApiTokenMiddleware.php

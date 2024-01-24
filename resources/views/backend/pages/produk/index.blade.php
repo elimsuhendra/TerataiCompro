@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Role Page - Admin Panel
+Admins - Produk List
 @endsection
 
 @section('styles')
@@ -22,90 +22,76 @@ Role Page - Admin Panel
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Role</h4>
+                    <h4 class="mb-sm-0">Produk</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">Role</a></li>
-                            <li class="breadcrumb-item active">List Role</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.kontakKami.index') }}">Produk</a></li>
+                            <li class="breadcrumb-item active">List Produk</li>
                         </ol>
                     </div>
 
                 </div>
             </div>
-        </div>
-        <div class="row align-items-center justify-content-center">
-            <div class="col-lg-12">
+
+            <div class="col-12 mt-5">
                 <div class="card">
-                    <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">List Role</h4>
-                    </div><!-- end card header -->
                     <div class="card-body">
-
-
                         @include('backend.layouts.partials.messages')
+                        <h4 class="header-title float-left">Produk List</h4>
                         <p class="float-right mb-2">
-                            @if (Auth::guard('admin')->user()->can('role.create'))
-                                <a class="btn btn-primary text-white" href="{{ route('admin.roles.create') }}">Create New Role</a>
+                            @if (Auth::guard('admin')->user()->can('admin.edit'))
+                                <a class="btn btn-primary text-white" href="{{ route('admin.kontakKami.create') }}">Tambah Jabatan Baru</a>
                             @endif
                         </p>
                         <div class="clearfix"></div>
                         <div class="data-tables">
-                            {{-- @include('backend.layouts.partials.messages') --}}
                             <table id="dataTable" class="text-center">
                                 <thead class="bg-light text-capitalize">
                                     <tr>
-                                        <th width="5%">Sl</th>
-                                        <th width="10%">Name</th>
-                                        <th width="60%">Permissions</th>
+                                        <th width="5%">No</th>
+                                        <th width="10%">Nama</th>
+                                        <th width="10%">Email</th>
+                                        <th width="10%">Subject</th>
                                         <th width="15%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   @foreach ($roles as $role)
+                                   @foreach ($datas as $data)
                                    <tr>
                                         <td>{{ $loop->index+1 }}</td>
-                                        <td>{{ $role->name }}</td>
-                                        <td>
-                                            @foreach ($role->permissions as $perm)
-                                                {{-- <span class="badge badge-info mr-1"> --}}
-                                                    {{ $perm->name }}
-                                                {{-- </span> --}}
-                                            @endforeach
-                                        </td>
+                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->deskripsi }}</td>
+                                        <td>{{ $data->created_at }}</td>
+    
                                         <td>
                                             @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                                <a class="btn btn-success text-white" href="{{ route('admin.roles.edit', $role->id) }}">Edit</a>
+                                                <a class="btn btn-success text-white" href="{{ route('admin.jabatans.edit', $data->serial) }}">Edit</a>
                                             @endif
-    
-                                            @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                                <a class="btn btn-danger text-white" href="{{ route('admin.roles.destroy', $role->id) }}"
-                                                onclick="event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit();">
-                                                    Delete
-                                                </a>
-    
-                                                <form id="delete-form-{{ $role->id }}" action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" style="display: none;">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                </form>
+                                            
+                                            @if (Auth::guard('admin')->user()->can('admin.delete'))
+                                            <a class="btn btn-danger text-white" href="{{ route('admin.admins.destroy', $data->serial) }}"
+                                            onclick="event.preventDefault(); document.getElementById('delete-form-{{ $data->serial }}').submit();">
+                                                Delete
+                                            </a>
+                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.admins.destroy', $data->serial) }}" method="POST" style="display: none;">
+                                                @method('DELETE')
+                                                @csrf
+                                            </form>
                                             @endif
                                         </td>
                                     </tr>
                                    @endforeach
                                 </tbody>
-                            </table>                          
-                        </div>                                   
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!--end col-->
+
         </div>
-        <!--end row-->
-
     </div>
-</div>
-
-
+</div>    
 @endsection
 
 
@@ -118,9 +104,7 @@ Role Page - Admin Panel
      <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
      
      <script>
-         /*================================
-        datatable active
-        ==================================*/
+      
         if ($('#dataTable').length) {
             $('#dataTable').DataTable({
                 responsive: true

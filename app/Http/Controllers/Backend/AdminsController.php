@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,15 +34,13 @@ class AdminsController extends Controller
 
     public function create()
     {
-        $companies = Company::all();
-
-        // exit();
+       
         if (is_null($this->user) || !$this->user->can('admin.create')) {
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
 
         $roles  = Role::all();
-        return view('backend.pages.admins.create', compact('roles','companies'));
+        return view('backend.pages.admins.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -55,7 +52,6 @@ class AdminsController extends Controller
         // Validation Data
         $request->validate([
             'name' => 'required|max:50',
-            'company' => 'required|max:50',
             'email' => 'required|max:100|email|unique:admins',
             'username' => 'required|max:100|unique:admins',
             'password' => 'required|min:6|confirmed',
@@ -65,7 +61,6 @@ class AdminsController extends Controller
         $admin->name = $request->name;
         $admin->username = $request->username;
         $admin->email = $request->email;
-        $admin->company = $request->company;
         $admin->password = Hash::make($request->password);
         $admin->save();
 
@@ -121,10 +116,10 @@ class AdminsController extends Controller
         // TODO: You can delete this in your local. This is for heroku publish.
         // This is only for Super Admin role,
         // so that no-one could delete or disable it by somehow.
-        if ($id === 1) {
-            session()->flash('error', 'Sorry !! You are not authorized to update this Admin as this is the Super Admin. Please create new one if you need to test !');
-            return back();
-        }
+        // if ($id === 1) {
+        //     session()->flash('error', 'Sorry !! You are not authorized to update this Admin as this is the Super Admin. Please create new one if you need to test !');
+        //     return back();
+        // }
 
         // Create New Admin
         $admin = Admin::find($id);
