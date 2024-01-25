@@ -5,7 +5,8 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6 footer-contact">
+            <div class="col-lg-12 col-md-12 footer-contact" style="text-align: center;">Copyright © 2024 Teratai </div>
+          {{-- <div class="col-lg-3 col-md-6 footer-contact">
             <h3>Company</h3>
             <p>
               A108 Adam Street <br>
@@ -44,13 +45,13 @@
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
-          </div>
+          </div> --}}
 
         </div>
       </div>
     </div>
 
-    <div class="container d-md-flex py-4">
+    {{-- <div class="container d-md-flex py-4">
 
       <div class="me-md-auto text-center text-md-start">
         <div class="copyright">
@@ -71,7 +72,7 @@
         <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
-    </div>
+    </div> --}}
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

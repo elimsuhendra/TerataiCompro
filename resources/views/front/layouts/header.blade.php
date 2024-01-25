@@ -50,7 +50,7 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="index.html" class="{{$data['page'] == 'home' ? 'Active' : ''}}">Home</a></li>
 
           {{-- <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -69,12 +69,12 @@
             </ul>
           </li> --}}
 
-          <li><a href="services.html">Hidroponik</a></li>
-          <li><a href="portfolio.html">Cafe</a></li>
-          <li><a href="pricing.html">Edu Farm</a></li>
-          <li><a href="blog.html">Article</a></li>
-          <li><a href="about_us.html">About Us</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="hidroponik" class="{{$data['page'] == 'hidroponik' ? 'Active' : ''}}">Hidroponik</a></li>
+          <li><a href="cafe" class="{{$data['page'] == 'cafe' ? 'Active' : ''}}">Cafe</a></li>
+          <li><a href="edufarm" class="{{$data['page'] == 'edu farm' ? 'Active' : ''}}">Edu Farm</a></li>
+          <li><a href="article" class="{{$data['page'] == 'article' ? 'Active' : ''}}">Article</a></li>
+          <li><a href="about_us" class="{{$data['page'] == 'about us' ? 'Active' : ''}}">About Us</a></li>
+          <li><a href="contact_us" class="{{$data['page'] == 'contact us' ? 'Active' : ''}}">Contact Us</a></li>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

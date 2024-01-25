@@ -66,7 +66,7 @@
     <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
         <div class="row">
-          <div class="col-lg-12 col-md-12 align-items-stretch title_product">3 Top Produk Hidroponik</div>
+          <div class="col-lg-12 col-md-12 align-items-stretch title_product"><h3>3 Top Produk Hidroponik</h3></div>
         </div>
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
@@ -116,7 +116,7 @@
     <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
         <div class="row">
-          <div class="col-lg-12 col-md-12 align-items-stretch title_product">3 Top Produk Cafe</div>
+          <div class="col-lg-12 col-md-12 align-items-stretch title_product"><h3>3 Top Produk Cafe</h3></div>
         </div>
 
         <div class="row">
@@ -168,7 +168,7 @@
     <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
         <div class="row">
-          <div class="col-lg-12 col-md-12 align-items-stretch title_product">3 Top Produk Edu Farm</div>
+          <div class="col-lg-12 col-md-12 align-items-stretch title_product"><h3>3 Top Produk Edu Farm</h3></div>
         </div>
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
