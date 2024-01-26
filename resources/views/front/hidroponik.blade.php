@@ -1,25 +1,11 @@
-@extends('front.layouts.header')
+@extends('front.layouts.app')
  
-<main id="main">
+@section('content')
     <style>
         .services .icon-box{
             width: 100%;
         }
     </style>
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Services</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Services</li>
-          </ol>
-        </div>
-
-      </div>
-    </section><!-- End Breadcrumbs -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
@@ -28,11 +14,9 @@
             <div class="col-lg-4 col-md-4 footer-links">
                 <h4>Kategori</h4>
                 <ul>
-                    <li> <a href="#">Home</a></li>
-                    <li> <a href="#">About us</a></li>
-                    <li> <a href="#">Services</a></li>
-                    <li> <a href="#">Terms of service</a></li>
-                    <li> <a href="#">Privacy policy</a></li>
+                    <li> <a href="#">Kategori 1</a></li>
+                    <li> <a href="#">Kategori 2</a></li>
+                    <li> <a href="#">Kategori 3</a></li>
                 </ul>
             </div>
             <div class="col-lg-8 col-md-8">
@@ -120,6 +104,4 @@
       </div>
     </section><!-- End Services Section -->
 
-  </main><!-- End #main -->
-
-@extends('front.layouts.footer')
+@endsection

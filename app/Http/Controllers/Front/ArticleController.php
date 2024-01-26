@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,13 +28,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['page'] = 'home';
-        return view('front/home', compact('data'));
+        $data['page'] = 'article';
+        return view('front/article', compact('data'));
     }
 
-    public function home()
+    public function detail()
     {
-        // $data['page'] = 'home';
-        return view('home');
+        $data['page'] = 'article';
+        return view('front/article_detail', compact('data'));
     }
 }

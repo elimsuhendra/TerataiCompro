@@ -6,13 +6,15 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 // api front
+Route::get('/home', 'Front\HomeController@index')->name('index');
 Route::get('/', 'Front\HomeController@index')->name('index');
 Route::get('/hidroponik', 'Front\ProductController@hidroponik')->name('hidroponik');
 Route::get('/cafe', 'Front\ProductController@cafe')->name('cafe');
 Route::get('/edufarm', 'Front\ProductController@edufarm')->name('edufarm');
 Route::get('/article', 'Front\ArticleController@index')->name('article');
-Route::get('/about_us', 'Front\AboutUsController@about_us')->name('about_us');
-Route::get('/contact_us', 'Front\ContactUsController@contact_us')->name('contact_us');
+Route::get('/article_detail', 'Front\ArticleController@detail')->name('article_detail');
+Route::get('/about_us', 'Front\AboutUsController@index')->name('about_us');
+Route::get('/contact_us', 'Front\ContactUsController@index')->name('contact_us');
 
 /**
  * Admin routes

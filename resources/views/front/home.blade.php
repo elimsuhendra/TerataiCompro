@@ -1,4 +1,6 @@
-@extends('front.layouts.header')
+@extends('front.layouts.app')
+
+@section('content')
  <!-- ======= Hero Section ======= -->
   <section id="hero">
      <style>
@@ -214,8 +216,5 @@
 
       </div>
     </section><!-- End Services Section -->
-    
-
-  </main><!-- End #main -->
-
-@extends('front.layouts.footer')
+</main>
+@endsection
