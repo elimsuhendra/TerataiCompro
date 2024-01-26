@@ -69,6 +69,11 @@ Admins - Jabatan List
                                     <td>{{ $data->created_at }}</td>
 
                                     <td>
+
+                                        @if (Auth::guard('admin')->user()->can('jabatan.edit'))
+                                            <a class="btn btn-info text-white" href="{{ route('admin.jabatans.show', $data->serial) }}">Show</a>
+                                        @endif
+                                        
                                         @if (Auth::guard('admin')->user()->can('jabatan.edit'))
                                             <a class="btn btn-success text-white" href="{{ route('admin.jabatans.edit', $data->serial) }}">Edit</a>
                                         @endif

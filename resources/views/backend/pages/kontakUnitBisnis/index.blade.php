@@ -66,7 +66,7 @@ Admins - Kontak Kami List
     
                                         <td>
                                             @if (Auth::guard('admin')->user()->can('kontakKami.edit'))
-                                                <a class="btn btn-info text-white" href="{{ route('admin.kontakKami.show', $data->serial) }}">Show</a>
+                                                <a class="btn btn-info text-white" href="{{ route('admin.kontakKami.edit', $data->serial) }}">Show</a>
                                             @endif
 
                                             @if (Auth::guard('admin')->user()->can('admin.edit'))

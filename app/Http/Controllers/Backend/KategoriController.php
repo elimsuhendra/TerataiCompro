@@ -53,17 +53,10 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
-        // if (is_null($this->user) || !$this->user->can('kategori.create')) {
-        //     abort(403, 'Sorry !! You are Unauthorized to create any Kategori !');
-        // }
-
-        // Validation Data
         $input = $request->all();
         $input['serial'] =md5(Str::random(14)) ;
         $input['created_at'] = now();
 
-        // dd($input);
         $request->validate([
             'deskripsi' => 'required|max:50',
             'nama_kategori' => 'required|max:100|unique:kategori',
@@ -86,12 +79,17 @@ class KategoriController extends Controller
         }
 
 
-        return redirect()->route('admin.jabatans.index');        
+        return redirect()->route('admin.kategoris.index');        
     }
 
     public function show($id)
     {
     
+        $datas = Kategori::find($id);
+        $title="Kategori";
+
+
+        return view('backend.pages.kategori.show', compact('datas','title'));
     }
 
     public function edit($serial)
@@ -101,24 +99,20 @@ class KategoriController extends Controller
         }
 
         $data = Kategori::where('serial',$serial)->first();
-        // dd($data);
-        // $roles  = Role::all();
-        return view('backend.pages.kategori.edit', compact('data'));
+        $title="Kategori";
+
+        return view('backend.pages.kategori.edit', compact('data','title'));
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $serial)
     {
 
         $input = $request->all();
-        $result = Kategori::where('serial',$serial)->update(['nama_jabatan'=>$request->nama_jabatan,'nama'=>$request->nama]);
+        unset($input['_method']);
+        unset($input['_token']);
+
+        $result = Kategori::where('serial',$serial)->update($input);
 
         if($result) {
 
@@ -132,12 +126,6 @@ class KategoriController extends Controller
         return redirect()->route('admin.kategoris.index');        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($serial)
     {
         // dd($serial);

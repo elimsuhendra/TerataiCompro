@@ -282,6 +282,13 @@ $currentRoute = request()->route()->getName();
                     </a>
                 </li>
             @endif
+            @if ($usr->can('kontakBisnis.list') || $usr->can('kontakBisnis.view') || $usr->can('kontakBisnis.edit') || $usr->can('kontakBisnis.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.produks.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.kontakBisnis.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                        <i class="bx bxs-user-account"></i> <span data-key="t-widgets">Kontak Bisnis</span>
+                    </a>
+                </li>
+            @endif
             @if ($usr->can('optionMap.list') || $usr->can('optionMap.view') || $usr->can('optionMap.edit') || $usr->can('produk.delete'))
                 <li class="nav-item @if($currentRoute == 'admin.optionMaps.index') active @endif">
                     <a class="nav-link menu-link" href="{{ route('admin.optionMaps.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
@@ -300,6 +307,13 @@ $currentRoute = request()->route()->getName();
                 <li class="nav-item @if($currentRoute == 'admin.artikels.index') active @endif">
                     <a class="nav-link menu-link" href="{{ route('admin.artikels.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
                         <i class="ri-stack-line"></i> <span data-key="t-widgets">Artikel</span>
+                    </a>
+                </li>
+            @endif  
+            @if ($usr->can('visiMisi.list') || $usr->can('visiMisi.view') || $usr->can('visiMisi.edit') || $usr->can('visiMisi.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.visiMisis.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.visiMisis.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                        <i class="ri-stack-line"></i> <span data-key="t-widgets">Info Visi Misi</span>
                     </a>
                 </li>
             @endif  

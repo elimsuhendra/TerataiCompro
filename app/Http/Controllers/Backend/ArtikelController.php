@@ -4,13 +4,26 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Artikel;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 
 class ArtikelController extends Controller
 {
     public $user;
+    private $model;
+    Public $title="Artikel";
 
-    public function __construct()
+
+
+    public function __construct(Artikel $model)
     {
+        $this->model = $model;
+
         $this->middleware(function ($request, $next) {
             $this->user = Auth::guard('admin')->user();
             return $next($request);
@@ -19,29 +32,32 @@ class ArtikelController extends Controller
 
     public function index()
     {
-        if (is_null($this->user) || !$this->user->can('jabatan.list')) {
-            abort(403, 'Sorry !! You are Unauthorized to view any admin !');
+        if (is_null($this->user) || !$this->user->can('artikel.list')) {
+            abort(403, 'Sorry !! You are Unauthorized to This Page !');
     
         }
 
-        $datas = Jabatan::all();
+        $datas = Artikel::all();
+        $title=$this->title;
 
-        return view('backend.pages.jabatan.index', compact('datas'));
+        return view('backend.pages.artikel.index', compact('datas','title'));
     }
 
     public function create()
     {
-        if (is_null($this->user) || !$this->user->can('jabatan.create')) {
+        if (is_null($this->user) || !$this->user->can('admin.create')) {
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
 
-        return view('backend.pages.jabatan.create');        
+        $title=$this->title;
+
+        return view('backend.pages.artikel.create',compact('title'));        
     }
 
     public function store(Request $request)
     {
 
-        if (is_null($this->user) || !$this->user->can('jabatan.create')) {
+        if (is_null($this->user) || !$this->user->can('artikel.create')) {
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
 
@@ -51,15 +67,14 @@ class ArtikelController extends Controller
         $input['created_at'] = now();
 
         $request->validate([
-            'nama' => 'required|max:50',
-            'nama_jabatan' => 'required|max:100|unique:jabatan',
+            'value' => 'required|max:50',
+            'key' => 'required|max:100|unique:option_map',
         ]);
 
 
         try {
           
-
-           Jabatan::create($input);
+            $this->model->create($input);
             session()->flash('success', 'Data Sudah Ditambahkan !!');
 
         }catch (QueryException $e) {
@@ -72,12 +87,15 @@ class ArtikelController extends Controller
         }
 
 
-        return redirect()->route('admin.jabatans.index');        
+        return redirect()->route('admin.artikels.index');        
     }
 
     public function show($id)
     {
-    
+        $datas = $this->model->find($id);
+        $title=$this->title;
+
+        return view('backend.pages.optionMap.show', compact('datas','title'));    
     }
 
     public function edit($serial)
@@ -86,17 +104,19 @@ class ArtikelController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to edit any admin !');
         }
 
-        $data = Jabatan::where('serial',$serial)->first();
-        // $roles  = Role::all();
-        return view('backend.pages.jabatan.edit', compact('data'));
+        $data = $this->model->where('serial',$serial)->first();
+        $title=$this->title;
+        return view('backend.pages.optionMap.edit', compact('data','title'));
 
     }
 
     public function update(Request $request, $serial)
     {
-
         $input = $request->all();
-        $result = Jabatan::where('serial',$serial)->update(['nama_jabatan'=>$request->nama_jabatan,'nama'=>$request->nama]);
+        unset($input['_method']);
+        unset($input['_token']);
+
+        $result = $this->model->where('serial',$serial)->update($input);
 
         if($result) {
 
@@ -107,19 +127,12 @@ class ArtikelController extends Controller
             session()->flash('error', 'Gagal Update');
         }
 
-        return redirect()->route('admin.jabatans.index');        
-    }
+        return redirect()->route('admin.artikels.index');        
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    }
     public function destroy($serial)
     {
-        // dd($serial);
-        $data = Jabatan::Where('serial',$serial)->first();
+        $data = $this->model->Where('serial',$serial)->first();
         $result = $data->delete();
         if ($result == true) {
             session()->flash('success', 'Data Telah Dihapus');
@@ -130,7 +143,6 @@ class ArtikelController extends Controller
 
         }
 
-        return redirect()->route('admin.jabatans.index');        
+        return redirect()->route('admin.artikels.index');        
     }
-
 }

@@ -16,7 +16,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('roles', 'Backend\RolesController', ['names' => 'admin.roles']);
     Route::resource('users', 'Backend\UsersController', ['names' => 'admin.users']);
     Route::resource('admins', 'Backend\AdminsController', ['names' => 'admin.admins']);
-    Route::resource('products', 'Backend\MasterProductController', ['names' => 'admin.products']);
+    // Route::resource('products', 'Backend\MasterProductController', ['names' => 'admin.products']);
     Route::resource('lendings', 'Backend\LendingController', ['names' => 'admin.lendings']);
     Route::resource('companies', 'Backend\CompaniesController', ['names' => 'admin.companies']);
     Route::resource('borrowers', 'Backend\BorrowersController', ['names' => 'admin.borrowers']);
@@ -66,8 +66,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('produks', 'Backend\ProdukController', ['names' => 'admin.produks']);
     Route::resource('kategoris', 'Backend\KategoriController', ['names' => 'admin.kategoris']);
     Route::resource('kontakKami', 'Backend\KontakKamiController', ['names' => 'admin.kontakKami']);
-    Route::resource('kontakUnitBisnis', 'Backend\KontakUnitBisnisController', ['names' => 'admin.kontakUnitBisnis']);
+    // Route::resource('kontakUnitBisnis', 'Backend\KontakUnitBisnisController', ['names' => 'admin.kontakUnitBisnis']);
     Route::resource('visiMisi', 'Backend\VisiMisiController', ['names' => 'admin.visiMisi']);
     Route::resource('artikels', 'Backend\ArtikelController', ['names' => 'admin.artikels']);
+    Route::resource('kontakBisnis', 'Backend\KontakUnitBisnisController', ['names' => 'admin.kontakBisnis']);
+
 
 });

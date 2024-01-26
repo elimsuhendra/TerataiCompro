@@ -55,7 +55,7 @@ Admin Edit - Admin Panel
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label for="email">Deskripsi</label>
-                                    <input type="text" class="form-control" id="email" name="deskripsi" placeholder="Enter Email" value="{{ $data->deskripsi }}">
+                                    <textarea class="form-control" id="pesan" name="deskripsi" rows="4">{{ $data->deskripsi }}</textarea>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>

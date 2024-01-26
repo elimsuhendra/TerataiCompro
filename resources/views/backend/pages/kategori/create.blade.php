@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Admin Create - Admin Panel
+Kategori
 @endsection
 
 @section('styles')
@@ -23,11 +23,11 @@ Admin Create - Admin Panel
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Jabatan</h4>
+                    <h4 class="mb-sm-0">Kategori</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">Jabatan</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.kategoris.index') }}">Kategori</a></li>
                             <li class="breadcrumb-item active">Tambah Data</li>
                         </ol>
                     </div>
@@ -54,16 +54,16 @@ Admin Create - Admin Panel
                                 </div>
                                 <div class="form-group col-md-8 col-sm-12">
                                     <label for="name">Nama Kategori</label>
-                                    <input type="text" class="form-control" id="name" name="nama_kategori" placeholder="Nama Jabatan">
+                                    <input type="text" class="form-control" id="name" name="nama_kategori" placeholder="Nama Kategori">
                                 </div>
                                 <div class="form-group col-md-8 col-sm-12">
                                     <label for="email">Deskripsi</label>
-                                    <input type="text" class="form-control" id="email" name="deskripsi" placeholder="Nama">
+                                    <textarea class="form-control" id="pesan" name="deskripsi" rows="4"></textarea>
                                 </div>
                             </div>
     
                             
-                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
+                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
                         </form>                  
                     </div>
                 </div>

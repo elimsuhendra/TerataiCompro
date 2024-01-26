@@ -60,7 +60,7 @@ class KontakKamiController extends Controller
 
         $request->validate([
             'nama' => 'required|max:50',
-            'nama_jabatan' => 'required|max:100|unique:jabatan',
+            'email' => 'required|max:100|unique:kontak_kami',
         ]);
 
 
@@ -85,7 +85,11 @@ class KontakKamiController extends Controller
 
     public function show($id)
     {
-    
+        $datas = KontakKami::find($id);
+        $title="Kontak Kami";
+
+
+        return view('backend.pages.kontakKami.show', compact('datas','title'));
     }
 
     public function edit($serial)
@@ -104,7 +108,10 @@ class KontakKamiController extends Controller
     {
 
         $input = $request->all();
-        $result = KontakKami::where('serial',$serial)->update(['nama_jabatan'=>$request->nama_jabatan,'nama'=>$request->nama]);
+        unset($input['_method']);
+        unset($input['_token']);
+
+        $result = KontakKami::where('serial',$serial)->update($input);
 
         if($result) {
 

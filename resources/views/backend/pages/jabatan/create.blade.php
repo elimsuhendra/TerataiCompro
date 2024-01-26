@@ -63,7 +63,7 @@ Admin Create - Admin Panel
                             </div>
     
                             
-                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
+                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
                         </form>                  
                     </div>
                 </div>

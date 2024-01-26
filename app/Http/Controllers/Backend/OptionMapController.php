@@ -16,6 +16,8 @@ class OptionMapController extends Controller
 {
     public $user;
 
+    Public $title="Option Map";
+
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -26,14 +28,15 @@ class OptionMapController extends Controller
 
     public function index()
     {
-        if (is_null($this->user) || !$this->user->can('admin.view')) {
-            abort(403, 'Sorry !! You are Unauthorized to view any admin !');
+        if (is_null($this->user) || !$this->user->can('optionMap.list')) {
+            abort(403, 'Sorry !! You are Unauthorized to view This Page !');
     
         }
 
         $datas = OptionMap::all();
+        $title=$this->title;
 
-        return view('backend.pages.jabatan.index', compact('datas'));
+        return view('backend.pages.optionMap.index', compact('datas','title'));
     }
 
     public function create()
@@ -42,7 +45,9 @@ class OptionMapController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
 
-        return view('backend.pages.jabatan.create');        
+        $title=$this->title;
+
+        return view('backend.pages.optionMap.create',compact('title'));        
     }
 
     public function store(Request $request)
@@ -58,15 +63,14 @@ class OptionMapController extends Controller
         $input['created_at'] = now();
 
         $request->validate([
-            'nama' => 'required|max:50',
-            'nama_jabatan' => 'required|max:100|unique:jabatan',
+            'value' => 'required|max:50',
+            'key' => 'required|max:100|unique:option_map',
         ]);
 
 
         try {
           
-
-           OptionMap::create($input);
+            OptionMap::create($input);
             session()->flash('success', 'Data Sudah Ditambahkan !!');
 
         }catch (QueryException $e) {
@@ -79,12 +83,15 @@ class OptionMapController extends Controller
         }
 
 
-        return redirect()->route('admin.jabatans.index');        
+        return redirect()->route('admin.optionMaps.index');        
     }
 
     public function show($id)
     {
-    
+        $datas = OptionMap::find($id);
+        $title=$this->title;
+
+        return view('backend.pages.optionMap.show', compact('datas','title'));    
     }
 
     public function edit($serial)
@@ -94,24 +101,44 @@ class OptionMapController extends Controller
         }
 
         $data = OptionMap::where('serial',$serial)->first();
-        // $roles  = Role::all();
-        return view('backend.pages.jabatan.edit', compact('data'));
+        $title=$this->title;
+        return view('backend.pages.optionMap.edit', compact('data','title'));
 
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $serial)
     {
-        //
-    }
+        $input = $request->all();
+        unset($input['_method']);
+        unset($input['_token']);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+        $result = OptionMap::where('serial',$serial)->update($input);
+
+        if($result) {
+
+            session()->flash('success', 'Data Telah Diubah');
+
+        }else{
+
+            session()->flash('error', 'Gagal Update');
+        }
+
+        return redirect()->route('admin.optionMaps.index');        
+
+    }
+    public function destroy($serial)
     {
-        //
+        $data = OptionMap::Where('serial',$serial)->first();
+        $result = $data->delete();
+        if ($result == true) {
+            session()->flash('success', 'Data Telah Dihapus');
+
+        }else{
+
+            session()->flash('error', 'Gagal Update');
+
+        }
+
+        return redirect()->route('admin.optionMaps.index');        
     }
 }

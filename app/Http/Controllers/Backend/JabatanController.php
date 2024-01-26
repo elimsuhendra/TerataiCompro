@@ -85,6 +85,10 @@ class JabatanController extends Controller
     public function show($id)
     {
     
+        $datas = Jabatan::find($id);
+
+        return view('backend.pages.jabatan.show', compact('datas'));
+
     }
 
     public function edit($serial)
