@@ -16,7 +16,10 @@ class Artikel extends Model
     protected $fillable = [
         'serial',
         'judul',
-        'content'
+        'content',
+        'created_at',
+        'updated_at'
+
     ];
 
     public $timestamps = false;

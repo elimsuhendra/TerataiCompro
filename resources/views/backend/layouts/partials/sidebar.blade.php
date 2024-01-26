@@ -296,7 +296,7 @@ $currentRoute = request()->route()->getName();
                     </a>
                 </li>
             @endif    
-            @if ($usr->can('produk.list') || $usr->can('produk.view') || $usr->can('produk.edit') || $usr->can('produk.delete'))
+            @if ($usr->can('product.list') || $usr->can('product.view') || $usr->can('product.edit') || $usr->can('product.delete'))
                 <li class="nav-item @if($currentRoute == 'admin.produks.index') active @endif">
                     <a class="nav-link menu-link" href="{{ route('admin.produks.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
                         <i class="ri-stack-line"></i> <span data-key="t-widgets">Produk</span>
@@ -311,8 +311,8 @@ $currentRoute = request()->route()->getName();
                 </li>
             @endif  
             @if ($usr->can('visiMisi.list') || $usr->can('visiMisi.view') || $usr->can('visiMisi.edit') || $usr->can('visiMisi.delete'))
-                <li class="nav-item @if($currentRoute == 'admin.visiMisis.index') active @endif">
-                    <a class="nav-link menu-link" href="{{ route('admin.visiMisis.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                <li class="nav-item @if($currentRoute == 'admin.visiMisi.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.visiMisi.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
                         <i class="ri-stack-line"></i> <span data-key="t-widgets">Info Visi Misi</span>
                     </a>
                 </li>

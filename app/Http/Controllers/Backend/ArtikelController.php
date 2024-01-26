@@ -45,7 +45,7 @@ class ArtikelController extends Controller
 
     public function create()
     {
-        if (is_null($this->user) || !$this->user->can('admin.create')) {
+        if (is_null($this->user) || !$this->user->can('artikel.create')) {
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
 
@@ -61,14 +61,13 @@ class ArtikelController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
 
-        // Validation Data
         $input = $request->all();
         $input['serial'] =md5(Str::random(14)) ;
         $input['created_at'] = now();
 
         $request->validate([
-            'value' => 'required|max:50',
-            'key' => 'required|max:100|unique:option_map',
+            'content' => 'required|max:10000',
+            'judul' => 'required|max:100|unique:artikel',
         ]);
 
 

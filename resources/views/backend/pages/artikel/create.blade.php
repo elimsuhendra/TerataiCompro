@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Admin Create - Admin Panel
+{{ $title }} Create - Admin Panel
 @endsection
 
 @section('styles')
@@ -23,11 +23,11 @@ Admin Create - Admin Panel
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Jabatan</h4>
+                    <h4 class="mb-sm-0">{{ $title }}</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">Jabatan</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">Tambah Data</li>
                         </ol>
                     </div>
@@ -40,11 +40,11 @@ Admin Create - Admin Panel
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">Tambah Jabatan</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">Tambah {{ $title }}</h4>
                     </div><!-- end card header -->
                     <div class="card-body">
 
-                        <form action="{{ route('admin.jabatans.store') }}" method="POST">
+                        <form action="{{ route('admin.artikels.store') }}" method="POST">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-8 col-sm-12">
@@ -53,17 +53,18 @@ Admin Create - Admin Panel
                                     <input type="text" class="form-control" id="name"  value=" {{ now() }}">
                                 </div>
                                 <div class="form-group col-md-8 col-sm-12">
-                                    <label for="name">Nama Jabatan</label>
-                                    <input type="text" class="form-control" id="name" name="nama_jabatan" placeholder="Nama Jabatan">
+                                    <label for="judul">Judul</label>
+                                    <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul">
                                 </div>
                                 <div class="form-group col-md-8 col-sm-12">
-                                    <label for="email">Nama</label>
-                                    <input type="text" class="form-control" id="email" name="nama" placeholder="Nama">
+                                    <label for="content">Deskripsi</label>
+                                    <textarea class="form-control" id="content" name="content" rows="5"></textarea>
                                 </div>
+
                             </div>
     
                             
-                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
+                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
                         </form>                  
                     </div>
                 </div>

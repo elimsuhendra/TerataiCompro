@@ -50,9 +50,9 @@ Admins - {{ $title }} List
                                 <thead class="bg-light text-capitalize">
                                     <tr>
                                         <th width="5%">No</th>
-                                        <th width="10%">key</th>
-                                        <th width="10%">value</th>
-                                        <th width="10%">kategori</th>
+                                        <th width="10%">Judul</th>
+                                        <th width="10%">Dibuat</th>
+                                        {{-- <th width="10%">kategori</th> --}}
                                         <th width="15%">Action</th>
                                     </tr>
                                 </thead>
@@ -60,25 +60,25 @@ Admins - {{ $title }} List
                                    @foreach ($datas as $data)
                                    <tr>
                                         <td>{{ $loop->index+1 }}</td>
-                                        <td>{{ $data->key }}</td>
-                                        <td>{{ $data->value }}</td>
-                                        <td>{{ $data->kategori }}</td>
+                                        <td>{{ $data->judul }}</td>
+                                        <td>{{ $data->created_at }}</td>
+                                        {{-- <td>{{ $data->kategori }}</td> --}}
     
                                         <td>
-                                            @if (Auth::guard('admin')->user()->can('optionMap.show'))
-                                                <a class="btn btn-info text-white" href="{{ route('admin.optionMaps.show', $data->serial) }}">Show</a>
+                                            @if (Auth::guard('admin')->user()->can('artikel.show'))
+                                                <a class="btn btn-info text-white" href="{{ route('admin.artikels.show', $data->serial) }}">Show</a>
                                             @endif
 
-                                            @if (Auth::guard('admin')->user()->can('optionMap.edit'))
-                                                <a class="btn btn-success text-white" href="{{ route('admin.optionMaps.edit', $data->serial) }}">Edit</a>
+                                            @if (Auth::guard('admin')->user()->can('artikel.edit'))
+                                                <a class="btn btn-success text-white" href="{{ route('admin.artikels.edit', $data->serial) }}">Edit</a>
                                             @endif
                                             
-                                            @if (Auth::guard('admin')->user()->can('optionMap.delete'))
-                                            <a class="btn btn-danger text-white" href="{{ route('admin.optionMaps.destroy', $data->serial) }}"
+                                            @if (Auth::guard('admin')->user()->can('artikel.delete'))
+                                            <a class="btn btn-danger text-white" href="{{ route('admin.artikels.destroy', $data->serial) }}"
                                             onclick="event.preventDefault(); document.getElementById('delete-form-{{ $data->serial }}').submit();">
                                                 Delete
                                             </a>
-                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.optionMaps.destroy', $data->serial) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.artikels.destroy', $data->serial) }}" method="POST" style="display: none;">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>
