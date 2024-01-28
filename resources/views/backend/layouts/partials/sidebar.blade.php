@@ -310,13 +310,13 @@ $currentRoute = request()->route()->getName();
                     </a>
                 </li>
             @endif  
-            @if ($usr->can('visiMisi.list') || $usr->can('visiMisi.view') || $usr->can('visiMisi.edit') || $usr->can('visiMisi.delete'))
-                <li class="nav-item @if($currentRoute == 'admin.visiMisi.index') active @endif">
-                    <a class="nav-link menu-link" href="{{ route('admin.visiMisi.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+            {{-- @if ($usr->can('visiMisi.list') || $usr->can('visiMisi.view') || $usr->can('visiMisi.edit') || $usr->can('visiMisi.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.visiMisis.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.visiMisis.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
                         <i class="ri-stack-line"></i> <span data-key="t-widgets">Info Visi Misi</span>
                     </a>
                 </li>
-            @endif  
+            @endif   --}}
             
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">

@@ -2,7 +2,11 @@
 @extends('backend.layouts.master')
 
 @section('title')
+<<<<<<< Updated upstream
 {{ $title }} Create - Admin Panel
+=======
+Artikel Create - Admin Panel
+>>>>>>> Stashed changes
 @endsection
 
 @section('styles')
@@ -27,7 +31,7 @@
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">{{ $title }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.artikels.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">Tambah Data</li>
                         </ol>
                     </div>
@@ -53,18 +57,16 @@
                                     <input type="text" class="form-control" id="name"  value=" {{ now() }}">
                                 </div>
                                 <div class="form-group col-md-8 col-sm-12">
-                                    <label for="judul">Judul</label>
-                                    <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul">
+                                    <label for="name">Judul</label>
+                                    <input type="text" class="form-control" id="name" name="judul" placeholder="Judul">
                                 </div>
                                 <div class="form-group col-md-8 col-sm-12">
-                                    <label for="content">Deskripsi</label>
-                                    <textarea class="form-control" id="content" name="content" rows="5"></textarea>
+                                    <label for="email">Content</label>
+                                    <textarea class="form-control" id="pesan" name="content" rows="4"></textarea>
                                 </div>
 
                             </div>
-    
-                            
-                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
+                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save </button>
                         </form>                  
                     </div>
                 </div>

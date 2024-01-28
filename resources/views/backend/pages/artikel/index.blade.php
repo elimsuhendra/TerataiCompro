@@ -51,8 +51,7 @@ Admins - {{ $title }} List
                                     <tr>
                                         <th width="5%">No</th>
                                         <th width="10%">Judul</th>
-                                        <th width="10%">Dibuat</th>
-                                        {{-- <th width="10%">kategori</th> --}}
+                                        <th width="10%">Pembuat Artikel</th>
                                         <th width="15%">Action</th>
                                     </tr>
                                 </thead>
@@ -61,8 +60,7 @@ Admins - {{ $title }} List
                                    <tr>
                                         <td>{{ $loop->index+1 }}</td>
                                         <td>{{ $data->judul }}</td>
-                                        <td>{{ $data->created_at }}</td>
-                                        {{-- <td>{{ $data->kategori }}</td> --}}
+                                        <td>{{ @$data->account->name }}</td>
     
                                         <td>
                                             @if (Auth::guard('admin')->user()->can('artikel.show'))

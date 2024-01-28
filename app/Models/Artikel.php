@@ -18,9 +18,15 @@ class Artikel extends Model
         'judul',
         'content',
         'created_at',
-        'updated_at'
-
+        'updated_at',
+        'created_by'
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Admin::class, 'created_by', 'id');
+    }
+
 
     public $timestamps = false;
 }

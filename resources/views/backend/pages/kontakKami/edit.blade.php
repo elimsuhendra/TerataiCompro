@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Admin Edit - Admin Panel
+Kontak Kami Edit - Admin Panel
 @endsection
 
 @section('styles')

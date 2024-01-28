@@ -37,7 +37,7 @@ class ArtikelController extends Controller
     
         }
 
-        $datas = Artikel::all();
+        $datas = Artikel::with('account')->get();
         $title=$this->title;
 
         return view('backend.pages.artikel.index', compact('datas','title'));
@@ -64,12 +64,14 @@ class ArtikelController extends Controller
         $input = $request->all();
         $input['serial'] =md5(Str::random(14)) ;
         $input['created_at'] = now();
+        $input['created_by'] = Auth::guard('admin')->user()->id;
 
-        $request->validate([
-            'content' => 'required|max:10000',
-            'judul' => 'required|max:100|unique:artikel',
-        ]);
-
+        // dd($input);
+        // $request->validate([
+        //     'content' => 'required',
+        //     'judul' => 'required|max:100|unique:artikel',
+        //     'created_by' => 'required'
+        // ]);
 
         try {
           
@@ -91,10 +93,10 @@ class ArtikelController extends Controller
 
     public function show($id)
     {
-        $datas = $this->model->find($id);
+        $datas = $this->model->with('account')->where('serial',$id)->first();
         $title=$this->title;
 
-        return view('backend.pages.optionMap.show', compact('datas','title'));    
+        return view('backend.pages.artikel.show', compact('datas','title'));    
     }
 
     public function edit($serial)
@@ -105,7 +107,7 @@ class ArtikelController extends Controller
 
         $data = $this->model->where('serial',$serial)->first();
         $title=$this->title;
-        return view('backend.pages.optionMap.edit', compact('data','title'));
+        return view('backend.pages.artikel.edit', compact('data','title'));
 
     }
 
