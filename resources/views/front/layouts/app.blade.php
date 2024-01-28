@@ -39,14 +39,13 @@
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-            <li><a href="/" class="{{$data['page'] == 'home' ? 'active' : ''}}">Home</a></li>
-            <li><a href="hidroponik" class="{{$data['page'] == 'hidroponik' ? 'active' : ''}}">Hidroponik</a></li>
-            <li><a href="cafe" class="{{$data['page'] == 'cafe' ? 'active' : ''}}">Cafe</a></li>
-            <li><a href="edufarm" class="{{$data['page'] == 'edu farm' ? 'active' : ''}}">Edu Farm</a></li>
-            <li><a href="article" class="{{$data['page'] == 'article' ? 'active' : ''}}">Article</a></li>
-            <li><a href="about_us" class="{{$data['page'] == 'about us' ? 'active' : ''}}">About Us</a></li>
-            <li><a href="contact_us" class="{{$data['page'] == 'contact us' ? 'active' : ''}}">Contact Us</a></li>
-
+                <li><a href="/" class="{{$data['page'] == 'home' ? 'active' : ''}}">Home</a></li>
+                <li><a href="hidroponik" class="{{$data['page'] == 'hidroponik' ? 'active' : ''}}">Hidroponik</a></li>
+                <li><a href="cafe" class="{{$data['page'] == 'cafe' ? 'active' : ''}}">Cafe</a></li>
+                <li><a href="edufarm" class="{{$data['page'] == 'edu farm' ? 'active' : ''}}">Edu Farm</a></li>
+                <li><a href="article" class="{{$data['page'] == 'article' ? 'active' : ''}}">Article</a></li>
+                <li><a href="about_us" class="{{$data['page'] == 'about us' ? 'active' : ''}}">About Us</a></li>
+                <li><a href="contact_us" class="{{$data['page'] == 'contact us' ? 'active' : ''}}">Contact Us</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
