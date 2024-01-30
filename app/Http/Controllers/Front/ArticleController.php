@@ -29,6 +29,7 @@ class ArticleController extends Controller
     public function index()
     {
         $data['page'] = 'article';
+        dd($this->get_index('article'));
         return view('front/article', compact('data'));
     }
 
