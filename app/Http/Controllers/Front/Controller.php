@@ -13,7 +13,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function get_index($table){
-        $data = DB::table('artikel')->select('*')->get();
+        $data = DB::table($table)->select('*')->get();
 
         return $data;
     }

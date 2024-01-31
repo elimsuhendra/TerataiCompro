@@ -13,69 +13,40 @@
 
           <div class="col-lg-12 entries">
             <div class="row">
-                <div class="col-lg-4 entries">
-                    <article class="entry">
+                {{$data['data']}}
+                {{-- @foreach($data['data'] as $data)
+                  <div class="col-lg-4 entries">
+                      <article class="entry">
 
-                    <div class="entry-img">
-                        <img src="front/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                    </div>
+                      <div class="entry-img">
+                          <img src="front/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                      </div>
 
-                    <h2 class="entry-title">
-                        <a href="article_detail?id=1">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
-                    </h2>
+                      <h2 class="entry-title">
+                          <a href="article_detail?id=1">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
+                      </h2>
 
-                    <div class="entry-meta">
-                        <ul>
-                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="article_detail?id=1">John Doe</a></li>
-                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="article_detail?id=1"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                        </ul>
-                    </div>
+                      <div class="entry-meta">
+                          <ul>
+                          <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="article_detail?id=1">John Doe</a></li>
+                          <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="article_detail?id=1"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                          </ul>
+                      </div>
 
-                    <div class="entry-content">
-                        <p>
-                        Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                        Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
-                        </p>
-                        <div class="read-more">
-                        <a href="article_detail?id=1">Read More</a>
-                        </div>
-                    </div>
+                      <div class="entry-content">
+                          <p>
+                          Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
+                          Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
+                          </p>
+                          <div class="read-more">
+                          <a href="article_detail?id=1">Read More</a>
+                          </div>
+                      </div>
 
-                    </article><!-- End blog entry -->
-                </div>
-
-                <div class="col-lg-4 entries">
-                    <article class="entry">
-
-                    <div class="entry-img">
-                        <img src="front/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                    </div>
-
-                    <h2 class="entry-title">
-                        <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
-                    </h2>
-
-                    <div class="entry-meta">
-                        <ul>
-                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                        </ul>
-                    </div>
-
-                    <div class="entry-content">
-                        <p>
-                        Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                        Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
-                        </p>
-                        <div class="read-more">
-                        <a href="blog-single.html">Read More</a>
-                        </div>
-                    </div>
-
-                    </article><!-- End blog entry -->
-                </div>
-
-                <div class="col-lg-4 entries">
+                      </article><!-- End blog entry -->
+                  </div>
+                @endforeach --}}
+                {{-- <div class="col-lg-4 entries">
                     <article class="entry">
 
                     <div class="entry-img">
@@ -291,6 +262,37 @@
 
                     </article><!-- End blog entry -->
                 </div>
+
+                <div class="col-lg-4 entries">
+                    <article class="entry">
+
+                    <div class="entry-img">
+                        <img src="front/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                    </div>
+
+                    <h2 class="entry-title">
+                        <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
+                    </h2>
+
+                    <div class="entry-meta">
+                        <ul>
+                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="entry-content">
+                        <p>
+                        Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
+                        Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
+                        </p>
+                        <div class="read-more">
+                        <a href="blog-single.html">Read More</a>
+                        </div>
+                    </div>
+
+                    </article><!-- End blog entry -->
+                </div> --}}
             </div>
 
             {{-- <article class="entry">
