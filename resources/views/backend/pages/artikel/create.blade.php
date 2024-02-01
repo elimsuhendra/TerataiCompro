@@ -2,11 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-<<<<<<< Updated upstream
-{{ $title }} Create - Admin Panel
-=======
 Artikel Create - Admin Panel
->>>>>>> Stashed changes
 @endsection
 
 @section('styles')
@@ -18,6 +14,7 @@ Artikel Create - Admin Panel
     }
 </style>
 @endsection
+
 
 
 @section('admin-content')
@@ -62,7 +59,9 @@ Artikel Create - Admin Panel
                                 </div>
                                 <div class="form-group col-md-8 col-sm-12">
                                     <label for="email">Content</label>
-                                    <textarea class="form-control" id="pesan" name="content" rows="4"></textarea>
+                                    <textarea class="form-control" id="editor" name="content" rows="4"></textarea>
+                                    {{-- <div id="editor"></div> --}}
+
                                 </div>
 
                             </div>
@@ -82,7 +81,12 @@ Artikel Create - Admin Panel
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="{{ asset('sidebackend/assets/js/ckeditor.js')}}"></script>
 <script>
+
+ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
+  console.error(error);
+});
     $(document).ready(function() {
         $('.select2').select2();
     })

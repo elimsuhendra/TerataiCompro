@@ -14,6 +14,7 @@ Admins - {{ $title }} List
 @endsection
 
 
+
 @section('admin-content')
 
 <div class="page-content">
@@ -115,3 +116,5 @@ Admins - {{ $title }} List
 
      </script>
 @endsection
+
+
