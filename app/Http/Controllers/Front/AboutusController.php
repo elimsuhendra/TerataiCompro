@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
-use DB;
 
-class HomeController extends Controller
+class AboutusController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -29,14 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // dd(DB::table('admins')->get());
-        $data['page'] = 'home';
-        return view('front/home', compact('data'));
-    }
-
-    public function home()
-    {
-        // $data['page'] = 'home';
-        return view('home');
+        $data['page'] = 'about us';
+        return view('front/about_us', compact('data'));
     }
 }
