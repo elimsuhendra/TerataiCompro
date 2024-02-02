@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
+use App\Models\Artikel;
+use DB;
 
 class ArticleController extends Controller
 {
@@ -29,8 +31,16 @@ class ArticleController extends Controller
     public function index()
     {
         $data['page'] = 'article';
-        $data['data'] = $this->get_index('artikel');
-        return view('front/article', compact('data'));
+
+        $request = (object) [
+            "length" => 9,
+            "start" => 0
+        ];
+        // $data['data'] = $this->get_index('artikel', $request);
+        $data['data'] = DB::table('artikel')->paginate(1);
+        // dd($data['data']);
+        return view('front/article', compact('data'));  
+        // return $this->render_view('front/article', $data);
     }
 
     public function detail()

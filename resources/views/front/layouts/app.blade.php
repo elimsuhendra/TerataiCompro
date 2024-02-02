@@ -27,6 +27,9 @@
 
     <!-- Template Main CSS File -->
     <link href="{{asset('front/assets/css/style.css')}}" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 </head>
 <body>
     <!-- ======= Header ======= -->

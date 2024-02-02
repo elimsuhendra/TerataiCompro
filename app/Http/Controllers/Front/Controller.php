@@ -12,9 +12,14 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function get_index($table){
-        $data = DB::table($table)->select('*')->get();
+    public function get_index($table, $request){
+        $data = DB::table($table)->select('*');
+        // dd($request->length);
+        if($request->length !== "-1"){
+            $data = $data->limit($request->length)->offset($request->start);
+        }
 
+        $data = $data->get();
         return $data;
     }
 
