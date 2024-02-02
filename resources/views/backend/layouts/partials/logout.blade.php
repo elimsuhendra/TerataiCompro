@@ -8,7 +8,7 @@
         onclick="event.preventDefault();
                       document.getElementById('admin-logout-form').submit();">Log Out</a>
     </div> --}}
-    @include('backend.layouts.partials.logout')
+    {{-- @include('backend.layouts.partials.logout') --}}
 
 
     <form id="admin-logout-form" action="{{ route('admin.logout.submit') }}" method="POST" style="display: none;">
