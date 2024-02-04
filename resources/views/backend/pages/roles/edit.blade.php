@@ -16,34 +16,34 @@ Role Edit - Admin Panel
 
 @section('admin-content')
 
-<!-- page title area start -->
-<div class="page-title-area">
-    <div class="row align-items-center">
-        <div class="col-sm-6">
-            <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Role Edit - {{ $role->name }}</h4>
-                <ul class="breadcrumbs pull-left">
-                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ route('admin.roles.index') }}">All Roles</a></li>
-                    <li><span>Edit Role</span></li>
-                </ul>
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row align-items-center">
+            <div class="col-sm-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-0">Role</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.artikels.index') }}">Role</a></li>
+                            <li class="breadcrumb-item active">Edit Role</li>
+                        </ol>
+                    </div>
+
+                </div>
             </div>
         </div>
-        <div class="col-sm-6 clearfix">
-            @include('backend.layouts.partials.logout')
-        </div>
-    </div>
-</div>
-<!-- page title area end -->
 
-<div class="main-content-inner">
-    <div class="row">
-        <!-- data table start -->
-        <div class="col-12 mt-5">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="header-title">Edit Role</h4>
-                    @include('backend.layouts.partials.messages')
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header align-items-center d-flex">
+                        <h4 class="card-title mb-0 flex-grow-1">Edit  Role</h4>
+                    </div><!-- end card header -->
+                    <div class="card-body">
+
+                        @include('backend.layouts.partials.messages')
                     
                     <form action="{{ route('admin.roles.update', $role->id) }}" method="POST">
                         @method('PUT')
@@ -94,16 +94,15 @@ Role Edit - Admin Panel
                         </div>
                         <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Update Role</button>
                     </form>
+                        
+                    </div>
                 </div>
             </div>
+            <!--end col-->
         </div>
-        <!-- data table end -->
-        
+        <!--end row-->
+
     </div>
 </div>
-@endsection
 
-
-@section('scripts')
-     @include('backend.pages.roles.partials.scripts')
 @endsection

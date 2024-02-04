@@ -4,10 +4,12 @@
     {{ Auth::guard('admin')->user()->name }}
     <i class="fa fa-angle-down"></i></h4>
     <div class="dropdown-menu">
-        <a class="dropdown-item" href="{{ route('admin.logout.submit') }}"
+        {{-- <a class="dropdown-item" href="{{ route('admin.logout.submit') }}"
         onclick="event.preventDefault();
                       document.getElementById('admin-logout-form').submit();">Log Out</a>
-    </div>
+    </div> --}}
+    {{-- @include('backend.layouts.partials.logout') --}}
+
 
     <form id="admin-logout-form" action="{{ route('admin.logout.submit') }}" method="POST" style="display: none;">
         @csrf

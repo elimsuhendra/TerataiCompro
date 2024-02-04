@@ -149,28 +149,28 @@
                         </ul>
                     </li>
                     @endif
-                    @if ($usr->can('product.create') || $usr->can('product.view') ||  $usr->can('product.edit') ||  $usr->can('product.delete'))
+                    @if ($usr->can('produk.create') || $usr->can('produk.view') ||  $usr->can('produk.edit') ||  $usr->can('produk.delete'))
                     <li>
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
                             Akses Pinjaman
                         </span></a>
-                        <ul class="collapse {{ Route::is('admin.products.create') || Route::is('admin.products.index') || Route::is('admin.products.edit') || Route::is('admin.products.show') ? 'in' : '' }}">
+                        <ul class="collapse {{ Route::is('admin.produks.create') || Route::is('admin.produks.index') || Route::is('admin.produks.edit') || Route::is('admin.produks.show') ? 'in' : '' }}">
                             
-                            @if ($usr->can('product.view'))
-                                <li class="{{ Route::is('admin.products.index')  || Route::is('admin.products.edit') ? 'active' : '' }}"><a href="{{ route('admin.products.index') }}">List Product</a></li>
+                            @if ($usr->can('produk.view'))
+                                <li class="{{ Route::is('admin.produks.index')  || Route::is('admin.produks.edit') ? 'active' : '' }}"><a href="{{ route('admin.produks.index') }}">List produk</a></li>
                             @endif
                         </ul>
                     </li>
                     @endif
 
-                    @if ($usr->can('productBej.view') ||  $usr->can('productBej.show'))
+                    @if ($usr->can('produkBej.view') ||  $usr->can('produkBej.show'))
                     <li>
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            Product
+                            produk
                         </span></a>
-                        <ul class="collapse {{ Route::is('admin.productBej.view') ? 'in' : '' }}">
-                            @if ($usr->can('productBej.view'))
-                                <li class="{{ Route::is('admin.productBej.index')  || Route::is('admin.productBej.edit') ? 'active' : '' }}"><a href="{{ route('admin.productBej.index') }}">Product</a></li>
+                        <ul class="collapse {{ Route::is('admin.produkBej.view') ? 'in' : '' }}">
+                            @if ($usr->can('produkBej.view'))
+                                <li class="{{ Route::is('admin.produkBej.index')  || Route::is('admin.produkBej.edit') ? 'active' : '' }}"><a href="{{ route('admin.produkBej.index') }}">produk</a></li>
                             @endif
                         </ul>
                     </li>
@@ -296,7 +296,7 @@ $currentRoute = request()->route()->getName();
                     </a>
                 </li>
             @endif    
-            @if ($usr->can('produk.list') || $usr->can('produk.view') || $usr->can('produk.edit') || $usr->can('produk.delete'))
+            @if ($usr->can('produks.list') || $usr->can('produks.view') || $usr->can('produks.edit') || $usr->can('produks.delete'))
                 <li class="nav-item @if($currentRoute == 'admin.produks.index') active @endif">
                     <a class="nav-link menu-link" href="{{ route('admin.produks.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
                         <i class="ri-stack-line"></i> <span data-key="t-widgets">Produk</span>
@@ -310,14 +310,6 @@ $currentRoute = request()->route()->getName();
                     </a>
                 </li>
             @endif  
-            @if ($usr->can('visiMisi.list') || $usr->can('visiMisi.view') || $usr->can('visiMisi.edit') || $usr->can('visiMisi.delete'))
-                <li class="nav-item @if($currentRoute == 'admin.visiMisis.index') active @endif">
-                    <a class="nav-link menu-link" href="{{ route('admin.visiMisis.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
-                        <i class="ri-stack-line"></i> <span data-key="t-widgets">Info Visi Misi</span>
-                    </a>
-                </li>
-            @endif  
-            
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                         <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Layouts</span>
