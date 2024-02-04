@@ -268,7 +268,7 @@ $currentRoute = request()->route()->getName();
                     </a>
                 </li>
             @endif
-            @if ($usr->can('produk.list') || $usr->can('produk.view') || $usr->can('produk.edit') || $usr->can('produk.delete'))
+            @if ($usr->can('produks.list') || $usr->can('produks.view') || $usr->can('produks.edit') || $usr->can('produks.delete'))
                 <li class="nav-item @if($currentRoute == 'admin.produks.index') active @endif">
                     <a class="nav-link menu-link" href="{{ route('admin.produks.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
                         <i class="ri-layout-grid-line"></i> <span data-key="t-widgets">Produk</span>
