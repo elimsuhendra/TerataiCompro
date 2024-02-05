@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Admin Edit - Admin Panel
+Artikel Edit - Admin Panel
 @endsection
 
 @section('styles')
@@ -22,11 +22,11 @@ Admin Edit - Admin Panel
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Jabatan</h4>
+                    <h4 class="mb-sm-0">{{ $title }}</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">Jabatan</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.artikels.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">Tambah Data</li>
                         </ol>
                     </div>
@@ -39,24 +39,40 @@ Admin Edit - Admin Panel
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">Edit Jabatan</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">Edit {{ $title }}</h4>
                     </div><!-- end card header -->
                     <div class="card-body">
                         @include('backend.layouts.partials.messages')
-                        <form action="{{ route('admin.jabatans.update', $data->serial) }}" method="POST">
+                        <form action="{{ route('admin.produks.update', $data->serial) }}" method="POST">
                             @method('PUT')
                             @csrf
+                            <input type="hidden" name="_method" value="PUT">
                             <div class="form-row">
                                 <div class="form-group col-md-6 col-sm-12">
-                                    <label for="name">Admin Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ $data->nama_jabatan }}">
-                                </div>
-                                <div class="form-group col-md-6 col-sm-12">
-                                    <label for="email">Admin Email</label>
-                                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email" value="{{ $data->nama }}">
+                                    <label for="key">Nama Produk</label>
+                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Produk" value="{{ $data->nama }}">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="key">Kategori Produk</label>
+                                    <select name="serial_kategori" class="form-control ">
+                                        <option value="">--Pilih Kategori--</option>
+                                        @foreach ($kategori as $row)
+                                            <option value="{{ $row->serial }}" @if($data->serial_kategori == $row->serial) selected='selected' @endif> {{ strtoupper($row->nama_kategori) }}</option>
+                                                
+                                                {{ strtoupper($row->nama_kategori) }}
+                                            </option>
+                                        @endforeach
+                                    </select>                                
+                                </div>
+                            </div>
+                            <div class="form-group col-md-8 col-sm-12">
+                                <label for="pesan">Deskripsi</label>
+                                <textarea class="form-control" id="editor" name="deskripsi" rows="4">{{ $data->deskripsi }}</textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
                         </form>
                    
                     </div>
@@ -73,7 +89,12 @@ Admin Edit - Admin Panel
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="{{ asset('sidebackend/assets/js/ckeditor.js')}}"></script>
 <script>
+
+    ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
+    console.error(error);
+    });
     $(document).ready(function() {
         $('.select2').select2();
     })
