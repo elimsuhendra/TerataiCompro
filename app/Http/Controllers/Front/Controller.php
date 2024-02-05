@@ -23,6 +23,13 @@ class Controller extends BaseController
         return $data;
     }
 
+    public function get_detail($table, $serial){
+        $data = DB::table($table)->select('*')->where('serial',$serial)->join();
+       
+        $data = $data->first();
+        return $data;
+    }
+
     public function render_view($view = ''){
         $data = $this->data;
         // if($view == "pages.pages.cek_alamat"){
