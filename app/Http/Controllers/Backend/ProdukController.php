@@ -12,6 +12,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Str;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProdukController extends Controller
@@ -63,20 +64,34 @@ class ProdukController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to create Produks !');
         }
 
+
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust image validation rules as needed
+        ]);
+
         // Validation Data
         $input = $request->all();
         $input['serial'] =md5(Str::random(14)) ;
         $input['created_at'] = now();
-
-        $request->validate([
-            'nama' => 'required|max:50',
-            // 'nama_jabatan' => 'required|max:100|unique:jabatan',
-        ]);
-
+    
+        // Handle file upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+        
+            // Define the directory path
+            $directory = 'public/images';
+            // Check if the directory exists, if not, create it
+            if (!Storage::exists($directory)) {
+                Storage::makeDirectory($directory, 0755, true);
+            }
+            $imagePath = $image->store($directory);        
+            $input['image'] = basename($imagePath);
+        }
+        
+    
 
         try {
           
-
            Produk::create($input);
             session()->flash('success', 'Data Sudah Ditambahkan !!');
 
