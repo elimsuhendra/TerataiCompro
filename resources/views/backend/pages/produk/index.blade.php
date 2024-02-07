@@ -13,7 +13,6 @@ Admins - Produk List
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
 @endsection
 
-
 @section('admin-content')
 
 <div class="page-content">
@@ -74,7 +73,7 @@ Admins - Produk List
                                             onclick="event.preventDefault(); document.getElementById('delete-form-{{ $data->serial }}').submit();">
                                                 Delete
                                             </a>
-                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.admins.destroy', $data->serial) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.produks.destroy', $data->serial) }}" method="POST" style="display: none;">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>

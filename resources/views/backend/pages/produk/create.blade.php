@@ -98,7 +98,7 @@
 <script>
 
     ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
-    console.error(error);
+        console.error(error);
     });
     $(document).ready(function() {
         $('.select2').select2();

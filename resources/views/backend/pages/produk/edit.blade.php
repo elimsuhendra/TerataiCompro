@@ -48,13 +48,13 @@ Artikel Edit - Admin Panel
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="key">Nama Produk</label>
                                     <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Produk" value="{{ $data->nama }}">
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="key">Kategori Produk</label>
                                     <select name="serial_kategori" class="form-control ">
                                         <option value="">--Pilih Kategori--</option>
@@ -67,7 +67,7 @@ Artikel Edit - Admin Panel
                                     </select>                                
                                 </div>
                             </div>
-                            <div class="form-group col-md-8 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12">
                                 <label for="pesan">Deskripsi</label>
                                 <textarea class="form-control" id="editor" name="deskripsi" rows="4">{{ $data->deskripsi }}</textarea>
                             </div>
