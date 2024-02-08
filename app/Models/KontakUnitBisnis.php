@@ -27,5 +27,10 @@ class KontakUnitBisnis extends Model
         'created_by'
     ];
 
+    public function account()
+    {
+        return $this->belongsTo(Admin::class, 'created_by', 'id');
+    }
+
     public $timestamps = false;
 }

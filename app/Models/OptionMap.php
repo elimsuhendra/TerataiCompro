@@ -19,9 +19,22 @@ class OptionMap extends Model
         'value',
         'kategori',
         'description',
+        'status',
+        'created_by',
         'created_at',
         'updated_at'
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Admin::class, 'created_by', 'id');
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori', 'serial');
+    }
+
 
     public $timestamps = false;
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\OptionMap;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,8 @@ class OptionMapController extends Controller
     
         }
 
-        $datas = OptionMap::all();
+        $datas = OptionMap::with('kategori','account')->get();
+        // dd($datas);
         $title=$this->title;
 
         return view('backend.pages.optionMap.index', compact('datas','title'));
@@ -46,8 +48,10 @@ class OptionMapController extends Controller
         }
 
         $title=$this->title;
+        $kategori=Kategori::select('serial','nama_kategori')->get();
 
-        return view('backend.pages.optionMap.create',compact('title'));        
+
+        return view('backend.pages.optionMap.create',compact('title','kategori'));        
     }
 
     public function store(Request $request)
@@ -58,32 +62,22 @@ class OptionMapController extends Controller
         }
 
         // Validation Data
-        $input = $request->all();
-        $input['serial'] =md5(Str::random(14)) ;
-        $input['created_at'] = now();
-
-        $request->validate([
-            'value' => 'required|max:50',
-            'key' => 'required|max:100|unique:option_map',
-        ]);
-
-
         try {
-          
+            $input = $request->except(['_token']);
+            $input['serial'] = md5(Str::random(14));
+            $input['created_at'] = now();
+            $input['status'] = "Active";
+            $input['created_by'] = Auth::guard('admin')->user()->id;
+    
             OptionMap::create($input);
             session()->flash('success', 'Data Sudah Ditambahkan !!');
-
-        }catch (QueryException $e) {
-
-            session()->flash('error', $e);
-
+        } catch (QueryException $e) {
+            session()->flash('error', $e->getMessage());
         } catch (\Exception $e) {
-
             session()->flash('error', 'An unexpected error occurred');
         }
-
-
-        return redirect()->route('admin.optionMaps.index');        
+    
+        return redirect()->route('admin.optionMaps.index');            
     }
 
     public function show($id)

@@ -62,7 +62,7 @@ Admins - {{ $title }} List
                                         <td>{{ $loop->index+1 }}</td>
                                         <td>{{ $data->key }}</td>
                                         <td>{{ $data->value }}</td>
-                                        <td>{{ $data->kategori }}</td>
+                                        <td>{{ @$data->kategori }}</td>
     
                                         <td>
                                             @if (Auth::guard('admin')->user()->can('optionMap.show'))

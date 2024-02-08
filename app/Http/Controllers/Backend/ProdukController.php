@@ -76,13 +76,9 @@ class ProdukController extends Controller
         $input['status'] = 'Active';
         $input['created_by'] = Auth::guard('admin')->user()->id;
 
-
-    
         // Handle file upload
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-        
-            // Define the directory path
+            $image = $request->file('image');        
             $directory = 'public/images';
             // Check if the directory exists, if not, create it
             if (!Storage::exists($directory)) {
@@ -117,17 +113,11 @@ class ProdukController extends Controller
         $datas = Produk::find($id);
         $title="Product";
         $directory = 'public/images';
-        $filename = $datas->image;
-        
+        $filename = $datas->image;        
         // Construct the full path of the image
-        $imagePath = $directory . '/' . $filename;
-        
-        // Generate the URL for the image
+        $imagePath = $directory . '/' . $filename;        
         $imageUrl = Storage::url($imagePath);
         
-        // dd($imageUrl);
-
-
         return view('backend.pages.produk.show', compact('datas','title','imageUrl'));    
     }
 

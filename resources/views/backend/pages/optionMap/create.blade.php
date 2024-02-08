@@ -60,9 +60,19 @@
                                     <label for="email">Value</label>
                                     <input type="text" class="form-control" id="email" name="value" placeholder="value">
                                 </div>
-                                <div class="form-group col-md-8 col-sm-12">
+                                {{-- <div class="form-group col-md-8 col-sm-12">
                                     <label for="email">Kategori</label>
                                     <input type="text" class="form-control" id="email" name="kategori" placeholder="Kategori">
+                                </div> --}}
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="name">Kategori Produk</label>
+                                    <select name="kategori" id="kategori" class="form-control " required>
+                                        <option value="">Pilih Kategori</option>
+
+                                        @foreach ($kategori as $row)
+                                            <option value="{{ $row->serial }}">{{ $row->nama_kategori }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-8 col-sm-12">
                                     <label for="pesan">Deskripsi</label>
