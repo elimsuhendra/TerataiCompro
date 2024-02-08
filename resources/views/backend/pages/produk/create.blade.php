@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Admin Create - Admin Panel
+{{ $title }} Create - {{ $title }} Panel
 @endsection
 
 @section('styles')
@@ -16,6 +16,7 @@ Admin Create - Admin Panel
 @endsection
 
 
+
 @section('admin-content')
 <div class="page-content">
     <div class="container-fluid">
@@ -23,11 +24,11 @@ Admin Create - Admin Panel
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Jabatan</h4>
+                    <h4 class="mb-sm-0">{{ $title }}</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">Jabatan</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.artikels.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">Tambah Data</li>
                         </ol>
                     </div>
@@ -40,30 +41,44 @@ Admin Create - Admin Panel
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">Tambah Jabatan</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">Tambah {{ $title }}</h4>
                     </div><!-- end card header -->
                     <div class="card-body">
 
-                        <form action="{{ route('admin.jabatans.store') }}" method="POST">
+                        <form method="POST" action="{{ route('admin.produks.store') }}"  enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
-                                <div class="form-group col-md-8 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Tanggal Ditambahkan</label>
                                    
                                     <input type="text" class="form-control" id="name"  value=" {{ now() }}">
                                 </div>
-                                <div class="form-group col-md-8 col-sm-12">
-                                    <label for="name">Nama Jabatan</label>
-                                    <input type="text" class="form-control" id="name" name="nama_jabatan" placeholder="Nama Jabatan">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="name">Nama Produk</label>
+                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Produk">
                                 </div>
-                                <div class="form-group col-md-8 col-sm-12">
-                                    <label for="email">Nama</label>
-                                    <input type="text" class="form-control" id="email" name="nama" placeholder="Nama">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="image">Gambar Produk</label>
+                                    <input type="file" class="form-control-file" id="image" name="image">
                                 </div>
+                        
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="name">Kategori Produk</label>
+                                    <select name="serial_kategori" id="serial_kategori" class="form-control " >
+                                        <option value="">Pilih Kategori</option>
+
+                                        @foreach ($kategori as $row)
+                                            <option value="{{ $row->serial }}">{{ $row->nama_kategori }}</option>
+                                        @endforeach
+                                    </select>
+                                    </div>
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="email">Content</label>
+                                    <textarea class="form-control" id="editor" name="deskripsi" rows="4"></textarea>
+                                </div>
+
                             </div>
-    
-                            
-                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
+                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save </button>
                         </form>                  
                     </div>
                 </div>
@@ -79,7 +94,12 @@ Admin Create - Admin Panel
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="{{ asset('sidebackend/assets/js/ckeditor.js')}}"></script>
 <script>
+
+    ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
+        console.error(error);
+    });
     $(document).ready(function() {
         $('.select2').select2();
     })

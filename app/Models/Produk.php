@@ -19,8 +19,14 @@ class Produk extends Model
         'serial_kategori',
         'deskripsi',
         'created_at',
+        'image',
         'updated_at'
     ];
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'serial_kategori', 'serial');
+    }
 
     public $timestamps = false;
 }
