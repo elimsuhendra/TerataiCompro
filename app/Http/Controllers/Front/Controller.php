@@ -24,7 +24,7 @@ class Controller extends BaseController
     }
 
     public function get_detail($table, $serial){
-        $data = DB::table($table)->select('*')->where('serial',$serial)->join();
+        $data = DB::table($table)->select($table.'.*','admins.id','admins.name')->where('serial',$serial)->leftJoin('admins','admins.id',$table.'.created_by');
        
         $data = $data->first();
         return $data;

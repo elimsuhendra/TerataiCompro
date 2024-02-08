@@ -36,7 +36,7 @@
                       <div class="entry-meta">
                           <ul>
                           <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="article_detail?id=1">John Doe</a></li>
-                          <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="article_detail?id=1"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                          <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="article_detail?id=1"><time datetime="2020-01-01">{{$datas->created_at}}</time></a></li>
                           </ul>
                       </div>
 

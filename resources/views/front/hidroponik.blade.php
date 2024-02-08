@@ -13,10 +13,12 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 footer-links">
                 <h4>Kategori</h4>
-                <ul>
-                    <li> <a href="#">Kategori 1</a></li>
-                    <li> <a href="#">Kategori 2</a></li>
-                    <li> <a href="#">Kategori 3</a></li>
+                <ul>   
+                    @foreach($data['category'] as $category)
+                        <li> <a href="?serial={{$category->serial}}">{{$category->nama_kategori}}</a></li>
+                        {{-- <li> <a href="#">Kategori 2</a></li>
+                        <li> <a href="#">Kategori 3</a></li> --}}
+                    @endforeach
                 </ul>
             </div>
             <div class="col-lg-8 col-md-8">
