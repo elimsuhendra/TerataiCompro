@@ -19,6 +19,7 @@ class Produk extends Model
         'serial_kategori',
         'deskripsi',
         'created_at',
+        'image',
         'updated_at'
     ];
 

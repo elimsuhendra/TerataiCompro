@@ -12,6 +12,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Str;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProdukController extends Controller
@@ -63,20 +64,33 @@ class ProdukController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to create Produks !');
         }
 
-        // Validation Data
+
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust image validation rules as needed
+        ]);
+
         $input = $request->all();
         $input['serial'] =md5(Str::random(14)) ;
         $input['created_at'] = now();
-
-        $request->validate([
-            'nama' => 'required|max:50',
-            // 'nama_jabatan' => 'required|max:100|unique:jabatan',
-        ]);
-
+    
+        // Handle file upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+        
+            // Define the directory path
+            $directory = 'public/images';
+            // Check if the directory exists, if not, create it
+            if (!Storage::exists($directory)) {
+                Storage::makeDirectory($directory, 0755, true);
+            }
+            $imagePath = $image->store($directory);        
+            $input['image'] = basename($imagePath);
+        }
+        
+    
 
         try {
           
-
            Produk::create($input);
             session()->flash('success', 'Data Sudah Ditambahkan !!');
 
@@ -95,7 +109,10 @@ class ProdukController extends Controller
 
     public function show($id)
     {
-    
+        $datas = Produk::find($id);
+        $title="Product";
+
+        return view('backend.pages.produk.show', compact('datas','title'));    
     }
 
     public function edit($serial)
@@ -112,27 +129,50 @@ class ProdukController extends Controller
 
     public function update(Request $request, $serial)
     {
-        $input = $request->all();
-        unset($input['_method']);
-        unset($input['_token']);
+        $input = $request->except(['_method', '_token','last_image']);
+    
+        // Validate image if provided
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust image validation rules as needed
+            ]);
+            // Handle file upload
+            $image = $request->file('image');
+            $directory = 'public/images';
+            $filePath = 'public/images/' . $request->last_image;
+            if (Storage::exists($filePath)) {
+                Storage::delete($filePath);
+                // File has been successfully deleted
+            } 
 
-        $result = $this->model->where('serial',$serial)->update($input);
+            // Store the new image and update input
+            $imagePath = $image->store($directory);
+            $input['image'] = basename($imagePath);
+        }
+        $directory = 'public/images'.$request->last_image;
 
-        if($result) {
-
+    
+        // Update existing data
+        $result = $this->model->where('serial', $serial)->update($input);
+    
+        if ($result) {
             session()->flash('success', 'Data Telah Diubah');
-
-        }else{
-
+        } else {
             session()->flash('error', 'Gagal Update');
         }
-
+    
         return redirect()->route('admin.produks.index');
     }
-
+    
     public function destroy($serial)
     {
         $data = $this->model->Where('serial',$serial)->first();
+        $filePath = 'public/images/' . $data->image;
+        if (Storage::exists($filePath)) {
+            Storage::delete($filePath);
+            // File has been successfully deleted
+        } 
+
         $result = $data->delete();
         if ($result == true) {
             session()->flash('success', 'Data Telah Dihapus');

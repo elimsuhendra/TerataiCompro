@@ -43,38 +43,40 @@ Artikel Edit - Admin Panel
                     </div><!-- end card header -->
                     <div class="card-body">
                         @include('backend.layouts.partials.messages')
-                        <form action="{{ route('admin.produks.update', $data->serial) }}" method="POST">
+                        <form action="{{ route('admin.produks.update', $data->serial) }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="key">Nama Produk</label>
                                     <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Produk" value="{{ $data->nama }}">
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="key">Kategori Produk</label>
-                                    <select name="serial_kategori" class="form-control ">
+                                    <select name="serial_kategori" class="form-control">
                                         <option value="">--Pilih Kategori--</option>
                                         @foreach ($kategori as $row)
                                             <option value="{{ $row->serial }}" @if($data->serial_kategori == $row->serial) selected='selected' @endif> {{ strtoupper($row->nama_kategori) }}</option>
-                                                
-                                                {{ strtoupper($row->nama_kategori) }}
-                                            </option>
                                         @endforeach
                                     </select>                                
                                 </div>
                             </div>
-                            <div class="form-group col-md-8 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label for="image">Gambar Produk</label>
+                                <input type="hidden" name="last_image"  id="last_image" value="{{$data->image}}">
+                                <input type="file" class="form-control-file" id="image" name="image">
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12">
                                 <label for="pesan">Deskripsi</label>
                                 <textarea class="form-control" id="editor" name="deskripsi" rows="4">{{ $data->deskripsi }}</textarea>
                             </div>
-
+                           
                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
                         </form>
-                   
+                                           
                     </div>
                 </div>
             </div>
