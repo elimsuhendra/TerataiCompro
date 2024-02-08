@@ -26,7 +26,7 @@ Artikel Edit - Admin Panel
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.artikels.index') }}">{{ $title }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.produks.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">Tambah Data</li>
                         </ol>
                     </div>
@@ -64,7 +64,18 @@ Artikel Edit - Admin Panel
                                     </select>                                
                                 </div>
                             </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="key">Status</label>
+                                    <select class="form-control"  name="status">
+                                        <option value="Active" {{ $data->status == 'Active' ? 'selected' : '' }}>Active</option>
+                                        <option value="Non Active" {{ $data->status == 'Non Active' ? 'selected' : '' }}>Non Active</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group col-md-12 col-sm-12">
+                                <br>
+
                                 <label for="image">Gambar Produk</label>
                                 <input type="hidden" name="last_image"  id="last_image" value="{{$data->image}}">
                                 <input type="file" class="form-control-file" id="image" name="image">
