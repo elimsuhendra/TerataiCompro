@@ -64,6 +64,10 @@ Admins - Produk List
                                         <td>{{ $data->created_at }}</td>
     
                                         <td>
+                                            @if (Auth::guard('admin')->user()->can('produks.show'))
+                                                <a class="btn btn-info text-white" href="{{ route('admin.produks.show', $data->serial) }}">Show</a>
+                                            @endif
+
                                             @if (Auth::guard('admin')->user()->can('produks.edit'))
                                                 <a class="btn btn-success text-white" href="{{ route('admin.produks.edit', $data->serial) }}">Edit</a>
                                             @endif
