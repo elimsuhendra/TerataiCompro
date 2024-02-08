@@ -37,7 +37,7 @@ class ProductController extends Controller
         // get product by serial
         
         $serial = $request->input('serial');
-        $data['data'] = DB::table('produk')->where([['serial_kategori',$serial]]);
+        $data['data'] = DB::table('produk')->where([['serial_kategori',$serial],[]]);
         dd($data['data']);
         return view('front/hidroponik', compact('data'));
 
