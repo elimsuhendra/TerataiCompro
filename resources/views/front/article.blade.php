@@ -30,13 +30,13 @@
                       </div>
 
                       <h2 class="entry-title">
-                          <a href="article_detail?id=1">{{$datas->judul}}</a>
+                          <a href="article_detail?serial=1">{{$datas->judul}}</a>
                       </h2>
 
                       <div class="entry-meta">
                           <ul>
                           <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="article_detail?id=1">John Doe</a></li>
-                          <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="article_detail?id=1"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                          <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="article_detail?id=1"><time datetime="2020-01-01">{{$datas->created_at}}</time></a></li>
                           </ul>
                       </div>
 
@@ -45,7 +45,7 @@
                             {{substr($datas->content,0,100)}} ...
                           </p>
                           <div class="read-more">
-                          <a href="article_detail?id={{$datas->serial}}">Read More</a>
+                          <a href="article_detail?serial={{$datas->serial}}">Read More</a>
                           </div>
                       </div>
 

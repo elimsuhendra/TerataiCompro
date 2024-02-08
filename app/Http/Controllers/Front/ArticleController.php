@@ -36,16 +36,16 @@ class ArticleController extends Controller
             "length" => 9,
             "start" => 0
         ];
-        // $data['data'] = $this->get_index('artikel', $request);
-        $data['data'] = DB::table('artikel')->paginate(1);
-        // dd($data['data']);
+        $data['data'] = DB::table('artikel')->paginate(9);
         return view('front/article', compact('data'));  
-        // return $this->render_view('front/article', $data);
     }
 
-    public function detail()
+    public function detail(Request $request)
     {
         $data['page'] = 'article';
+        $serial = $request->input('serial');
+        $data['data'] = $this->get_detail('artikel',$serial);
+        // dd($data['data']);
         return view('front/article_detail', compact('data'));
     }
 }

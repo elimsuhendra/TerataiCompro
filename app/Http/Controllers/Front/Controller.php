@@ -11,6 +11,7 @@ use DB;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public $image_url = 'backend/assets/images';
 
     public function get_index($table, $request){
         $data = DB::table($table)->select('*');
@@ -20,6 +21,13 @@ class Controller extends BaseController
         }
 
         $data = $data->get();
+        return $data;
+    }
+
+    public function get_detail($table, $serial){
+        $data = DB::table($table)->select($table.'.*','admins.id','admins.name')->where('serial',$serial)->leftJoin('admins','admins.id',$table.'.created_by');
+       
+        $data = $data->first();
         return $data;
     }
 
