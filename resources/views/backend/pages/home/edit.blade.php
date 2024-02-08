@@ -26,7 +26,7 @@ Artikel Edit - Admin Panel
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.artikels.index') }}">{{ $title }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.produks.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">Tambah Data</li>
                         </ol>
                     </div>
@@ -43,14 +43,23 @@ Artikel Edit - Admin Panel
                     </div><!-- end card header -->
                     <div class="card-body">
                         @include('backend.layouts.partials.messages')
-                        <form action="{{ route('admin.artikels.update', $data->serial) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.homes.update', $data->serial) }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-row">
                                 <div class="form-group col-md-12 col-sm-12">
-                                    <label for="key">Judul</label>
-                                    <input type="text" class="form-control" id="name" name="judul" placeholder="Judul" value="{{ $data->judul }}">
+                                    <label for="key">Nama Produk</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nama" value="{{ $data->name }}" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="key">Status</label>
+                                    <select class="form-control"  name="status">
+                                        <option value="Active" {{ $data->status == 'Active' ? 'selected' : '' }}>Active</option>
+                                        <option value="Non Active" {{ $data->status == 'Non Active' ? 'selected' : '' }}>Non Active</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group col-md-12 col-sm-12">
@@ -61,13 +70,13 @@ Artikel Edit - Admin Panel
                                 <input type="file" class="form-control-file" id="image" name="image">
                             </div>
                             <div class="form-group col-md-12 col-sm-12">
-                                <label for="pesan">Konten</label>
-                                <textarea class="form-control" id="editor" name="content" rows="4">{{ $data->content }}</textarea>
+                                <label for="pesan">Deskripsi</label>
+                                <textarea class="form-control" id="editor" name="description" rows="4">{{ $data->description }}</textarea>
                             </div>
-
+                           
                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
                         </form>
-                   
+                                           
                     </div>
                 </div>
             </div>
@@ -83,12 +92,11 @@ Artikel Edit - Admin Panel
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script src="{{ asset('sidebackend/assets/js/ckeditor.js')}}"></script>
-
 <script>
+
     ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
     console.error(error);
     });
-
     $(document).ready(function() {
         $('.select2').select2();
     })

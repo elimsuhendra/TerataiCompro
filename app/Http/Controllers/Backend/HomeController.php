@@ -4,25 +4,21 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Artikel;
+use App\Models\Home;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Str;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class ArtikelController extends Controller
+class HomeController extends Controller
 {
     public $user;
     private $model;
-    Public $title="Artikel";
+    Public $title="Home";
 
-
-
-    public function __construct(Artikel $model)
+    public function __construct(Home $model)
     {
         $this->model = $model;
 
@@ -34,71 +30,64 @@ class ArtikelController extends Controller
 
     public function index()
     {
-        if (is_null($this->user) || !$this->user->can('artikel.list')) {
-            abort(403, 'Sorry !! You are Unauthorized to This Page !');
+        // if (is_null($this->user) || !$this->user->can('artikel.list')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to This Page !');
     
-        }
+        // }
 
         $datas = $this->model::whereNull('deleted_at')->get();
         $title=$this->title;
 
-        return view('backend.pages.artikel.index', compact('datas','title'));
+        return view('backend.pages.home.index', compact('datas','title'));
     }
 
     public function create()
     {
-        if (is_null($this->user) || !$this->user->can('artikel.create')) {
+        if (is_null($this->user) || !$this->user->can('home.create')) {
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
 
         $title=$this->title;
 
-        return view('backend.pages.artikel.create',compact('title'));        
+        return view('backend.pages.home.create',compact('title'));        
     }
 
     public function store(Request $request)
     {
-
-        if (is_null($this->user) || !$this->user->can('artikel.create')) {
+        if (is_null($this->user) || !$this->user->can('home.create')) {
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
-
-        $input = $request->all();
-        $input['serial'] =md5(Str::random(14)) ;
-        $input['created_at'] = now();
-        $input['status'] = "Active";
-        $input['created_by'] = Auth::guard('admin')->user()->id;
-
-
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-        
-            // Define the directory path
-            $directory = 'public/images';
-            // Check if the directory exists, if not, create it
-            if (!Storage::exists($directory)) {
-                Storage::makeDirectory($directory, 0755, true);
-            }
-            $imagePath = $image->store($directory);        
-            $input['image'] = basename($imagePath);
-        }
-
+    
         try {
-          
+            $input = $request->except(['_token']);
+            $input['serial'] = md5(Str::random(14));
+            $input['created_at'] = now();
+            $input['status'] = "Active";
+            $input['created_by'] = Auth::guard('admin')->user()->id;
+    
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+            
+                $directory = 'public/images';
+                if (!Storage::exists($directory)) {
+                    Storage::makeDirectory($directory, 0755, true);
+                }
+                $imagePath = $image->store($directory);        
+                $input['image'] = basename($imagePath);
+            }
+    
             $this->model->create($input);
             session()->flash('success', 'Data Sudah Ditambahkan !!');
-
-        }catch (QueryException $e) {
-
-            session()->flash('error', $e);
-
+        } catch (QueryException $e) {
+            session()->flash('error', $e->getMessage());
         } catch (\Exception $e) {
-
             session()->flash('error', 'An unexpected error occurred');
         }
+    
+        return redirect()->route('admin.homes.index');        
+    
 
-
-        return redirect()->route('admin.artikels.index');        
+        
     }
 
     public function show($id)
@@ -106,7 +95,7 @@ class ArtikelController extends Controller
         $datas = $this->model->with('account')->where('serial',$id)->first();
         $title=$this->title;
 
-        return view('backend.pages.artikel.show', compact('datas','title'));    
+        return view('backend.pages.home.show', compact('datas','title'));    
     }
 
     public function edit($serial)
@@ -117,7 +106,7 @@ class ArtikelController extends Controller
 
         $data = $this->model->where('serial',$serial)->first();
         $title=$this->title;
-        return view('backend.pages.artikel.edit', compact('data','title'));
+        return view('backend.pages.home.edit', compact('data','title'));
 
     }
 
@@ -156,7 +145,7 @@ class ArtikelController extends Controller
             session()->flash('error', 'Gagal Update');
         }
 
-        return redirect()->route('admin.artikels.index');        
+        return redirect()->route('admin.homes.index');        
 
     }
     public function destroy($serial)
@@ -180,6 +169,6 @@ class ArtikelController extends Controller
         }
 
 
-        return redirect()->route('admin.artikels.index');        
+        return redirect()->route('admin.homes.index');        
     }
 }

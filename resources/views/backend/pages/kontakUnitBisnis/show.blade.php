@@ -19,10 +19,10 @@
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Jabatan</h4>
+                    <h4 class="mb-sm-0">{{ $title }}</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">Jabatan</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">Detail</li>
                         </ol>
                     </div>
@@ -35,18 +35,23 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">Detail Jabatan</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">Detail {{ $title }}</h4>
                         </div>
                         <div class="card-body">
                             <div class="row gy-4">
                                 <div class="col-xxl-6 col-md-6">
-                                    <label for="nama_jabatan" class="form-label">Nama Jabatan</label>
-                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->nama_jabatan }}">
+                                    <label for="nama_jabatan" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->nama }}">
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">
-                                    <label for="nama" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" id="nama" value="{{ $datas->nama }}">
+                                    <label for="nama" class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="nama" value="{{ $datas->email }}">
+                                </div>
+
+                                <div class="col-xxl-12 col-md-12">
+                                    <label for="nama" class="form-label">Deskripsi</label>
+                                    <textarea class="form-control" id="pesan" name="pesan" rows="4">{{ $datas->pesan }}</textarea>
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">

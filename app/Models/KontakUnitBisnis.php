@@ -21,7 +21,10 @@ class KontakUnitBisnis extends Model
         'url_instagram',
         'url_tiktok',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'status',
+        'deleted_at',
+        'created_by'
     ];
 
     public $timestamps = false;

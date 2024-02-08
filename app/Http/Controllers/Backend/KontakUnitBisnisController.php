@@ -37,10 +37,10 @@ class KontakUnitBisnisController extends Controller
     
         }
 
-        $datas = $this->model->all();
+        $datas = $this->model::whereNull('deleted_at')->get();
         $title=$this->title;
 
-        return view('backend.pages.artikel.index', compact('datas','title'));
+        return view('backend.pages.kontakUnitBisnis.index', compact('datas','title'));
     }
 
     public function create()
@@ -51,43 +51,33 @@ class KontakUnitBisnisController extends Controller
 
         $title=$this->title;
 
-        return view('backend.pages.artikel.create',compact('title'));        
+        return view('backend.pages.kontakUnitBisnis.create',compact('title'));        
     }
 
     public function store(Request $request)
     {
 
-        if (is_null($this->user) || !$this->user->can('artikel.create')) {
-            abort(403, 'Sorry !! You are Unauthorized to create any admin !');
-        }
+        // if (is_null($this->user) || !$this->user->can('kontakUnitBisnis.create')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to create any admin !');
+        // }
 
         // Validation Data
-        $input = $request->all();
-        $input['serial'] =md5(Str::random(14)) ;
-        $input['created_at'] = now();
-
-        $request->validate([
-            'value' => 'required|max:50',
-            'key' => 'required|max:100|unique:option_map',
-        ]);
-
-
         try {
-          
+            $input = $request->except(['_token']);
+            $input['serial'] = md5(Str::random(14));
+            $input['created_at'] = now();
+            $input['status'] = "Active";
+            $input['created_by'] = Auth::guard('admin')->user()->id;
+    
             $this->model->create($input);
             session()->flash('success', 'Data Sudah Ditambahkan !!');
-
-        }catch (QueryException $e) {
-
-            session()->flash('error', $e);
-
+        } catch (QueryException $e) {
+            session()->flash('error', $e->getMessage());
         } catch (\Exception $e) {
-
             session()->flash('error', 'An unexpected error occurred');
         }
-
-
-        return redirect()->route('admin.artikels.index');        
+    
+        return redirect()->route('admin.kontakBisnis.index');            
     }
 
     public function show($id)
@@ -95,7 +85,7 @@ class KontakUnitBisnisController extends Controller
         $datas = $this->model->find($id);
         $title=$this->title;
 
-        return view('backend.pages.optionMap.show', compact('datas','title'));    
+        return view('backend.pages.kontakBisnis.show', compact('datas','title'));    
     }
 
     public function edit($serial)
@@ -106,7 +96,7 @@ class KontakUnitBisnisController extends Controller
 
         $data = $this->model->where('serial',$serial)->first();
         $title=$this->title;
-        return view('backend.pages.optionMap.edit', compact('data','title'));
+        return view('backend.pages.kontakBisnis.edit', compact('data','title'));
 
     }
 
@@ -127,7 +117,7 @@ class KontakUnitBisnisController extends Controller
             session()->flash('error', 'Gagal Update');
         }
 
-        return redirect()->route('admin.artikels.index');        
+        return redirect()->route('admin.kontakBisnis.index');        
 
     }
     public function destroy($serial)
@@ -143,7 +133,7 @@ class KontakUnitBisnisController extends Controller
 
         }
 
-        return redirect()->route('admin.artikels.index');        
+        return redirect()->route('admin.kontakBisnis.index');        
     }
 
 }

@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Admins - Kontak Kami List
+Admins - Produk List
 @endsection
 
 @section('styles')
@@ -13,7 +13,6 @@ Admins - Kontak Kami List
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
 @endsection
 
-
 @section('admin-content')
 
 <div class="page-content">
@@ -22,12 +21,12 @@ Admins - Kontak Kami List
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Kontak Kami</h4>
+                    <h4 class="mb-sm-0">{{ $title }}</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.kontakKami.index') }}">Kontak Kami</a></li>
-                            <li class="breadcrumb-item active">List Kontak Kami</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.homes.index') }}">{{ $title }}</a></li>
+                            <li class="breadcrumb-item active">List {{ $title }}</li>
                         </ol>
                     </div>
 
@@ -40,8 +39,8 @@ Admins - Kontak Kami List
                         @include('backend.layouts.partials.messages')
                         <h4 class="header-title float-left">{{ $title }} List</h4>
                         <p class="float-right mb-2">
-                            @if (Auth::guard('admin')->user()->can('kontakBisnis.edit'))
-                                <a class="btn btn-primary text-white" href="{{ route('admin.kontakBisnis.create') }}">Tambah Data Baru</a>
+                            @if (Auth::guard('admin')->user()->can('produks.create'))
+                                <a class="btn btn-primary text-white" href="{{ route('admin.homes.create') }}">Tambah {{ $title }} </a>
                             @endif
                         </p>
                         <div class="clearfix"></div>
@@ -51,9 +50,8 @@ Admins - Kontak Kami List
                                     <tr>
                                         <th width="5%">No</th>
                                         <th width="10%">Nama</th>
-                                        <th width="10%">No Tlpn</th>
-                                        <th width="10%">Url Facebook</th>
-                                        <th width="10%">Url Instagram</th>
+                                        <th width="10%">di Tambahkan</th>
+                                        <th width="10%">Tanggal Ditambahkan</th>
                                         <th width="15%">Action</th>
                                     </tr>
                                 </thead>
@@ -61,26 +59,25 @@ Admins - Kontak Kami List
                                    @foreach ($datas as $data)
                                    <tr>
                                         <td>{{ $loop->index+1 }}</td>
-                                        <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->no_tlpn }}</td>
-                                        <td>{{ $data->url_facebook }}</td>
-                                        <td>{{ $data->url_instagram }}</td>
+                                        <td>{{ @$data->name }}</td>
+                                        <td>{{ @$data->account->name }}</td>
+                                        <td>{{ @$data->created_at }}</td>
     
                                         <td>
-                                            @if (Auth::guard('admin')->user()->can('kontakBisnis.edit'))
-                                                <a class="btn btn-info text-white" href="{{ route('admin.kontakKami.show', $data->serial) }}">Show</a>
+                                            @if (Auth::guard('admin')->user()->can('home.show'))
+                                                <a class="btn btn-info text-white" href="{{ route('admin.homes.show', $data->serial) }}">Show</a>
                                             @endif
 
-                                            @if (Auth::guard('admin')->user()->can('kontakBisnis.edit'))
-                                                <a class="btn btn-success text-white" href="{{ route('admin.kontakKami.edit', $data->serial) }}">Edit</a>
+                                            @if (Auth::guard('admin')->user()->can('home.edit'))
+                                                <a class="btn btn-success text-white" href="{{ route('admin.homes.edit', $data->serial) }}">Edit</a>
                                             @endif
                                             
-                                            @if (Auth::guard('admin')->user()->can('kontakBisnis.delete'))
-                                            <a class="btn btn-danger text-white" href="{{ route('admin.kontakKami.destroy', $data->serial) }}"
+                                            @if (Auth::guard('admin')->user()->can('home.delete'))
+                                            <a class="btn btn-danger text-white" href="{{ route('admin.homes.destroy', $data->serial) }}"
                                             onclick="event.preventDefault(); document.getElementById('delete-form-{{ $data->serial }}').submit();">
                                                 Delete
                                             </a>
-                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.kontakKami.destroy', $data->serial) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.produks.destroy', $data->serial) }}" method="POST" style="display: none;">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>

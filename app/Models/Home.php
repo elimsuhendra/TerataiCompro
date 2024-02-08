@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Artikel extends Model
+class Home extends Model
 {
-    use HasFactory;
-
-    protected $table = 'artikel';
+    protected $table = 'homes';
     protected $primaryKey = 'serial';
     public $incrementing = false;
 
     protected $fillable = [
         'serial',
-        'judul',
-        'content',
+        'name',
+        'description',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -32,4 +30,5 @@ class Artikel extends Model
 
 
     public $timestamps = false;
+
 }

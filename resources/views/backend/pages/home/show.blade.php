@@ -26,7 +26,7 @@
                     <h4 class="mb-sm-0">{{ $title }}</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.artikels.index') }}">{{ $title }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.homes.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">Detail</li>
                         </ol>
                     </div>
@@ -49,8 +49,8 @@
                                 </div>
 
                                 <div class="col-xxl-12 col-md-12">
-                                    <label for="nama_jabatan" class="form-label">Judul Artikel</label>
-                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->judul }}">
+                                    <label for="nama_jabatan" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" value="{{ $datas->name }}">
                                 </div>
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="created_by" class="form-label">Dibuat Oleh</label>
@@ -58,19 +58,19 @@
                                 </div>
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="nama_jabatan" class="form-label">Status</label>
-                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->status }}">
+                                    <input type="text" class="form-control"  value="{{ $datas->status }}">
                                 </div>
-                                <div class="col-xxl-6 col-md-6">
+                                <div class="col-xxl-12 col-md-12">
                                     <label for="nama_jabatan" class="form-label">Tanggal Ditambahkan</label>
-                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->created_at }}">
+                                    <input type="text" class="form-control"  value="{{ $datas->created_at }}">
                                 </div>
-                                <div class="col-xxl-6 col-md-6">
+                                <div class="col-xxl-12 col-md-12">
                                     <label for="created_by" class="form-label">Tanggal  Diedit Terakhir</label>
                                     <input type="text" class="form-control" id="created_by" value="{{ @$datas->updated_at }}">
                                 </div>
                                 <div class="col-xxl-12 col-md-12">
-                                    <label for="created_by" class="form-label">Content</label>
-                                    <textarea class="form-control" id="editor" name="deskripsi" rows="4">{{ $datas->content }}</textarea>
+                                    <label for="created_by" class="form-label">Deskripsi</label>
+                                    <textarea class="form-control" id="editor" name="deskripsi" rows="4">{{ $datas->description }}</textarea>
                                 </div>
 
                             </div>
