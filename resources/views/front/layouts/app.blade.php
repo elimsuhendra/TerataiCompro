@@ -65,7 +65,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                 <h2>{{ucwords($data['page'])}}</h2>
                 <ol>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/.">Home</a></li>
                     <li>{{ucwords($data['page'])}}</li>
                 </ol>
                 </div>
