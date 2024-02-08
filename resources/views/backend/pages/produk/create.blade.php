@@ -48,23 +48,23 @@
                         <form method="POST" action="{{ route('admin.produks.store') }}"  enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
-                                <div class="form-group col-md-12 col-sm-12">
+                                {{-- <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Tanggal Ditambahkan</label>
                                    
                                     <input type="text" class="form-control" id="name"  value=" {{ now() }}">
-                                </div>
+                                </div> --}}
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Nama Produk</label>
-                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Produk">
+                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Produk"  required>
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="image">Gambar Produk</label>
-                                    <input type="file" class="form-control-file" id="image" name="image">
+                                    <input type="file" class="form-control-file" id="image" name="image" required>
                                 </div>
                         
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Kategori Produk</label>
-                                    <select name="serial_kategori" id="serial_kategori" class="form-control " >
+                                    <select name="serial_kategori" id="serial_kategori" class="form-control " required>
                                         <option value="">Pilih Kategori</option>
 
                                         @foreach ($kategori as $row)
@@ -74,7 +74,7 @@
                                     </div>
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="email">Content</label>
-                                    <textarea class="form-control" id="editor" name="deskripsi" rows="4"></textarea>
+                                    <textarea class="form-control" id="editor" name="deskripsi" rows="4" ></textarea>
                                 </div>
 
                             </div>

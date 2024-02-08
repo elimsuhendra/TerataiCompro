@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Kategori;
 use App\Models\Produk;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -39,7 +40,7 @@ class ProdukController extends Controller
     
         }
 
-        $datas = Produk::all();
+        $datas = Produk::whereNull('deleted_at')->get();
         $title=$this->title;
 
         return view('backend.pages.produk.index', compact('datas','title'));
@@ -72,6 +73,10 @@ class ProdukController extends Controller
         $input = $request->all();
         $input['serial'] =md5(Str::random(14)) ;
         $input['created_at'] = now();
+        $input['status'] = 'Active';
+        $input['created_by'] = Auth::guard('admin')->user()->id;
+
+
     
         // Handle file upload
         if ($request->hasFile('image')) {
@@ -111,8 +116,19 @@ class ProdukController extends Controller
     {
         $datas = Produk::find($id);
         $title="Product";
+        $directory = 'public/images';
+        $filename = $datas->image;
+        
+        // Construct the full path of the image
+        $imagePath = $directory . '/' . $filename;
+        
+        // Generate the URL for the image
+        $imageUrl = Storage::url($imagePath);
+        
+        // dd($imageUrl);
 
-        return view('backend.pages.produk.show', compact('datas','title'));    
+
+        return view('backend.pages.produk.show', compact('datas','title','imageUrl'));    
     }
 
     public function edit($serial)
@@ -132,6 +148,7 @@ class ProdukController extends Controller
         $input = $request->except(['_method', '_token','last_image']);
     
         // Validate image if provided
+        $input['image'] = $request->last_image;
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust image validation rules as needed
@@ -149,31 +166,27 @@ class ProdukController extends Controller
             $imagePath = $image->store($directory);
             $input['image'] = basename($imagePath);
         }
-        $directory = 'public/images'.$request->last_image;
 
-    
-        // Update existing data
+        $directory = 'public/images'.$request->last_image;
+        $input['updated_at']=Carbon::now();
         $result = $this->model->where('serial', $serial)->update($input);
-    
-        if ($result) {
-            session()->flash('success', 'Data Telah Diubah');
-        } else {
-            session()->flash('error', 'Gagal Update');
-        }
-    
+
+        session()->flash($result === 0 || $result === 1 ? 'success' : 'error', $result === 0 || $result === 1 ? 'Data Telah Diubah' : 'Gagal Update');
+
         return redirect()->route('admin.produks.index');
     }
     
     public function destroy($serial)
     {
         $data = $this->model->Where('serial',$serial)->first();
+        
         $filePath = 'public/images/' . $data->image;
         if (Storage::exists($filePath)) {
             Storage::delete($filePath);
             // File has been successfully deleted
         } 
 
-        $result = $data->delete();
+        $result = $data->update(['deleted_at' => Carbon::now()]);
         if ($result == true) {
             session()->flash('success', 'Data Telah Dihapus');
 

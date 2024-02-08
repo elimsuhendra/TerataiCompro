@@ -9,6 +9,10 @@
     .form-check-label {
         text-transform: capitalize;
     }
+    .custom-size {
+    width: 70%;
+}
+
 </style>
 @endsection
 
@@ -22,7 +26,7 @@
                     <h4 class="mb-sm-0">{{ $title }}</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">{{ $title }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.produks.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">Detail</li>
                         </ol>
                     </div>
@@ -38,36 +42,42 @@
                             <h4 class="card-title mb-0 flex-grow-1">Detail {{ $title }}</h4>
                         </div>
                         <div class="card-body">
-                            {{-- <div class="row gy-4">
-                                <div class="col-xxl-6 col-md-6">
-                                    <label for="nama_jabatan" class="form-label">Judul</label>
-                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->judul }}">
+                            <div class="row gy-4 justify-content-center">
+                                <div class="col-xxl-12 col-md-12 text-center ">
+
+                                <img src="{{ asset('storage/images/' . $datas->image) }}" class="img-responsive img-thumbnail justify-content-center" alt="Cinque Terre" style="width:750px;height:auto;">
                                 </div>
-                                <div class="col-xxl-6 col-md-6">
+
+                                <div class="col-xxl-4 col-md-4">
+                                    <label for="nama_jabatan" class="form-label">Nama Produk</label>
+                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->nama }}">
+                                </div>
+                                <div class="col-xxl-4 col-md-4">
                                     <label for="created_by" class="form-label">Dibuat Oleh</label>
                                     <input type="text" class="form-control" id="created_by" value="{{ @$datas->account->name }}">
                                 </div>
-
+                                <div class="col-xxl-4 col-md-4">
+                                    <label for="nama_jabatan" class="form-label">Status</label>
+                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->status }}">
+                                </div>
+                                <div class="col-xxl-4 col-md-4">
+                                    <label for="created_by" class="form-label">Kategori Produk</label>
+                                    <input type="text" class="form-control" id="created_by" value="{{ @$datas->kategori->nama_kategori }}">
+                                </div>
+                                <div class="col-xxl-4 col-md-4">
+                                    <label for="nama_jabatan" class="form-label">Tanggal Ditambahkan</label>
+                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->created_at }}">
+                                </div>
+                                <div class="col-xxl-4 col-md-4">
+                                    <label for="created_by" class="form-label">Tanggal  Diedit Terakhir</label>
+                                    <input type="text" class="form-control" id="created_by" value="{{ @$datas->updated_at }}">
+                                </div>
                                 <div class="col-xxl-12 col-md-12">
-                                    <label for="nama" class="form-label">Konten</label>
-                                    <textarea class="form-control" id="pesan" name="pesan" rows="4">{{ $datas->content }}</textarea>
+                                    <label for="created_by" class="form-label">Tanggal  Diedit Terakhir</label>
+                                    <textarea class="form-control" id="editor" name="deskripsi" rows="4">{{ $datas->deskripsi }}</textarea>
                                 </div>
 
-                                <div class="col-xxl-6 col-md-6">
-                                    <label for="created_at" class="form-label">Tanggal Pembuatan</label>
-                                    <input type="text" class="form-control" id="created_at" value="{{ $datas->created_at }}">
-                                </div>
-
-                                <div class="col-xxl-6 col-md-6">
-                                    <label for="updated_at" class="form-label">Tanggal Update</label>
-                                    <input type="text" class="form-control" id="updated_at" value="{{ $datas->updated_at }}">
-                                </div>
-
-                                <div class="col-xxl-6 col-md-6">
-                                    <label for="serial" class="form-label">Id Data</label>
-                                    <input type="text" class="form-control" id="serial" value="{{ $datas->serial }}">
-                                </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -79,7 +89,13 @@
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="{{ asset('sidebackend/assets/js/ckeditor.js')}}"></script>
+
 <script>
+    ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
+    console.error(error);
+    });
+
     $(document).ready(function() {
         $('.select2').select2();
     })

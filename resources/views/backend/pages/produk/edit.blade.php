@@ -50,13 +50,13 @@ Artikel Edit - Admin Panel
                             <div class="form-row">
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="key">Nama Produk</label>
-                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Produk" value="{{ $data->nama }}">
+                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Produk" value="{{ $data->nama }}" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="key">Kategori Produk</label>
-                                    <select name="serial_kategori" class="form-control">
+                                    <select name="serial_kategori" class="form-control" >
                                         <option value="">--Pilih Kategori--</option>
                                         @foreach ($kategori as $row)
                                             <option value="{{ $row->serial }}" @if($data->serial_kategori == $row->serial) selected='selected' @endif> {{ strtoupper($row->nama_kategori) }}</option>

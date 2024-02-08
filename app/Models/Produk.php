@@ -20,12 +20,21 @@ class Produk extends Model
         'deskripsi',
         'created_at',
         'image',
-        'updated_at'
+        'status',
+        'created_by',
+        'updated_at',
+        'deleted_at'
     ];
 
     public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'serial_kategori', 'serial');
+    }
+
+
+    public function account()
+    {
+        return $this->belongsTo(Admin::class, 'created_by', 'id');
     }
 
     public $timestamps = false;
