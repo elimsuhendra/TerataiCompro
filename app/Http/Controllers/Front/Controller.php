@@ -11,6 +11,7 @@ use DB;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public $image_url = 'backend/assets/images';
 
     public function get_index($table, $request){
         $data = DB::table($table)->select('*');
