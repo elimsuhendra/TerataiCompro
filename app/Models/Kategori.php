@@ -16,6 +16,8 @@ class Kategori extends Model
         'serial',
         'nama_kategori',
         'deskripsi',
+        'status',
+        'created_by',
         'created_at',
         'updated_at'
     ];

@@ -29,9 +29,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // dd(DB::table('admins')->get());
+        $title="Dashboard";
         $data['page'] = 'home';
-        return view('front/home', compact('data'));
+        return view('front/home', compact('data','title'));
     }
 
     public function home()

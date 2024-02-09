@@ -1,185 +1,3 @@
- <!-- sidebar menu area start -->
- {{-- @php
-     $usr = Auth::guard('admin')->user();
- @endphp
- <div class="sidebar-menu">
-    <div class="sidebar-header">
-        <div class="logo">
-            <a href="{{ route('admin.dashboard') }}">
-                <h2 class="text-white">Admin</h2> 
-            </a>
-        </div>
-    </div>
-    <div class="main-menu">
-        <div class="menu-inner">
-            <nav>
-                <ul class="metismenu" id="menu">
-
-                    @if ($usr->can('dashboard.view'))
-                    <li class="active">
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
-                        <ul class="collapse">
-                            <li class="{{ Route::is('admin.dashboard') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        </ul>
-                    </li>
-                    @endif
-
-                    @if ($usr->can('cif.view') )
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            CIF
-                        </span></a>
-                        <ul class="collapse {{ Route::is('cif.view') ? 'in' : '' }}">
-                            @if ($usr->can('borrower.view'))
-                                <li class="{{ Route::is('admin.cif.index')  || Route::is('admin.cif.view') ? 'active' : '' }}"><a href="{{ route('admin.cif.index') }}">List CIF</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                    @endif
-
-                    @if ($usr->can('kyc.view') )
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            KYC
-                        </span></a>
-                        <ul class="collapse {{ Route::is('kyc.view') ? 'in' : '' }}">
-                            @if ($usr->can('borrower.view'))
-                                <li class="{{ Route::is('admin.kyc.index')  || Route::is('admin.kyc.view') ? 'active' : '' }}"><a href="{{ route('admin.kyc.index') }}">List KYC</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                    @endif
-
-                    @if ($usr->can('lendingFunding.view') )
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            Pendanaan
-                        </span></a>
-                        <ul class="collapse {{ Route::is('lendingFunding.view') ? 'in' : '' }}">
-                            @if ($usr->can('borrower.view'))
-                                <li class="{{ Route::is('admin.lendingFunding.index')  || Route::is('admin.lendingFunding.view') ? 'active' : '' }}"><a href="{{ route('admin.lendingFunding.index') }}">List Pendanaan</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                    @endif
-
-                    @if ($usr->can('role.create') || $usr->can('role.view') ||  $usr->can('role.edit') ||  $usr->can('role.delete'))
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-tasks"></i><span>
-                            Roles & Permissions
-                        </span></a>
-                        <ul class="collapse {{ Route::is('admin.roles.create') || Route::is('admin.roles.index') || Route::is('admin.roles.edit') || Route::is('admin.roles.show') ? 'in' : '' }}">
-                            @if ($usr->can('role.view'))
-                                <li class="{{ Route::is('admin.roles.index')  || Route::is('admin.roles.edit') ? 'active' : '' }}"><a href="{{ route('admin.roles.index') }}">All Roles</a></li>
-                            @endif
-                            @if ($usr->can('role.create'))
-                                <li class="{{ Route::is('admin.roles.create')  ? 'active' : '' }}"><a href="{{ route('admin.roles.create') }}">Create Role</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                    @endif
-
-                    @if ($usr->can('borrower.view') ||  $usr->can('borrower.show'))
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            Peminjam
-                        </span></a>
-                        <ul class="collapse {{ Route::is('admin.borrower.view') ? 'in' : '' }}">
-                            @if ($usr->can('borrower.view'))
-                                <li class="{{ Route::is('admin.borrowers.index')  || Route::is('admin.borrowers.edit') ? 'active' : '' }}"><a href="{{ route('admin.borrowers.index') }}">Peminjam</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                    @endif
-
-                    
-                    @if ($usr->can('admin.create') || $usr->can('admin.view') ||  $usr->can('admin.edit') ||  $usr->can('admin.delete'))
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            Admins
-                        </span></a>
-                        <ul class="collapse {{ Route::is('admin.admins.create') || Route::is('admin.admins.index') || Route::is('admin.admins.edit') || Route::is('admin.admins.show') ? 'in' : '' }}">
-                            
-                            @if ($usr->can('admin.view'))
-                                <li class="{{ Route::is('admin.admins.index')  || Route::is('admin.admins.edit') ? 'active' : '' }}"><a href="{{ route('admin.admins.index') }}">All Admins</a></li>
-                            @endif
-
-                            @if ($usr->can('admin.create'))
-                                <li class="{{ Route::is('admin.admins.create')  ? 'active' : '' }}"><a href="{{ route('admin.admins.create') }}">Create Admin</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                    @endif
-                    @if ($usr->can('company.create') || $usr->can('company.view') ||  $usr->can('company.edit') ||  $usr->can('admin.delete'))
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            Perusahaan
-                        </span></a>
-                        <ul class="collapse {{ Route::is('admin.company.create') || Route::is('admin.company.index') || Route::is('admin.company.edit') || Route::is('admin.company.show') ? 'in' : '' }}">
-                            @if ($usr->can('company.view'))
-                            <li class="{{ Route::is('admin.companies.index')  || Route::is('admin.companies.edit') ? 'active' : '' }}"><a href="{{ route('admin.companies.index') }}">Data Perusahaan</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                    @endif
-
-                    @if ($usr->can('lending.create') || $usr->can('lending.view') ||  $usr->can('lending.edit') ||  $usr->can('lending.delete'))
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            Konfirmasi Pinjaman 
-                        </span></a>
-                        <ul class="collapse {{ Route::is('admin.lending.create') || Route::is('admin.lending.index') || Route::is('admin.lending.edit') || Route::is('admin.lending.show') ? 'in' : '' }}">
-                            
-                            @if ($usr->can('lending.view'))
-                                <li class="{{ Route::is('admin.lendings.index')  || Route::is('admin.lending.edit') ? 'active' : '' }}"><a href="{{ route('admin.lendings.index') }}">List Pinjaman</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                    @endif
-                    @if ($usr->can('borrowers.create') || $usr->can('borrowers.view') ||  $usr->can('borrowers.edit') ||  $usr->can('borrowers.delete'))
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            Peminjam 
-                        </span></a>
-                        <ul class="collapse {{ Route::is('admin.borrowers.create') || Route::is('admin.borrowers.index') || Route::is('admin.borrowers.edit') || Route::is('admin.borrowers.show') ? 'in' : '' }}">
-                            
-                            @if ($usr->can('admin.view'))
-                                <li class="{{ Route::is('admin.borrowers.index')  || Route::is('admin.borrowers.edit') ? 'active' : '' }}"><a href="{{route('admin.borrowers.index') }}">List Peminjam</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                    @endif
-                    @if ($usr->can('produk.create') || $usr->can('produk.view') ||  $usr->can('produk.edit') ||  $usr->can('produk.delete'))
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            Akses Pinjaman
-                        </span></a>
-                        <ul class="collapse {{ Route::is('admin.produks.create') || Route::is('admin.produks.index') || Route::is('admin.produks.edit') || Route::is('admin.produks.show') ? 'in' : '' }}">
-                            
-                            @if ($usr->can('produk.view'))
-                                <li class="{{ Route::is('admin.produks.index')  || Route::is('admin.produks.edit') ? 'active' : '' }}"><a href="{{ route('admin.produks.index') }}">List produk</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                    @endif
-
-                    @if ($usr->can('produkBej.view') ||  $usr->can('produkBej.show'))
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            produk
-                        </span></a>
-                        <ul class="collapse {{ Route::is('admin.produkBej.view') ? 'in' : '' }}">
-                            @if ($usr->can('produkBej.view'))
-                                <li class="{{ Route::is('admin.produkBej.index')  || Route::is('admin.produkBej.edit') ? 'active' : '' }}"><a href="{{ route('admin.produkBej.index') }}">produk</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                    @endif
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div> --}}
 
 @php
 $usr = Auth::guard('admin')->user();
@@ -239,19 +57,10 @@ $currentRoute = request()->route()->getName();
             @if ($usr->can('admin.create') || $usr->can('admin.view') || $usr->can('admin.edit') || $usr->can('admin.delete'))
                 <li class="nav-item @if($currentRoute == 'admin.admins.index') active @endif">
                     <a class="nav-link menu-link" href="{{ route('admin.admins.index') }}" aria-controls="sidebarAuth">
-                        <i class="ri-account-circle-line"></i> <span data-key="t-authentication">Admin</span>
+                        <i class="ri-account-circle-line"></i> <span data-key="t-authentication">User</span>
                     </a>
                 </li>
             @endif
-
-            @if ($usr->can('jabatan.create') || $usr->can('jabatan.view') || $usr->can('jabatan.edit') || $usr->can('jabatan.delete'))
-                <li class="nav-item @if($currentRoute == 'admin.jabatans.index') active @endif">
-                    <a class="nav-link menu-link" href="{{ route('admin.jabatans.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
-                        <i class="ri-honour-line"></i> <span data-key="t-widgets">Jabatan</span>
-                    </a>
-                </li>
-            @endif
-
             @if ($usr->can('kategori.create') || $usr->can('kategori.view') || $usr->can('kategori.edit') || $usr->can('kategori.delete'))
                 <li class="nav-item @if($currentRoute == 'admin.kategoris.index') active @endif">
                     <a class="nav-link menu-link" href="{{ route('admin.kategoris.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
@@ -294,9 +103,7 @@ $currentRoute = request()->route()->getName();
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarLayouts">
                         <ul class="nav nav-sm flex-column">
-                            {{-- <li class="nav-item">
-                                <a href="layouts-horizontal.html" target="_blank" class="nav-link" data-key="t-horizontal">Horizontal</a>
-                            </li> --}}
+
                             @if ($usr->can('optionMap.list') || $usr->can('optionMap.view') || $usr->can('optionMap.edit') || $usr->can('produk.delete'))
                                 <li class="nav-item @if($currentRoute == 'admin.optionMaps.index') active @endif">
                                     <a class="nav-link menu-link" href="{{ route('admin.optionMaps.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
@@ -325,3 +132,12 @@ $currentRoute = request()->route()->getName();
 
     <div class="sidebar-background"></div>
 </div>
+
+
+{{-- @if ($usr->can('jabatan.create') || $usr->can('jabatan.view') || $usr->can('jabatan.edit') || $usr->can('jabatan.delete'))
+<li class="nav-item @if($currentRoute == 'admin.jabatans.index') active @endif">
+    <a class="nav-link menu-link" href="{{ route('admin.jabatans.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+        <i class="ri-honour-line"></i> <span data-key="t-widgets">Jabatan</span>
+    </a>
+</li>
+@endif --}}

@@ -29,6 +29,16 @@ Admins - {{ $title }} List
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ route('admin.optionMaps.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">List {{ $title }}</li>
+                            <li class="breadcrumb-item active">Status: &nbsp; </li>
+                            <li>
+                                {{-- <label for="status-filter" class="breadcrumb-item active">  Status:</label> --}}
+                                <select id="status-filter" class="breadcrumb-item active">
+                                    <option value="">All</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Non Active">Non-Active</option>
+                                </select>
+                            </li>
+
                         </ol>
                     </div>
 
@@ -52,6 +62,7 @@ Admins - {{ $title }} List
                                     <tr>
                                         <th width="5%">No</th>
                                         <th width="10%">Judul</th>
+                                        <th width="10%">Status</th>
                                         <th width="10%">Pembuat Artikel</th>
                                         <th width="15%">Action</th>
                                     </tr>
@@ -61,6 +72,7 @@ Admins - {{ $title }} List
                                    <tr>
                                         <td>{{ $loop->index+1 }}</td>
                                         <td>{{ $data->judul }}</td>
+                                        <td>{{ $data->status }}</td>
                                         <td>{{ @$data->account->name }}</td>
     
                                         <td>
@@ -108,11 +120,15 @@ Admins - {{ $title }} List
      
      <script>
       
-        if ($('#dataTable').length) {
-            $('#dataTable').DataTable({
-                responsive: true
-            });
-        }
+        var dataTable = $('#dataTable').DataTable({
+            responsive: true
+        });
+
+        // Handle status filter change
+        $('#status-filter').on('change', function () {
+            var selectedStatus = $(this).val();
+            dataTable.column(2).search(selectedStatus === '' ? '' : '^' + selectedStatus + '$', true, false).draw();
+        });
 
      </script>
 @endsection

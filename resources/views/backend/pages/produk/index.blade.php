@@ -27,6 +27,15 @@ Admins - Produk List
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ route('admin.produks.index') }}">Produk</a></li>
                             <li class="breadcrumb-item active">List Produk</li>
+                            <li class="breadcrumb-item active">Status: &nbsp; </li>
+                            <li>
+                                {{-- <label for="status-filter" class="breadcrumb-item active">  Status:</label> --}}
+                                <select id="status-filter" class="breadcrumb-item active">
+                                    <option value="">All</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Non Active">Non-Active</option>
+                                </select>
+                            </li>
                         </ol>
                     </div>
 
@@ -37,12 +46,15 @@ Admins - Produk List
                 <div class="card">
                     <div class="card-body">
                         @include('backend.layouts.partials.messages')
-                        <h4 class="header-title float-left">Produk List</h4>
+                        <h6 class="header-title float-left">Produk List
+                          
+                        </h6>
                         <p class="float-right mb-2">
                             @if (Auth::guard('admin')->user()->can('produks.create'))
                                 <a class="btn btn-primary text-white" href="{{ route('admin.produks.create') }}">Tambah {{ $title }} </a>
                             @endif
                         </p>
+
                         <div class="clearfix"></div>
                         <div class="data-tables">
                             <table id="dataTable" class="text-center">
@@ -51,6 +63,7 @@ Admins - Produk List
                                         <th width="5%">No</th>
                                         <th width="10%">Nama</th>
                                         <th width="10%">Kategori</th>
+                                        <th width="10%">Status</th>
                                         <th width="10%">Tanggal Ditambahkan</th>
                                         <th width="15%">Action</th>
                                     </tr>
@@ -61,7 +74,9 @@ Admins - Produk List
                                         <td>{{ $loop->index+1 }}</td>
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ @$data->kategori->nama_kategori }}</td>
+                                        <td>{{ $data->status }}</td>
                                         <td>{{ $data->created_at }}</td>
+
     
                                         <td>
                                             @if (Auth::guard('admin')->user()->can('produks.show'))
@@ -108,11 +123,22 @@ Admins - Produk List
      
      <script>
       
-        if ($('#dataTable').length) {
-            $('#dataTable').DataTable({
-                responsive: true
-            });
-        }
+
+
+        var dataTable = $('#dataTable').DataTable({
+            responsive: true
+        });
+
+        // Handle status filter change
+        $('#status-filter').on('change', function () {
+            var selectedStatus = $(this).val();
+
+            // Filter the table based on selected status
+            dataTable.column(3).search(selectedStatus === '' ? '' : '^' + selectedStatus + '$', true, false).draw();
+        });
+
 
      </script>
+
+     
 @endsection
