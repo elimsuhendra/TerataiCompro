@@ -27,6 +27,14 @@ Admins - Produk List
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ route('admin.homes.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">List {{ $title }}</li>
+                            <li class="breadcrumb-item active">Status: &nbsp; </li>
+                            <li>
+                                <select id="status-filter" class="breadcrumb-item active">
+                                    <option value="">All</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Non Active">Non-Active</option>
+                                </select>
+                            </li>
                         </ol>
                     </div>
 
@@ -50,7 +58,8 @@ Admins - Produk List
                                     <tr>
                                         <th width="5%">No</th>
                                         <th width="10%">Nama</th>
-                                        <th width="10%">di Tambahkan</th>
+                                        <th width="10%">Dibuat</th>
+                                        <th width="10%">Status</th>
                                         <th width="10%">Tanggal Ditambahkan</th>
                                         <th width="15%">Action</th>
                                     </tr>
@@ -61,6 +70,7 @@ Admins - Produk List
                                         <td>{{ $loop->index+1 }}</td>
                                         <td>{{ @$data->name }}</td>
                                         <td>{{ @$data->account->name }}</td>
+                                        <td>{{ @$data->status }}</td>
                                         <td>{{ @$data->created_at }}</td>
     
                                         <td>
@@ -108,11 +118,16 @@ Admins - Produk List
      
      <script>
       
-        if ($('#dataTable').length) {
-            $('#dataTable').DataTable({
-                responsive: true
-            });
-        }
+        var dataTable = $('#dataTable').DataTable({
+            responsive: true
+        });
 
+        // Handle status filter change
+        $('#status-filter').on('change', function () {
+            var selectedStatus = $(this).val();
+
+            // Filter the table based on selected status
+            dataTable.column(3).search(selectedStatus === '' ? '' : '^' + selectedStatus + '$', true, false).draw();
+        });
      </script>
 @endsection

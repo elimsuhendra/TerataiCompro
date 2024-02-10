@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Admins - Kontak Kami List
+Admins - {{ $title }} List
 @endsection
 
 @section('styles')
@@ -14,6 +14,7 @@ Admins - Kontak Kami List
 @endsection
 
 
+
 @section('admin-content')
 
 <div class="page-content">
@@ -22,21 +23,22 @@ Admins - Kontak Kami List
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Kontak Kami</h4>
+                    <h4 class="mb-sm-0">{{ $title }}</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.kontakKami.index') }}">Kontak Kami</a></li>
-                            <li class="breadcrumb-item active">List Kontak Kami</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.optionMaps.index') }}">{{ $title }}</a></li>
+                            <li class="breadcrumb-item active">List {{ $title }}</li>
                             <li class="breadcrumb-item active">Status: &nbsp; </li>
-
                             <li>
+                                {{-- <label for="status-filter" class="breadcrumb-item active">  Status:</label> --}}
                                 <select id="status-filter" class="breadcrumb-item active">
                                     <option value="">All</option>
                                     <option value="Active">Active</option>
                                     <option value="Non Active">Non-Active</option>
                                 </select>
                             </li>
+
                         </ol>
                     </div>
 
@@ -47,10 +49,10 @@ Admins - Kontak Kami List
                 <div class="card">
                     <div class="card-body">
                         @include('backend.layouts.partials.messages')
-                        <h4 class="header-title float-left">Kontak Kami List</h4>
+                        <h4 class="header-title float-left">{{ $title }} List</h4>
                         <p class="float-right mb-2">
-                            @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                <a class="btn btn-primary text-white" href="{{ route('admin.kontakKami.create') }}">Tambah Data Baru</a>
+                            @if (Auth::guard('admin')->user()->can('artikel.create'))
+                                <a class="btn btn-primary text-white" href="{{ route('admin.tentangKita.create') }}">Tambah Data Baru</a>
                             @endif
                         </p>
                         <div class="clearfix"></div>
@@ -60,9 +62,8 @@ Admins - Kontak Kami List
                                     <tr>
                                         <th width="5%">No</th>
                                         <th width="10%">Nama</th>
-                                        <th width="10%">Email</th>
-                                        <th width="10%">Subject</th>
-                                        <th width="10%">status</th>
+                                        <th width="10%">Status</th>
+                                        <th width="10%">Pembuat Artikel</th>
                                         <th width="15%">Action</th>
                                     </tr>
                                 </thead>
@@ -71,26 +72,24 @@ Admins - Kontak Kami List
                                    <tr>
                                         <td>{{ $loop->index+1 }}</td>
                                         <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->email }}</td>
-                                        <td>{{ $data->subject }}</td>
                                         <td>{{ $data->status }}</td>
-
+                                        <td>{{ @$data->account->name }}</td>
     
                                         <td>
-                                            @if (Auth::guard('admin')->user()->can('kontakKami.edit'))
-                                                <a class="btn btn-info text-white" href="{{ route('admin.kontakKami.show', $data->serial) }}">Show</a>
+                                            @if (Auth::guard('admin')->user()->can('artikel.show'))
+                                                <a class="btn btn-info text-white" href="{{ route('admin.tentangKita.show', $data->serial) }}">Show</a>
                                             @endif
 
-                                            @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                                <a class="btn btn-success text-white" href="{{ route('admin.kontakKami.edit', $data->serial) }}">Edit</a>
+                                            @if (Auth::guard('admin')->user()->can('artikel.edit'))
+                                                <a class="btn btn-success text-white" href="{{ route('admin.tentangKita.edit', $data->serial) }}">Edit</a>
                                             @endif
                                             
-                                            @if (Auth::guard('admin')->user()->can('kontakKami.delete'))
-                                            <a class="btn btn-danger text-white" href="{{ route('admin.kontakKami.destroy', $data->serial) }}"
+                                            @if (Auth::guard('admin')->user()->can('artikel.delete'))
+                                            <a class="btn btn-danger text-white" href="{{ route('admin.tentangKita.destroy', $data->serial) }}"
                                             onclick="event.preventDefault(); document.getElementById('delete-form-{{ $data->serial }}').submit();">
                                                 Delete
                                             </a>
-                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.kontakKami.destroy', $data->serial) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.tentangKita.destroy', $data->serial) }}" method="POST" style="display: none;">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>
@@ -128,9 +127,10 @@ Admins - Kontak Kami List
         // Handle status filter change
         $('#status-filter').on('change', function () {
             var selectedStatus = $(this).val();
-
-            // Filter the table based on selected status
-            dataTable.column(4).search(selectedStatus === '' ? '' : '^' + selectedStatus + '$', true, false).draw();
+            dataTable.column(2).search(selectedStatus === '' ? '' : '^' + selectedStatus + '$', true, false).draw();
         });
+
      </script>
 @endsection
+
+

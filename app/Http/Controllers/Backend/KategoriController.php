@@ -53,31 +53,20 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
 
-        $input = $request->all();
-        $input['serial'] =md5(Str::random(14)) ;
-        $input['created_at'] = now();
-
-        $request->validate([
-            'deskripsi' => 'required|max:50',
-            'nama_kategori' => 'required|max:100|unique:kategori',
-        ]);
-
-
         try {
-          
-
-           Kategori::create($input);
+            $input = $request->except(['_token']);
+            $input['serial'] = md5(Str::random(14));
+            $input['created_at'] = now();
+            $input['status'] = "Active";
+            $input['created_by'] = Auth::guard('admin')->user()->id;
+    
+            Kategori::create($input);
             session()->flash('success', 'Data Sudah Ditambahkan !!');
-
-        }catch (QueryException $e) {
-
-            session()->flash('error', $e);
-
+        } catch (QueryException $e) {
+            session()->flash('error', $e->getMessage());
         } catch (\Exception $e) {
-
             session()->flash('error', 'An unexpected error occurred');
         }
-
 
         return redirect()->route('admin.kategoris.index');        
     }

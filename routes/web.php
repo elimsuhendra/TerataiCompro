@@ -45,5 +45,5 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('artikels', 'Backend\ArtikelController', ['names' => 'admin.artikels']);
     Route::resource('kontakBisnis', 'Backend\KontakUnitBisnisController', ['names' => 'admin.kontakBisnis']);
     Route::resource('homes', 'Backend\HomeController', ['names' => 'admin.homes']);
-    Route::resource('tentangKita', 'Backend/TentangKitaController', ['names' => 'admin.tentangKita']);
+    Route::resource('tentangKita', 'Backend\TentangKitaController', ['names' => 'admin.tentangKita']);
 });

@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tentang_kita', function (Blueprint $table) {
-            $table->string('serial', 30);
-            $table->string('nama', 30);
+            $table->string('serial');
+            $table->string('nama', 50);
+            $table->string('status', 30);
             $table->text('description');
             $table->string('image')->nullable(); // Jika gambar bisa null, gunakan nullable()
             $table->integer('created_by')->nullable(); // Kolom untuk menyimpan ID yang membuat entri

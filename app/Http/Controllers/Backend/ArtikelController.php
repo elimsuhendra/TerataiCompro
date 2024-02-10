@@ -20,8 +20,6 @@ class ArtikelController extends Controller
     private $model;
     Public $title="Artikel";
 
-
-
     public function __construct(Artikel $model)
     {
         $this->model = $model;
@@ -62,6 +60,8 @@ class ArtikelController extends Controller
         if (is_null($this->user) || !$this->user->can('artikel.create')) {
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
+        $input = $request->except(['_token']);
+
 
         $input = $request->all();
         $input['serial'] =md5(Str::random(14)) ;
