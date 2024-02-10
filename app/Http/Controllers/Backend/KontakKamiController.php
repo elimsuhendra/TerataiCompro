@@ -57,16 +57,19 @@ class KontakKamiController extends Controller
         $input = $request->all();
         $input['serial'] =md5(Str::random(14)) ;
         $input['created_at'] = now();
+        $input['status'] = "Active";
+        $input['is_read'] = 0;
 
         $request->validate([
             'nama' => 'required|max:50',
-            'email' => 'required|max:100|unique:kontak_kami',
+            'email' => 'required|max:100',
         ]);
+
+        // dd(KontakKami::create($input));
 
 
         try {
           
-
            KontakKami::create($input);
             session()->flash('success', 'Data Sudah Ditambahkan !!');
 
@@ -87,7 +90,7 @@ class KontakKamiController extends Controller
     {
         $datas = KontakKami::find($id);
         $title="Kontak Kami";
-
+        $result = $datas->update(['is_read' => 1]);
 
         return view('backend.pages.kontakKami.show', compact('datas','title'));
     }

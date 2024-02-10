@@ -19,8 +19,12 @@ class KontakKami extends Model
         'email',
         'subject',
         'pesan',
+        'status',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'deleted_at',
+        'created_by',
+        'is_read'
     ];
 
     public $timestamps = false;

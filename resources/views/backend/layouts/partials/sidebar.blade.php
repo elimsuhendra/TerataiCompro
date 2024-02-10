@@ -96,6 +96,13 @@ $currentRoute = request()->route()->getName();
                     </a>
                 </li>
             @endif  
+            @if ($usr->can('aboutUs.list') || $usr->can('aboutUs.view') || $usr->can('aboutUs.edit') || $usr->can('aboutUs.delete'))
+                <li class="nav-item @if($currentRoute == 'admin.tentangKita.index') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.tentangKita.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                        <i class="ri-stack-line"></i> <span data-key="t-widgets">Tentang Kami</span>
+                    </a>
+                </li>
+            @endif  
             @if ($usr->can('config.view'))
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
