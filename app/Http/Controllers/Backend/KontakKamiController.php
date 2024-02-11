@@ -20,17 +20,16 @@ class KontakKamiController extends Controller
 
     public function __construct()
     {
-        // Formatter::checkingAccess(@Auth::guard('admin')->user()->id);
         $this->middleware(function ($request, $next) {
             $this->user = Auth::guard('admin')->user();
     
             if (!$this->user) {
-                return redirect()->route('admin.login'); // Ganti 'admin.login' dengan nama rute yang benar untuk halaman login admin
+                return redirect()->route('admin.login'); 
             }
     
             return $next($request);
         });
-        }
+    }
 
     public function index()
     {
@@ -97,7 +96,7 @@ class KontakKamiController extends Controller
     {
         $datas = KontakKami::find($id);
         $title="Kontak Kami";
-        $result = $datas->update(['is_read' => 0]);
+        $result = $datas->update(['is_read' => 1]);
 
         return view('backend.pages.kontakKami.show', compact('datas','title'));
     }
