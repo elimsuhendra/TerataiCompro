@@ -67,6 +67,16 @@ Dashboard Page - Admin Panel
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 mb-3 mb-lg-0">
+                                        <div class="card">
+                                            <div class="seo-fact sbg3">
+                                                <div class="p-4 d-flex justify-content-between align-items-center">
+                                                    <div class="seofct-icon">Unread Messages</div>
+                                                    <h2>{{ $notifiacation }}</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             {{-- <table id="dataTable" class="text-center">

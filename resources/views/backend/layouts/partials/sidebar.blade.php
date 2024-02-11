@@ -71,7 +71,12 @@ $currentRoute = request()->route()->getName();
             @if ($usr->can('kontakKami.list') || $usr->can('kontakKami.view') || $usr->can('kontakKami.edit') || $usr->can('kontakKami.delete'))
                 <li class="nav-item @if($currentRoute == 'admin.produks.index') active @endif">
                     <a class="nav-link menu-link" href="{{ route('admin.kontakKami.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
-                        <i class="bx bxs-user-account"></i> <span data-key="t-widgets">Kontak Kami</span>
+                        <i class="bx bxs-user-account"></i> 
+                        @if ($notif > 0)
+                        ({{ $notif }})
+                        @endif
+                        &nbsp;
+                        <span data-key="t-widgets">Kontak Kami</span>
                     </a>
                 </li>
             @endif

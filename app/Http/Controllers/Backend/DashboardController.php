@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\KontakKami;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
@@ -17,10 +18,14 @@ class DashboardController extends Controller
     {
         $this->middleware(function ($request, $next) {
             $this->user = Auth::guard('admin')->user();
+    
+            if (!$this->user) {
+                return redirect()->route('admin.login'); 
+            }
+    
             return $next($request);
         });
     }
-
 
     public function index()
     {
@@ -29,8 +34,12 @@ class DashboardController extends Controller
         }
 
         $total_roles = count(Role::select('id')->get());
+        $total_roles = count(Role::select('id')->get());
+        $notifiacation = count(KontakKami::where('is_read',0)->get());
+
+
         $total_admins = count(Admin::select('id')->get());
         $total_permissions = count(Permission::select('id')->get());
-        return view('backend.pages.dashboard.index', compact('total_admins', 'total_roles', 'total_permissions'));
+        return view('backend.pages.dashboard.index', compact('total_admins', 'total_roles', 'total_permissions','notifiacation'));
     }
 }

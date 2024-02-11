@@ -72,11 +72,6 @@ class LoginController extends Controller
         }
     }
 
-    /**
-     * logout admin guard
-     *
-     * @return void
-     */
     public function logout()
     {
         Auth::guard('admin')->logout();

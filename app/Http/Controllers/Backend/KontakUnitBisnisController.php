@@ -26,6 +26,11 @@ class KontakUnitBisnisController extends Controller
 
         $this->middleware(function ($request, $next) {
             $this->user = Auth::guard('admin')->user();
+    
+            if (!$this->user) {
+                return redirect()->route('admin.login'); 
+            }
+    
             return $next($request);
         });
     }
