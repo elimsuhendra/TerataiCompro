@@ -14,6 +14,7 @@
     use App\Helpers\Formatter;
     $notif=Formatter::notif();
     $notifdata=Formatter::notifData();
+    // dd(Formatter::timeCalculate($item->created_at,date('Y-m-d H:i:s')));
 ?>
 
 <body>
@@ -198,7 +199,7 @@
                                                             <p class="mb-1">{{ $item->subject }}<</p>
                                                         </div>
                                                         <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                                                            <span><i class="mdi mdi-clock-outline"></i> 4 hrs ago</span>
+                                                            <span><i class="mdi mdi-clock-outline"></i>{{ Formatter::timeCalculate($item->created_at,date('Y-m-d H:i:s')) }}</span>
                                                         </p>
                                                     </div>
                                                     <div class="px-2 fs-15">
