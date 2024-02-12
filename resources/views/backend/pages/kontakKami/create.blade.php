@@ -46,26 +46,26 @@ Admin Create - Admin Panel
                         <form action="{{ route('admin.kontakKami.store') }}" method="POST">
                             @csrf
                             <div class="form-row">
-                                <div class="form-group col-md-8 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Tanggal Ditambahkan</label>
                                    
                                     <input type="text" class="form-control" id="name"  value=" {{ now() }}" readonly>
                                 </div>
-                                <div class="form-group col-md-8 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Nama</label>
                                     <input type="text" class="form-control" name="nama" placeholder="Nama">
                                 </div>
-                                <div class="form-group col-md-8 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                                 </div>
-                                <div class="form-group col-md-8 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="email">Subject</label>
                                     <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
                                 </div>
-                                <div class="form-group col-md-8 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="pesan">Pesan</label>
-                                    <textarea class="form-control" id="pesan" name="pesan" rows="4"></textarea>
+                                    <textarea class="form-control" id="editor" name="pesan" rows="4"></textarea>
                                 </div>
                             </div> 
     
@@ -86,7 +86,11 @@ Admin Create - Admin Panel
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="{{ asset('sidebackend/assets/js/ckeditor.js')}}"></script>
 <script>
+    ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
+        console.error(error);
+    });
     $(document).ready(function() {
         $('.select2').select2();
     })

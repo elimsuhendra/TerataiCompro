@@ -17,16 +17,21 @@ class AdminsController extends Controller
     {
         $this->middleware(function ($request, $next) {
             $this->user = Auth::guard('admin')->user();
+    
+            if (!$this->user) {
+                return redirect()->route('admin.login'); 
+            }
+    
             return $next($request);
         });
     }
 
     public function index()
     {
-        if (is_null($this->user) || !$this->user->can('admin.view')) {
-            abort(403, 'Sorry !! You are Unauthorized to view any admin !');
+        // if (is_null($this->user) || !$this->user->can('admin.view')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to view any admin !');
     
-        }
+        // }
 
         $admins = Admin::all();
         return view('backend.pages.admins.index', compact('admins'));
@@ -35,9 +40,9 @@ class AdminsController extends Controller
     public function create()
     {
        
-        if (is_null($this->user) || !$this->user->can('admin.create')) {
-            abort(403, 'Sorry !! You are Unauthorized to create any admin !');
-        }
+        // if (is_null($this->user) || !$this->user->can('admin.create')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to create any admin !');
+        // }
 
         $roles  = Role::all();
         return view('backend.pages.admins.create', compact('roles'));
@@ -45,9 +50,9 @@ class AdminsController extends Controller
 
     public function store(Request $request)
     {
-        if (is_null($this->user) || !$this->user->can('admin.create')) {
-            abort(403, 'Sorry !! You are Unauthorized to create any admin !');
-        }
+        // if (is_null($this->user) || !$this->user->can('admin.create')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to create any admin !');
+        // }
 
         // Validation Data
         $request->validate([
@@ -91,9 +96,9 @@ class AdminsController extends Controller
      */
     public function edit(int $id)
     {
-        if (is_null($this->user) || !$this->user->can('admin.edit')) {
-            abort(403, 'Sorry !! You are Unauthorized to edit any admin !');
-        }
+        // if (is_null($this->user) || !$this->user->can('admin.edit')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to edit any admin !');
+        // }
 
         $admin = Admin::find($id);
         $roles  = Role::all();
@@ -109,9 +114,9 @@ class AdminsController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        if (is_null($this->user) || !$this->user->can('admin.edit')) {
-            abort(403, 'Sorry !! You are Unauthorized to edit any admin !');
-        }
+        // if (is_null($this->user) || !$this->user->can('admin.edit')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to edit any admin !');
+        // }
 
         // TODO: You can delete this in your local. This is for heroku publish.
         // This is only for Super Admin role,

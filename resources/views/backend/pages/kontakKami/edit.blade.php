@@ -17,61 +17,6 @@ Kontak Kami Edit - Admin Panel
 
 @section('admin-content')
 
-<!-- page title area start -->
-{{-- <div class="page-title-area">
-    <div class="row align-items-center">
-        <div class="col-sm-6">
-            <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Admin Edit</h4>
-                <ul class="breadcrumbs pull-left">
-                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ route('admin.admins.index') }}">All Admins</a></li>
-                    <li><span>Edit Admin - {{ $data->name }}</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-6 clearfix">
-            @include('backend.layouts.partials.logout')
-        </div>
-    </div>
-</div>
-<!-- page title area end -->
-
-<div class="main-content-inner">
-    <div class="row">
-        <!-- data table start -->
-        <div class="col-12 mt-5">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="header-title">Edit Admin - {{ $data->name }}</h4>
-                    @include('backend.layouts.partials.messages')
-
-                    <form action="{{ route('admin.admins.update', $data->serial) }}" method="POST">
-                        @method('PUT')
-                        @csrf
-                        <div class="form-row">
-                            <div class="form-group col-md-6 col-sm-12">
-                                <label for="name">Admin Name</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ $data->nama_jabatan }}">
-                            </div>
-                            <div class="form-group col-md-6 col-sm-12">
-                                <label for="email">Admin Email</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email" value="{{ $data->nama }}">
-                            </div>
-                        </div>
-
-                       
-
-                        <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- data table end -->
-
-    </div>
-</div> --}}
-
 <div class="page-content">
     <div class="container-fluid">
 
@@ -104,22 +49,22 @@ Kontak Kami Edit - Admin Panel
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Nama</label>
                                     <input type="text" class="form-control" id="name" name="nama" placeholder="nama" value="{{ $data->nama }}">
                                 </div>
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="email">Email</label>
                                     <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{ $data->email }}">
                                 </div>
                             </div>
-                            <div class="form-group col-md-8 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12">
                                 <label for="email">Subject</label>
                                 <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" value="{{ $data->subject }}">
                             </div>
-                            <div class="form-group col-md-8 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12">
                                 <label for="pesan">Pesan</label>
-                                <textarea class="form-control" id="pesan" name="pesan" rows="4">{{ $data->pesan }}</textarea>
+                                <textarea class="form-control" id="editor"  name="pesan" rows="4">{{ $data->pesan }}</textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
@@ -139,7 +84,11 @@ Kontak Kami Edit - Admin Panel
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="{{ asset('sidebackend/assets/js/ckeditor.js')}}"></script>
 <script>
+    ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
+        console.error(error);
+    });
     $(document).ready(function() {
         $('.select2').select2();
     })

@@ -13,8 +13,6 @@ Admins - {{ $title }} List
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
 @endsection
 
-
-
 @section('admin-content')
 
 <div class="page-content">
@@ -27,7 +25,7 @@ Admins - {{ $title }} List
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.optionMaps.index') }}">{{ $title }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.produks.index') }}">{{ $title }}</a></li>
                             <li class="breadcrumb-item active">List {{ $title }}</li>
                             <li class="breadcrumb-item active">Status: &nbsp; </li>
                             <li>
@@ -38,7 +36,6 @@ Admins - {{ $title }} List
                                     <option value="Non Active">Non-Active</option>
                                 </select>
                             </li>
-
                         </ol>
                     </div>
 
@@ -49,12 +46,15 @@ Admins - {{ $title }} List
                 <div class="card">
                     <div class="card-body">
                         @include('backend.layouts.partials.messages')
-                        <h4 class="header-title float-left">{{ $title }} List</h4>
+                        <h6 class="header-title float-left">Produk List
+                          
+                        </h6>
                         <p class="float-right mb-2">
-                            @if (Auth::guard('admin')->user()->can('artikel.create'))
-                                <a class="btn btn-primary text-white" href="{{ route('admin.tentangKita.create') }}">Tambah Data Baru</a>
+                            @if (Auth::guard('admin')->user()->can('aboutUs.create'))
+                                <a class="btn btn-primary text-white" href="{{ route('admin.tentangKita.create') }}">Tambah {{ $title }} </a>
                             @endif
                         </p>
+
                         <div class="clearfix"></div>
                         <div class="data-tables">
                             <table id="dataTable" class="text-center">
@@ -63,7 +63,8 @@ Admins - {{ $title }} List
                                         <th width="5%">No</th>
                                         <th width="10%">Nama</th>
                                         <th width="10%">Status</th>
-                                        <th width="10%">Pembuat Artikel</th>
+                                        <th width="10%">Dibuat Oleh</th>
+                                        <th width="10%">Tanggal Ditambahkan</th>
                                         <th width="15%">Action</th>
                                     </tr>
                                 </thead>
@@ -74,22 +75,24 @@ Admins - {{ $title }} List
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->status }}</td>
                                         <td>{{ @$data->account->name }}</td>
+                                        <td>{{ $data->created_at }}</td>
+
     
                                         <td>
-                                            @if (Auth::guard('admin')->user()->can('artikel.show'))
-                                                <a class="btn btn-info text-white" href="{{ route('admin.tentangKita.show', $data->serial) }}">Show</a>
+                                            @if (Auth::guard('admin')->user()->can('produks.show'))
+                                                <a class="btn btn-info text-white" href="{{ route('admin.produks.show', $data->serial) }}">Show</a>
                                             @endif
 
-                                            @if (Auth::guard('admin')->user()->can('artikel.edit'))
-                                                <a class="btn btn-success text-white" href="{{ route('admin.tentangKita.edit', $data->serial) }}">Edit</a>
+                                            @if (Auth::guard('admin')->user()->can('produks.edit'))
+                                                <a class="btn btn-success text-white" href="{{ route('admin.produks.edit', $data->serial) }}">Edit</a>
                                             @endif
                                             
-                                            @if (Auth::guard('admin')->user()->can('artikel.delete'))
-                                            <a class="btn btn-danger text-white" href="{{ route('admin.tentangKita.destroy', $data->serial) }}"
+                                            @if (Auth::guard('admin')->user()->can('produks.delete'))
+                                            <a class="btn btn-danger text-white" href="{{ route('admin.produks.destroy', $data->serial) }}"
                                             onclick="event.preventDefault(); document.getElementById('delete-form-{{ $data->serial }}').submit();">
                                                 Delete
                                             </a>
-                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.tentangKita.destroy', $data->serial) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.produks.destroy', $data->serial) }}" method="POST" style="display: none;">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>
@@ -120,6 +123,8 @@ Admins - {{ $title }} List
      
      <script>
       
+
+
         var dataTable = $('#dataTable').DataTable({
             responsive: true
         });
@@ -127,10 +132,13 @@ Admins - {{ $title }} List
         // Handle status filter change
         $('#status-filter').on('change', function () {
             var selectedStatus = $(this).val();
-            dataTable.column(2).search(selectedStatus === '' ? '' : '^' + selectedStatus + '$', true, false).draw();
+
+            // Filter the table based on selected status
+            dataTable.column(3).search(selectedStatus === '' ? '' : '^' + selectedStatus + '$', true, false).draw();
         });
 
+
      </script>
+
+     
 @endsection
-
-

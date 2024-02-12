@@ -36,7 +36,7 @@ class TentangKitaController extends Controller
     
         }
 
-        $datas = $this->model::whereNull('deleted_at')->get();
+        $datas = $this->model::with('account')->whereNull('deleted_at')->get();
         $title=$this->title;
 
         return view('backend.pages.tentangKita.index', compact('datas','title'));
