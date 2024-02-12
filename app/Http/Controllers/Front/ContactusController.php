@@ -31,4 +31,11 @@ class ContactusController extends Controller
         $data['page'] = 'contact us';
         return view('front/contact_us', compact('data'));
     }
+
+    public function create(Request $request)
+    {
+        dd($request);
+        $data['page'] = 'contact us';
+        return view('front/contact_us', compact('data'));
+    }
 }

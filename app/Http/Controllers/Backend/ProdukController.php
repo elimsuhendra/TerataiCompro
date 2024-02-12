@@ -130,6 +130,7 @@ class ProdukController extends Controller
 
         $kategori =Kategori::all();
         $data = Produk::where('serial',$serial)->first();
+        dd($data);
         return view('backend.pages.produk.edit', compact('data','title','kategori'));
     }
 
