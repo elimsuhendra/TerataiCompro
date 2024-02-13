@@ -30,7 +30,7 @@ class OptionMap extends Model
         return $this->belongsTo(Admin::class, 'created_by', 'id');
     }
 
-    public function kategori()
+    public function kategoris()
     {
         return $this->belongsTo(Kategori::class, 'kategori', 'serial');
     }

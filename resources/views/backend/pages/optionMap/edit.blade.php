@@ -48,16 +48,27 @@ Admin Edit - Admin Panel
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-md-12  col-sm-12">
                                     <label for="key">Key</label>
                                     <input type="text" class="form-control" id="name" name="key" placeholder="key" value="{{ $data->key }}">
                                 </div>
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-md-12  col-sm-12">
                                     <label for="value">Value</label>
                                     <input type="text" class="form-control" id="email" name="value" placeholder="value" value="{{ $data->value }}">
                                 </div>
                             </div>
-                            <div class="form-group col-md-8 col-sm-12">
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="key">Kategori </label>
+                                    <select name="kategori" class="form-control" >
+                                        <option value="">--Pilih Kategori--</option>
+                                        @foreach ($kategori as $row)
+                                            <option value="{{ $row->serial }}" @if($data->serial_kategori == $row->serial) selected='selected' @endif> {{ strtoupper($row->nama_kategori) }}</option>
+                                        @endforeach
+                                    </select>                                
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12">
                                 <label for="pesan">Deskripsi</label>
                                 <textarea class="form-control" id="pesan" name="description" rows="4">{{ $data->description }}</textarea>
                             </div>
