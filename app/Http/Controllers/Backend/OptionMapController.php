@@ -39,8 +39,7 @@ class OptionMapController extends Controller
     
         }
 
-        $datas = OptionMap::with('kategori','account')->get();
-        // dd($datas);
+        $datas = OptionMap::with('kategoris','account')->get();
         $title=$this->title;
 
         return view('backend.pages.optionMap.index', compact('datas','title'));
@@ -101,7 +100,8 @@ class OptionMapController extends Controller
 
         $data = OptionMap::where('serial',$serial)->first();
         $title=$this->title;
-        return view('backend.pages.optionMap.edit', compact('data','title'));
+        $kategori=Kategori::where('status',"Active")->whereNull('deleted_at')->get();
+        return view('backend.pages.optionMap.edit', compact('data','title','kategori'));
 
     }
 
