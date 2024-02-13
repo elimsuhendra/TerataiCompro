@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use DB;
+use Illuminate\Support\Str;
 
 class Controller extends BaseController
 {
@@ -29,6 +30,34 @@ class Controller extends BaseController
        
         $data = $data->first();
         return $data;
+    }
+
+    public function insert_data($table, $request){
+        try {
+            // insert data to DB
+            DB::beginTransaction();
+            // $data = [];
+            
+            // unset token
+            unset($request['_token']);
+            $request['serial']      = md5(str::random(14)) ;
+            $request['created_at']  = now();
+            $request['status']      = "Active";
+
+        
+            $input = DB::table($table)->insert($request);
+         
+            DB::commit();
+            return response()->json([
+                "code"  => 200,
+                "message" => "Successfull"
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json([
+                "code"      => 500,
+                "message"   => $th->getMessage()
+            ]);        }
     }
 
     public function render_view($view = ''){

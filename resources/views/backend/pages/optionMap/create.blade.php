@@ -66,7 +66,7 @@
                                 </div> --}}
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Kategori Produk</label>
-                                    <select name="kategori" id="kategori" class="form-control " required>
+                                    <select name="kategori" id="kategori" class="form-control ">
                                         <option value="">Pilih Kategori</option>
 
                                         @foreach ($kategori as $row)
