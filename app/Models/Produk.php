@@ -22,6 +22,7 @@ class Produk extends Model
         'image',
         'status',
         'created_by',
+        'flag_top_product',
         'updated_at',
         'deleted_at'
     ];
