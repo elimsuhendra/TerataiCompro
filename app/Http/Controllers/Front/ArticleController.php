@@ -36,7 +36,9 @@ class ArticleController extends Controller
             "length" => 9,
             "start" => 0
         ];
-        $data['data'] = DB::table('artikel')->paginate(9);
+        $data['data'] = DB::table('artikel')->join('admins','admins.id','artikel.created_by')->select('artikel.*','admins.name')->paginate(9);
+        $data['image_url'] = $this->image_url;
+
         return view('front/article', compact('data'));  
     }
 
@@ -46,6 +48,7 @@ class ArticleController extends Controller
         $serial = $request->input('serial');
         $data['data'] = $this->get_detail('artikel',$serial);
         // dd($data['data']);
+        $data['image_url'] = $this->image_url;
         return view('front/article_detail', compact('data'));
     }
 }

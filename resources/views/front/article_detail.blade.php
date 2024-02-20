@@ -17,11 +17,11 @@
             <article class="entry entry-single">
 
               <div class="entry-img">
-                <img src="front/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                <img src="{{ asset('storage/images/' . $data['data']->image) }}" onerror="if (this.src != '{{$data['image_url']}}/default/600x600.jpg') this.src = '{{$data['image_url']}}/default/600x600.jpg';" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.html">{{$data["data"]->serial}}</a>
+                <a href="blog-single.html">{{$data["data"]->judul}}</a>
               </h2>
 
               <div class="entry-meta">
@@ -33,7 +33,9 @@
               </div>
 
               <div class="entry-content">
-                {{$data['data']->content}}
+                <?php
+                echo $data['data']->content;
+                ?>
               </div>
             </article><!-- End blog entry -->
 
