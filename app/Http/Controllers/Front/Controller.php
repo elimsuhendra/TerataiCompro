@@ -13,16 +13,32 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public $image_url = 'backend/assets/images';
+    private $arr_where = [];
 
-    public function get_index($table, $request){
-        $data = DB::table($table)->select('*');
+    public function get_index($table, $request = ''){
+        $data = DB::table($table)->select('*')->where('status','Active');
         // dd($request->length);
-        if($request->length !== "-1"){
-            $data = $data->limit($request->length)->offset($request->start);
+        
+        if($request != ''){
+            if($request->length !== "-1"){
+                $data = $data->limit($request->length)->offset($request->start);
+            }
+        }
+
+        // set where
+        if(count($this->arr_where) > 0){
+            foreach ($this->arr_where as $key => $value) {
+                $data = $data->where($key, $value);
+            }
         }
 
         $data = $data->get();
+        $this->arr_where = [];
         return $data;
+    }
+
+    public function set_arr_where($key, $value){
+        $this->arr_where[$key] = $value; 
     }
 
     public function get_detail($table, $serial){
