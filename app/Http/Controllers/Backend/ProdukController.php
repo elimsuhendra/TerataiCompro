@@ -74,11 +74,13 @@ class ProdukController extends Controller
         ]);
 
         $input = $request->all();
+        $input = $request->except(['_token']);
         $input['serial'] =md5(Str::random(14)) ;
         $input['created_at'] = now();
         $input['status'] = 'Active';
         $input['created_by'] = Auth::guard('admin')->user()->id;
 
+        // dd($input);
         // Handle file upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');        
@@ -91,11 +93,10 @@ class ProdukController extends Controller
             $input['image'] = basename($imagePath);
         }
         
-    
 
         try {
           
-           Produk::create($input);
+            Produk::create($input);
             session()->flash('success', 'Data Sudah Ditambahkan !!');
 
         }catch (QueryException $e) {

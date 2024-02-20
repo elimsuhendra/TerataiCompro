@@ -61,8 +61,8 @@ Dashboard Page - Admin Panel
                                         <div class="card">
                                             <div class="seo-fact sbg3">
                                                 <div class="p-4 d-flex justify-content-between align-items-center">
-                                                    <div class="seofct-icon">Permissions</div>
-                                                    <h2>{{ $total_permissions }}</h2>
+                                                    <div class="seofct-icon">Total Produks</div>
+                                                    <h2>{{ $total_produk }}</h2>
                                                 </div>
                                             </div>
                                         </div>

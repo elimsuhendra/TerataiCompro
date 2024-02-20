@@ -73,9 +73,24 @@ Artikel Edit - Admin Panel
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label for="name">Flag Top Option</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="flag_top_product" value="0" {{ $data->flag_top_product == '0' ? 'checked' : '' }}>
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="flag_top_product" value="1" {{ $data->flag_top_product == '1' ? 'checked' : '' }}>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
                             <div class="form-group col-md-12 col-sm-12">
                                 <br>
-
                                 <label for="image">Gambar Produk</label>
                                 <input type="hidden" name="last_image"  id="last_image" value="{{$data->image}}">
                                 <input type="file" class="form-control-file" id="image" name="image">

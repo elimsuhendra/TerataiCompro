@@ -61,8 +61,22 @@
                                     <label for="image">Gambar Produk</label>
                                     <input type="file" class="form-control-file" id="image" name="image" required>
                                 </div>
-                        
+
                                 <div class="form-group col-md-12 col-sm-12">
+                                    <label for="name">Flag Top Option</label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="flag_top_product" value="0">
+                                            Yes
+                                        </label>
+                                   
+                                        <label>
+                                            <input type="radio" name="flag_top_product" value="1">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Kategori Produk</label>
                                     <select name="serial_kategori" id="serial_kategori" class="form-control " required>
                                         <option value="">Pilih Kategori</option>
