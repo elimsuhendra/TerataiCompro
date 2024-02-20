@@ -107,14 +107,14 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
-            'expire' => 360,
-            'throttle' => 360,
+            'expire' => 6000,
+            'throttle' => 6000,
         ],
         'admins' => [
             'provider' => 'admins',
             'table' => 'password_resets',
-            'expire' => 360,
-            'throttle' => 360,
+            'expire' => 6000,
+            'throttle' => 6000,
         ],
     ],
 

@@ -46,7 +46,7 @@
                     <div class="card-body">
 
                         <form method="POST" action="{{ route('admin.homes.store') }}"  enctype="multipart/form-data">
-                            @csrf
+                            @csrf <!-- {{ csrf_field() }} -->
                             <div class="form-row">
                                 {{-- <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Tanggal Ditambahkan</label>
