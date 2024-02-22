@@ -76,16 +76,17 @@
                                         </label>
                                     </div>
                                 </div>
-                                                                <div class="form-group col-md-12 col-sm-12">
-                                    <label for="name">Kategori Produk</label>
-                                    <select name="serial_kategori" id="serial_kategori" class="form-control " required>
-                                        <option value="">Pilih Kategori</option>
+                                
+                                <div class="form-group col-md-12 col-sm-12">
+                                <label for="name">Kategori Produk</label>
+                                <select name="serial_kategori" id="serial_kategori" class="form-control " required>
+                                    <option value="">Pilih Kategori</option>
 
-                                        @foreach ($kategori as $row)
-                                            <option value="{{ $row->serial }}">{{ $row->nama_kategori }}</option>
-                                        @endforeach
-                                    </select>
-                                    </div>
+                                    @foreach ($kategori as $row)
+                                        <option value="{{ $row->serial }}">{{ $row->nama_kategori }}</option>
+                                    @endforeach
+                                </select>
+                                </div>
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="email">Content</label>
                                     <textarea class="form-control" id="editor" name="deskripsi" rows="4" ></textarea>

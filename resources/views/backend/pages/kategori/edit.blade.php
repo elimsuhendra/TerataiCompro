@@ -49,11 +49,22 @@ Admin Edit - Admin Panel
                             @csrf
                             <input type="hidden" name="_method" value="PUT"> <!-- Use a hidden input field for the method -->
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Nama Kategori</label>
                                     <input type="text" class="form-control" id="name" name="nama_kategori" placeholder="Enter Name" value="{{ $data->nama_kategori }}">
                                 </div>
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        <label for="key">Kategori Produk</label>
+                                        <select name="parent_category" class="form-control" >
+                                            <option value="">--Pilih Kategori--</option>
+                                            @foreach ($kategori as $row)
+                                                <option value="{{ $row->serial }}" @if($data->parent_category == $row->serial) selected='selected' @endif> {{ strtoupper($row->nama_kategori) }}</option>
+                                            @endforeach
+                                        </select>                                
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="email">Deskripsi</label>
                                     <textarea class="form-control" id="pesan" name="deskripsi" rows="4">{{ $data->deskripsi }}</textarea>
                                 </div>

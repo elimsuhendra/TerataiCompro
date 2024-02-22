@@ -51,7 +51,9 @@ class KategoriController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to create any admin !');
         }
 
-        return view('backend.pages.kategori.create');        
+        $kategori = Kategori::where('deleted_at',null)->where('parent_category',null)->get();
+
+        return view('backend.pages.kategori.create',compact('kategori'));        
     }
 
     public function store(Request $request)
@@ -81,7 +83,6 @@ class KategoriController extends Controller
         $datas = Kategori::find($id);
         $title="Kategori";
 
-
         return view('backend.pages.kategori.show', compact('datas','title'));
     }
 
@@ -92,9 +93,10 @@ class KategoriController extends Controller
         }
 
         $data = Kategori::where('serial',$serial)->first();
+        $kategori = Kategori::where('deleted_at',null)->where('parent_category',null)->get();
         $title="Kategori";
 
-        return view('backend.pages.kategori.edit', compact('data','title'));
+        return view('backend.pages.kategori.edit', compact('data','title','kategori'));
 
     }
 

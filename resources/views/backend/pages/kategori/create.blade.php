@@ -47,22 +47,37 @@ Kategori
                         <form action="{{ route('admin.kategoris.store') }}" method="POST">
                             @csrf
                             <div class="form-row">
-                                <div class="form-group col-md-8 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Tanggal Ditambahkan</label>
                                    
                                     <input type="text" class="form-control" id="name"  value=" {{ now() }}">
                                 </div>
-                                <div class="form-group col-md-8 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Nama Kategori</label>
                                     <input type="text" class="form-control" id="name" name="nama_kategori" placeholder="Nama Kategori">
                                 </div>
-                                <div class="form-group col-md-8 col-sm-12">
+
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="name">Kategori Produk</label>
+                                    <select name="parent_category" id="" class="form-control " required>
+                                        <option value="">Pilih Kategori Parent</option>
+    
+                                        @foreach ($kategori as $row)
+                                            <option value="{{ $row->serial }}">{{ $row->nama_kategori }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="name"></label>
+                                    <input type="text" class="form-control" id="name" name="nama_kategori" placeholder="Nama Kategori">
+                                </div>
+                                
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="email">Deskripsi</label>
                                     <textarea class="form-control" id="pesan" name="deskripsi" rows="4"></textarea>
                                 </div>
                             </div>
-    
-                            
                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
                         </form>                  
                     </div>

@@ -39,21 +39,14 @@ $currentRoute = request()->route()->getName();
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
 
-            @if ($usr->can('dashboard.view'))
-                <li class="nav-item @if($currentRoute == 'admin.dashboard') active @endif">
-                    <a class="nav-link menu-link" href="{{ route('admin.dashboard') }}" role="button" aria-expanded="false" aria-controls="sidebarApps">
-                        <i class="ri-dashboard-2-line"></i> <span data-key="t-apps">Dashboard</span>
-                    </a>
-                </li>
-            @endif
-            @if ($usr->can('home.list'))
-                <li class="nav-item @if($currentRoute == 'admin.homes.index') active @endif">
-                    <a class="nav-link menu-link" href="{{ route('admin.homes.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
-                        <i class="ri-honour-line"></i> <span data-key="t-widgets">Home</span>
-                    </a>
-                </li>
-            @endif
-    
+                @if ($usr->can('home.list'))
+                    <li class="nav-item @if($currentRoute == 'admin.homes.index') active @endif">
+                        <a class="nav-link menu-link" href="{{ route('admin.homes.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
+                            <i class="ri-honour-line"></i> <span data-key="t-widgets">Home</span>
+                        </a>
+                    </li>
+                @endif
+        
             @if ($usr->can('admin.create') || $usr->can('admin.view') || $usr->can('admin.edit') || $usr->can('admin.delete'))
                 <li class="nav-item @if($currentRoute == 'admin.admins.index') active @endif">
                     <a class="nav-link menu-link" href="{{ route('admin.admins.index') }}" aria-controls="sidebarAuth">
@@ -135,8 +128,13 @@ $currentRoute = request()->route()->getName();
                 </li> <!-- end Dashboard Menu -->
 
             @endif  
-                
-
+            @if ($usr->can('dashboard.view'))
+                <li class="nav-item @if($currentRoute == 'admin.dashboard') active @endif">
+                    <a class="nav-link menu-link" href="{{ route('admin.dashboard') }}" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <i class="ri-dashboard-2-line"></i> <span data-key="t-apps">Dashboard</span>
+                    </a>
+                </li>
+            @endif
             </ul>
         </div>
         <!-- Sidebar -->
@@ -144,12 +142,3 @@ $currentRoute = request()->route()->getName();
 
     <div class="sidebar-background"></div>
 </div>
-
-
-{{-- @if ($usr->can('jabatan.create') || $usr->can('jabatan.view') || $usr->can('jabatan.edit') || $usr->can('jabatan.delete'))
-<li class="nav-item @if($currentRoute == 'admin.jabatans.index') active @endif">
-    <a class="nav-link menu-link" href="{{ route('admin.jabatans.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
-        <i class="ri-honour-line"></i> <span data-key="t-widgets">Jabatan</span>
-    </a>
-</li>
-@endif --}}
