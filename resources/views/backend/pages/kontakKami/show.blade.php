@@ -39,32 +39,32 @@
                         </div>
                         <div class="card-body">
                             <div class="row gy-4">
-                                <div class="col-xxl-6 col-md-6">
+                                <div class="col-xxl-12 col-md-12">
                                     <label for="nama_jabatan" class="form-label">Nama</label>
                                     <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->nama }}">
                                 </div>
 
-                                <div class="col-xxl-6 col-md-6">
+                                <div class="col-xxl-12 col-md-12">
                                     <label for="nama" class="form-label">Email</label>
                                     <input type="text" class="form-control" id="nama" value="{{ $datas->email }}">
                                 </div>
 
                                 <div class="col-xxl-12 col-md-12">
                                     <label for="nama" class="form-label">Deskripsi</label>
-                                    <textarea class="form-control" id="pesan" name="pesan" rows="4">{{ $datas->pesan }}</textarea>
+                                    <textarea class="form-control" id="editor" name="pesan" rows="4">{{ $datas->pesan }}</textarea>
                                 </div>
 
-                                <div class="col-xxl-6 col-md-6">
+                                <div class="col-xxl-12 col-md-12">
                                     <label for="created_at" class="form-label">Tanggal Pembuatan</label>
                                     <input type="text" class="form-control" id="created_at" value="{{ $datas->created_at }}">
                                 </div>
 
-                                <div class="col-xxl-6 col-md-6">
+                                <div class="col-xxl-12 col-md-12">
                                     <label for="updated_at" class="form-label">Tanggal Update</label>
                                     <input type="text" class="form-control" id="updated_at" value="{{ $datas->updated_at }}">
                                 </div>
 
-                                <div class="col-xxl-6 col-md-6">
+                                <div class="col-xxl-12 col-md-12">
                                     <label for="serial" class="form-label">Id Data</label>
                                     <input type="text" class="form-control" id="serial" value="{{ $datas->serial }}">
                                 </div>
@@ -80,7 +80,13 @@
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="{{ asset('sidebackend/assets/js/ckeditor.js')}}"></script>
+
 <script>
+    ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
+    console.error(error);
+    });
+
     $(document).ready(function() {
         $('.select2').select2();
     })

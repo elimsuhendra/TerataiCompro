@@ -80,7 +80,7 @@ class KategoriController extends Controller
     public function show($id)
     {
     
-        $datas = Kategori::find($id);
+        $datas = Kategori::with('kategoriParent')->find($id);
         $title="Kategori";
 
         return view('backend.pages.kategori.show', compact('datas','title'));

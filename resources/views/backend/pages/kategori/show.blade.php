@@ -60,6 +60,11 @@
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">
+                                    <label for="serial" class="form-label">Parent Kategori</label>
+                                    <input type="text" class="form-control" id="serial" value="{{ @$datas->kategoriParent->nama_kategori }}">
+                                </div>
+
+                                <div class="col-xxl-6 col-md-6">
                                     <label for="serial" class="form-label">Id Data</label>
                                     <input type="text" class="form-control" id="serial" value="{{ $datas->serial }}">
                                 </div>
@@ -75,7 +80,13 @@
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="{{ asset('sidebackend/assets/js/ckeditor.js')}}"></script>
+
 <script>
+    ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
+    console.error(error);
+    });
+
     $(document).ready(function() {
         $('.select2').select2();
     })

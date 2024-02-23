@@ -20,8 +20,15 @@ class Kategori extends Model
         'status',
         'created_by',
         'created_at',
-        'updated_at'
+        'updat3ed_at'
     ];
+
+
+    public function kategoriParent()
+    {
+        return $this->belongsTo(Kategori::class, 'parent_category', 'serial');
+    }
+
 
     public $timestamps = false;
 }
