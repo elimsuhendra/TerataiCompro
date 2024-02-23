@@ -64,23 +64,18 @@
 
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Flag Top Option</label>
-                                    <div class="radio">
+                                    <div class="checkbox"> <!-- Change 'radio' class to 'checkbox' -->
                                         <label>
-                                            <input type="radio" name="flag_top_product" value="0">
+                                            <input type="checkbox" name="flag_top_product" value="1">
                                             Yes
-                                        </label>
-                                   
-                                        <label>
-                                            <input type="radio" name="flag_top_product" value="1">
-                                            No
                                         </label>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group col-md-12 col-sm-12">
-                                <label for="name">Kategori Produk</label>
-                                <select name="serial_kategori" id="serial_kategori" class="form-control " required>
-                                    <option value="">Pilih Kategori</option>
+                                    <label for="name">Kategori Produk</label>
+                                    <select name="serial_kategori" id="serial_kategori" class="form-control " required>
+                                        <option value="">Pilih Kategori</option>
 
                                     @foreach ($kategori as $row)
                                         <option value="{{ $row->serial }}">{{ $row->nama_kategori }}</option>
