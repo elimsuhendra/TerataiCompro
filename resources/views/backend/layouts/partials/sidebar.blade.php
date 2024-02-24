@@ -30,15 +30,22 @@ $currentRoute = request()->route()->getName();
             <i class="ri-record-circle-line"></i>
         </button>
     </div>
-
+    
     <div id="scrollbar">
         <div class="container-fluid">
-
+            
             <div id="two-column-menu">
             </div>
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-
+                
+                @if ($usr->can('dashboard.view'))
+                    <li class="nav-item @if($currentRoute == 'admin.dashboard') active @endif">
+                        <a class="nav-link menu-link" href="{{ route('admin.dashboard') }}" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                            <i class="ri-dashboard-2-line"></i> <span data-key="t-apps">Dashboard</span>
+                        </a>
+                    </li>
+                @endif
                 @if ($usr->can('home.list'))
                     <li class="nav-item @if($currentRoute == 'admin.homes.index') active @endif">
                         <a class="nav-link menu-link" href="{{ route('admin.homes.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
@@ -128,13 +135,6 @@ $currentRoute = request()->route()->getName();
                 </li> <!-- end Dashboard Menu -->
 
             @endif  
-            @if ($usr->can('dashboard.view'))
-                <li class="nav-item @if($currentRoute == 'admin.dashboard') active @endif">
-                    <a class="nav-link menu-link" href="{{ route('admin.dashboard') }}" role="button" aria-expanded="false" aria-controls="sidebarApps">
-                        <i class="ri-dashboard-2-line"></i> <span data-key="t-apps">Dashboard</span>
-                    </a>
-                </li>
-            @endif
             </ul>
         </div>
         <!-- Sidebar -->
