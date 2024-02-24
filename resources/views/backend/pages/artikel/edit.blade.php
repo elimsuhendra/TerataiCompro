@@ -60,6 +60,16 @@ Artikel Edit - Admin Panel
                                 <input type="hidden" name="last_image"  id="last_image" value="{{$data->image}}">
                                 <input type="file" class="form-control-file" id="image" name="image">
                             </div>
+                            <div class="form-group col-md-12 col-sm-12 text-center"> <!-- Added 'text-center' class -->
+                                <label for="image">Picture</label>
+                                <br>
+                                @if ($data->image != '')
+                                <img src="{{ asset('storage/images/' . $data->image) }}" class="img-responsive img-thumbnail mx-auto" alt="Cinque Terre" style="max-width: 450px; height: auto;">
+                                @else   
+                                <h4>Tidak Ada Picture Yg Di upload</h4>
+                                @endif
+
+                            </div>
                             <div class="form-group col-md-12 col-sm-12">
                                 <label for="pesan">Konten</label>
                                 <textarea class="form-control" id="editor" name="content" rows="4">{{ $data->content }}</textarea>

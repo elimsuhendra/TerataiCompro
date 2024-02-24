@@ -76,18 +76,12 @@ Artikel Edit - Admin Panel
 
                             <div class="form-group col-md-12 col-sm-12">
                                 <label for="name">Flag Top Option</label>
-                                <div class="radio">
+                                <div class="checkbox">
                                     <label>
-                                        <input type="radio" name="flag_top_product" value="0" {{ $data->flag_top_product == '0' ? 'checked' : '' }}>
+                                        <input type="checkbox" name="flag_top_product" value="1" {{ $data->flag_top_product == '1' ? 'checked' : '' }}>
                                         Yes
                                     </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="flag_top_product" value="1" {{ $data->flag_top_product == '1' ? 'checked' : '' }}>
-                                        No
-                                    </label>
-                                </div>
+                                </div>                            
                             </div>
                             <div class="form-group col-md-12 col-sm-12">
                                 <br>
@@ -95,6 +89,18 @@ Artikel Edit - Admin Panel
                                 <input type="hidden" name="last_image"  id="last_image" value="{{$data->image}}">
                                 <input type="file" class="form-control-file" id="image" name="image">
                             </div>
+                          
+                            <div class="form-group col-md-12 col-sm-12 text-center"> <!-- Added 'text-center' class -->
+                                <label for="image">Picture</label>
+                                <br>
+                                @if ($data->image != '')
+                                <img src="{{ asset('storage/images/' . $data->image) }}" class="img-responsive img-thumbnail mx-auto" alt="Cinque Terre" style="max-width: 450px; height: auto;">
+                                @else   
+                                <h4>Tidak Ada Picture Yg Di upload</h4>
+                                @endif
+
+                            </div>
+                        
                             <div class="form-group col-md-12 col-sm-12">
                                 <label for="pesan">Deskripsi</label>
                                 <textarea class="form-control" id="editor" name="deskripsi" rows="4">{{ $data->deskripsi }}</textarea>

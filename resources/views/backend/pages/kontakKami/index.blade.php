@@ -38,6 +38,16 @@ Admins - Kontak Kami List
                                     <option value="Non Active">Non-Active</option>
                                 </select>
                             </li>
+                            &nbsp;
+                            <li class="breadcrumb-item active">Status Pesan: &nbsp; </li>
+
+                            <li>
+                                <select id="Read-filter" class="breadcrumb-item active">
+                                    <option value="">All</option>
+                                    <option value="Sudah Dibaca">Sudah Dibaca</option>
+                                    <option value="Belum Dibaca">Belum Dibaca</option>
+                                </select>
+                            </li>
                         </ol>
                     </div>
 
@@ -64,6 +74,7 @@ Admins - Kontak Kami List
                                         <th width="10%">Email</th>
                                         <th width="10%">Subject</th>
                                         <th width="10%">status</th>
+                                        <th width="10%">Status Pesan</th>
                                         <th width="15%">Action</th>
                                     </tr>
                                 </thead>
@@ -75,8 +86,13 @@ Admins - Kontak Kami List
                                         <td>{{ $data->email }}</td>
                                         <td>{{ $data->subject }}</td>
                                         <td>{{ $data->status }}</td>
-
-    
+                                        <td>
+                                            @if ($data->is_read == 0)
+                                                Belum Dibaca
+                                            @else   
+                                                Sudah Dibaca
+                                            @endif
+                                        </td>
                                         <td>
                                             @if (Auth::guard('admin')->user()->can('kontakKami.edit'))
                                                 <a class="btn btn-info text-white" href="{{ route('admin.kontakKami.show', $data->serial) }}">Show</a>
@@ -133,5 +149,12 @@ Admins - Kontak Kami List
             // Filter the table based on selected status
             dataTable.column(4).search(selectedStatus === '' ? '' : '^' + selectedStatus + '$', true, false).draw();
         });
+        $('#Read-filter').on('change', function () {
+            var selectedRead = $(this).val();
+
+            // Filter the table based on selected Read
+            dataTable.column(5).search(selectedRead === '' ? '' : '^' + selectedRead + '$', true, false).draw();
+        });
+
      </script>
 @endsection

@@ -22,12 +22,12 @@ Admins - Admin Panel
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Admin</h4>
+                    <h4 class="mb-sm-0">User</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">Admin</a></li>
-                            <li class="breadcrumb-item active">List Admin</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.jabatans.index') }}">User</a></li>
+                            <li class="breadcrumb-item active">List User</li>
                         </ol>
                     </div>
 
@@ -39,12 +39,12 @@ Admins - Admin Panel
                 <div class="card">
                     @include('backend.layouts.partials.messages')
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">List Admin</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">List User</h4>
                     </div><!-- end card header -->
                     <div class="card-body">
                         <p class="float-right mb-2">
                             @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                <a class="btn btn-primary text-white" href="{{ route('admin.admins.create') }}">Tambah Admin Baru</a>
+                                <a class="btn btn-primary text-white" href="{{ route('admin.admins.create') }}">Tambah User Baru</a>
                             @endif
                         </p>
 
@@ -56,7 +56,6 @@ Admins - Admin Panel
                                     <tr>
                                         <th width="5%">Sl</th>
                                         <th width="10%">Name</th>
-                                        <th width="10%">Perusahaan</th>
                                         <th width="40%">Roles</th>
                                         <th width="15%">Action</th>
                                     </tr>
@@ -66,7 +65,6 @@ Admins - Admin Panel
                                    <tr>
                                         <td>{{ $loop->index+1 }}</td>
                                         <td>{{ $admin->name }}</td>
-                                        <td>{{ $admin->company }}</td>
                                         <td>
                                             @foreach ($admin->roles as $role)
                                                 {{-- <span class="badge badge-info mr-1"> --}}

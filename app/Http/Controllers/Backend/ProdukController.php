@@ -162,6 +162,12 @@ class ProdukController extends Controller
         }
 
         $directory = 'public/images'.$request->last_image;
+
+        $input['flag_top_product']='';
+        if($request->flag_top_product != null){
+            $input['flag_top_product']=1;
+        }
+
         $input['updated_at']=Carbon::now();
         $result = $this->model->where('serial', $serial)->update($input);
 
