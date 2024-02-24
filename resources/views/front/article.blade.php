@@ -26,7 +26,7 @@
                       <article class="entry">
 
                       <div class="entry-img">
-                          <img src="front/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                          <img src="{{ asset('storage/images/' . $datas->image) }}" onerror="if (this.src != '{{$data['image_url']}}/default/600x600.jpg') this.src = '{{$data['image_url']}}/default/600x600.jpg';" alt="" class="img-fluid">
                       </div>
 
                       <h2 class="entry-title">
@@ -35,14 +35,16 @@
 
                       <div class="entry-meta">
                           <ul>
-                          <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="article_detail?id=1">John Doe</a></li>
-                          <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="article_detail?id=1"><time datetime="2020-01-01">{{$datas->created_at}}</time></a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="article_detail?id=1">{{$datas->name}}</a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="article_detail?id=1"><time datetime="2020-01-01">{{$datas->created_at}}</time></a></li>
                           </ul>
                       </div>
 
                       <div class="entry-content">
                           <p>
-                            {{substr($datas->content,0,100)}} ...
+                            <?php
+                              echo substr($datas->content,0,100);
+                            ?>
                           </p>
                           <div class="read-more">
                           <a href="article_detail?serial={{$datas->serial}}">Read More</a>
