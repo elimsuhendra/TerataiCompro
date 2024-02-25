@@ -58,9 +58,9 @@ Kategori
                                 </div>
 
                                 <div class="form-group col-md-12 col-sm-12">
-                                    <label for="name">Kategori Produk</label>
-                                    <select name="parent_category" id="" class="form-control " required>
-                                        <option value="">Pilih Kategori Parent</option>
+                                    <label for="name">Pilih Parent</label>
+                                    <select name="parent_category" id="" class="form-control " >
+                                        <option value="">Pilih Parent</option>
     
                                         @foreach ($kategori as $row)
                                             <option value="{{ $row->serial }}">{{ $row->nama_kategori }}</option>

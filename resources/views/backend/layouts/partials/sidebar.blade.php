@@ -76,17 +76,17 @@ $currentRoute = request()->route()->getName();
                         ({{ $notif }})
                         @endif
                         &nbsp;
-                        <span data-key="t-widgets">Kontak Kami</span>
+                        <span data-key="t-widgets">Contact Us</span>
                     </a>
                 </li>
             @endif
-            @if ($usr->can('kontakBisnis.list') || $usr->can('kontakBisnis.view') || $usr->can('kontakBisnis.edit') || $usr->can('kontakBisnis.delete'))
+            {{-- @if ($usr->can('kontakBisnis.list') || $usr->can('kontakBisnis.view') || $usr->can('kontakBisnis.edit') || $usr->can('kontakBisnis.delete'))
                 <li class="nav-item @if($currentRoute == 'admin.produks.index') active @endif">
                     <a class="nav-link menu-link" href="{{ route('admin.kontakBisnis.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">
                         <i class="ri-pencil-ruler-2-line"></i> <span data-key="t-widgets">Kontak Bisnis</span>
                     </a>
                 </li>
-            @endif
+            @endif --}}
             @if ($usr->can('produks.list') || $usr->can('produks.view') || $usr->can('produks.edit') || $usr->can('produks.delete'))
                 <li class="nav-item @if($currentRoute == 'admin.produks.index') active @endif">
                     <a class="nav-link menu-link" href="{{ route('admin.produks.index') }}" role="button" aria-expanded="false" aria-controls="sidebarRole">

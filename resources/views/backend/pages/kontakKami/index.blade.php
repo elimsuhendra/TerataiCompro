@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Admins - Kontak Kami List
+Admins - Contact Us List
 @endsection
 
 @section('styles')
@@ -23,12 +23,12 @@ Admins - Kontak Kami List
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Kontak Kami</h4>
+                    <h4 class="mb-sm-0">Contact Us</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.kontakKami.index') }}">Kontak Kami</a></li>
-                            <li class="breadcrumb-item active">List Kontak Kami</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.kontakKami.index') }}">Contact Us</a></li>
+                            <li class="breadcrumb-item active">List Contact Us</li>
                             <li class="breadcrumb-item active">Status: &nbsp; </li>
 
                             <li>
@@ -58,7 +58,7 @@ Admins - Kontak Kami List
                 <div class="card">
                     <div class="card-body">
                         @include('backend.layouts.partials.messages')
-                        <h4 class="header-title float-left">Kontak Kami List</h4>
+                        <h4 class="header-title float-left">Contact Us List</h4>
                         <p class="float-right mb-2">
                             @if (Auth::guard('admin')->user()->can('admin.edit'))
                                 <a class="btn btn-primary text-white" href="{{ route('admin.kontakKami.create') }}">Tambah Data Baru</a>
