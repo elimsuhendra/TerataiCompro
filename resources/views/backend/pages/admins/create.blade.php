@@ -50,7 +50,7 @@ Admin Create - Admin Panel
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-12 col-sm-12">
-                                    <label for="name">User Name</label>
+                                    <label for="name">Name</label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12">

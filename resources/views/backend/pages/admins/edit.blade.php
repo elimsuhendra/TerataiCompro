@@ -179,11 +179,11 @@ Admin Edit - Admin Panel
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-12 col-sm-12">
-                                <label for="name">Admin Name</label>
+                                <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ $admin->name }}">
                             </div>
                             <div class="form-group col-md-12 col-sm-12">
-                                <label for="email">Admin Email</label>
+                                <label for="email">Email</label>
                                 <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email" value="{{ $admin->email }}">
                             </div>
                         </div>
@@ -214,7 +214,7 @@ Admin Edit - Admin Panel
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
+                        <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save </button>
                     </form>
                  
                     </div>
