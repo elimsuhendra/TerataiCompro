@@ -54,7 +54,7 @@ Admin Create - Admin Panel
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12">
-                                    <label for="email">Admin Email</label>
+                                    <label for="email"> Email</label>
                                     <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email">
                                 </div>
                             </div>
@@ -80,13 +80,13 @@ Admin Create - Admin Panel
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12">
-                                    <label for="username">Admin Username</label>
+                                    <label for="username"> Username</label>
                                     <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
                                 </div>
                             </div>
     
                             
-                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
+                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
                         </form>
                  
                     </div>

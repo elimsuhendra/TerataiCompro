@@ -86,11 +86,11 @@ Admins - Kontak Kami List
                                             @if (Auth::guard('admin')->user()->can('kategori.show'))
                                                 <a class="btn btn-info text-white" href="{{ route('admin.kategoris.show', $data->serial) }}">Show</a>
                                             @endif
-                                            @if (Auth::guard('admin')->user()->can('admin.edit'))
+                                            @if (Auth::guard('admin')->user()->can('kategori.edit'))
                                                 <a class="btn btn-success text-white" href="{{ route('admin.kategoris.edit', $data->serial) }}">Edit</a>
                                             @endif
                                             
-                                            @if (Auth::guard('admin')->user()->can('admin.delete'))
+                                            @if (Auth::guard('admin')->user()->can('kategori.delete'))
                                             <a class="btn btn-danger text-white" href="{{ route('admin.kategoris.destroy', $data->serial) }}"
                                             onclick="event.preventDefault(); document.getElementById('delete-form-{{ $data->serial }}').submit();">
                                                 Delete

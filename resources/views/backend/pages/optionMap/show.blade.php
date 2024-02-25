@@ -41,27 +41,27 @@
                             <div class="row gy-4">
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="key" class="form-label">Key</label>
-                                    <input type="text" class="form-control" id="key" value="{{ $datas->key }}">
+                                    <input type="text" class="form-control" id="key" value="{{ $datas->key }}" readonly>
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="value" class="form-label">Value</label>
-                                    <input type="text" class="form-control" id="value" value="{{ $datas->value }}">
+                                    <input type="text" class="form-control" id="value" value="{{ $datas->value }}" readonly>
                                 </div>
 
                                 <div class="col-xxl-12 col-md-12">
                                     <label for="nama" class="form-label">Deskripsi</label>
-                                    <textarea class="form-control" id="pesan" name="pesan" rows="4">{{ $datas->description }}</textarea>
+                                    <textarea class="form-control" id="pesan" name="pesan" rows="4" readonly>{{ $datas->description }}</textarea>
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="created_at" class="form-label">Tanggal Pembuatan</label>
-                                    <input type="text" class="form-control" id="created_at" value="{{ $datas->created_at }}">
+                                    <input type="text" class="form-control" id="created_at" value="{{ $datas->created_at }}" readonly>
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="updated_at" class="form-label">Tanggal Update</label>
-                                    <input type="text" class="form-control" id="updated_at" value="{{ $datas->updated_at }}">
+                                    <input type="text" class="form-control" id="updated_at" value="{{ $datas->updated_at }}" readonly>
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">

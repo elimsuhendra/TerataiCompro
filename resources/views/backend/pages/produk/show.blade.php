@@ -50,31 +50,31 @@
 
                                 <div class="col-xxl-4 col-md-4">
                                     <label for="nama_jabatan" class="form-label">Nama Produk</label>
-                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->nama }}">
+                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->nama }}" readonly>
                                 </div>
                                 <div class="col-xxl-4 col-md-4">
                                     <label for="created_by" class="form-label">Dibuat Oleh</label>
-                                    <input type="text" class="form-control" id="created_by" value="{{ @$datas->account->name }}">
+                                    <input type="text" class="form-control" id="created_by" value="{{ @$datas->account->name }}" readonly>
                                 </div>
                                 <div class="col-xxl-4 col-md-4">
                                     <label for="nama_jabatan" class="form-label">Status</label>
-                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->status }}">
+                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->status }}" readonly>
                                 </div>
                                 <div class="col-xxl-4 col-md-4">
                                     <label for="created_by" class="form-label">Kategori Produk</label>
-                                    <input type="text" class="form-control" id="created_by" value="{{ @$datas->kategori->nama_kategori }}">
+                                    <input type="text" class="form-control" id="created_by" value="{{ @$datas->kategori->nama_kategori }}" readonly>
                                 </div>
                                 <div class="col-xxl-4 col-md-4">
                                     <label for="nama_jabatan" class="form-label">Tanggal Ditambahkan</label>
-                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->created_at }}">
+                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->created_at }}" readonly>
                                 </div>
                                 <div class="col-xxl-4 col-md-4">
                                     <label for="created_by" class="form-label">Tanggal  Diedit Terakhir</label>
-                                    <input type="text" class="form-control" id="created_by" value="{{ @$datas->updated_at }}">
+                                    <input type="text" class="form-control" id="created_by" value="{{ @$datas->updated_at }}" readonly>
                                 </div>
                                 <div class="col-xxl-12 col-md-12">
                                     <label for="created_by" class="form-label">Tanggal  Diedit Terakhir</label>
-                                    <textarea class="form-control" id="editor" name="deskripsi" rows="4">{{ $datas->deskripsi }}</textarea>
+                                    <textarea class="form-control" id="editor" name="deskripsi" rows="4" readonly>{{ $datas->deskripsi }}</textarea>
                                 </div>
 
                             </div>

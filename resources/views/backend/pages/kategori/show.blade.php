@@ -41,32 +41,32 @@
                             <div class="row gy-4">
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="nama_jabatan" class="form-label">Nama Kategori</label>
-                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->nama_kategori }}">
+                                    <input type="text" class="form-control" id="nama_jabatan" value="{{ $datas->nama_kategori }}" readonly>
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="nama" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" id="nama" value="{{ $datas->deskripsi }}">
+                                    <input type="text" class="form-control" id="nama" value="{{ $datas->deskripsi }}" readonly>
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="created_at" class="form-label">Tanggal Pembuatan</label>
-                                    <input type="text" class="form-control" id="created_at" value="{{ $datas->created_at }}">
+                                    <input type="text" class="form-control" id="created_at" value="{{ $datas->created_at }}" readonly>
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="updated_at" class="form-label">Tanggal Update</label>
-                                    <input type="text" class="form-control" id="updated_at" value="{{ $datas->updated_at }}">
+                                    <input type="text" class="form-control" id="updated_at" value="{{ $datas->updated_at }}" readonly>
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="serial" class="form-label">Parent Kategori</label>
-                                    <input type="text" class="form-control" id="serial" value="{{ @$datas->kategoriParent->nama_kategori }}">
+                                    <input type="text" class="form-control" id="serial" value="{{ @$datas->kategoriParent->nama_kategori }}" readonly>
                                 </div>
 
                                 <div class="col-xxl-6 col-md-6">
                                     <label for="serial" class="form-label">Id Data</label>
-                                    <input type="text" class="form-control" id="serial" value="{{ $datas->serial }}">
+                                    <input type="text" class="form-control" id="serial" value="{{ $datas->serial }}" readonly>
                                 </div>
                             </div>
                         </div>
