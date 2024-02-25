@@ -15,7 +15,7 @@ Admin Edit - Admin Panel
 </style>
 @endsection
 
-@section('admin-content')
+{{-- @section('admin-content')
 
 <!-- page title area start -->
 <div class="page-title-area">
@@ -43,44 +43,44 @@ Admin Edit - Admin Panel
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Edit Admin - {{ $admin->name }}</h4>
+                    <h4 class="header-title">Edit User - {{ $admin->name }}</h4>
                     @include('backend.layouts.partials.messages')
 
                     <form action="{{ route('admin.admins.update', $admin->id) }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="form-row">
-                            <div class="form-group col-md-6 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12">
                                 <label for="name">Admin Name</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ $admin->name }}">
                             </div>
-                            <div class="form-group col-md-6 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12">
                                 <label for="email">Admin Email</label>
                                 <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email" value="{{ $admin->email }}">
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-6 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
                             </div>
-                            <div class="form-group col-md-6 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12">
                                 <label for="password_confirmation">Confirm Password</label>
                                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Enter Password">
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-6 col-sm-6">
+                            <div class="form-group col-md-12 col-sm-6">
                                 <label for="password">Assign Roles</label>
-                                <select name="roles[]" id="roles" class="form-control select2" multiple>
+                                <select name="roles[]" id="roles" class="form-control select2" >
                                     @foreach ($roles as $role)
                                         <option value="{{ $role->name }}" {{ $admin->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group col-md-6 col-sm-6">
+                            <div class="form-group col-md-12 col-sm-6">
                                 <label for="username">Admin Username</label>
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required value="{{ $admin->username }}">
                             </div>
@@ -92,6 +92,137 @@ Admin Edit - Admin Panel
             </div>
         </div>
         <!-- data table end -->
+
+    </div>
+</div>
+@endsection --}}
+
+
+@section('admin-content')
+
+<!-- page title area start -->
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row align-items-center">
+            <div class="col-sm-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-0">User</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.admins.index') }}"> User </a></li>
+                            <li class="breadcrumb-item active">Edit Data</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header align-items-center d-flex">
+                        <h4 class="card-title mb-0 flex-grow-1">Tambah User</h4>
+                    </div><!-- end card header -->
+                    <div class="card-body">
+
+                        {{-- <form action="{{ route('admin.admins.store') }}" method="POST">
+                            @csrf
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="name">User Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
+                                </div>
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="email">Admin Email</label>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email">
+                                </div>
+                            </div>
+    
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+                                </div>
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="password_confirmation">Confirm Password</label>
+                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Enter Password">
+                                </div>
+                            </div>
+    
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="password">Assign Roles</label>
+                                    <select name="roles[]" id="roles" class="form-control select2" >
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="username">Admin Username</label>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+                                </div>
+                            </div>
+    
+                            
+                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
+                        </form> --}}
+
+                        <h4 class="header-title">Edit User - {{ $admin->name }}</h4>
+                    @include('backend.layouts.partials.messages')
+
+                    <form action="{{ route('admin.admins.update', $admin->id) }}" method="POST">
+                        @method('PUT')
+                        @csrf
+                        <div class="form-row">
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label for="name">Admin Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ $admin->name }}">
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label for="email">Admin Email</label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email" value="{{ $admin->email }}">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label for="password_confirmation">Confirm Password</label>
+                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Enter Password">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12 col-sm-6">
+                                <label for="password">Assign Roles</label>
+                                <select name="roles[]" id="roles" class="form-control select2" >
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->name }}" {{ $admin->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12 col-sm-6">
+                                <label for="username">Admin Username</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required value="{{ $admin->username }}">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Admin</button>
+                    </form>
+                 
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
 
     </div>
 </div>
