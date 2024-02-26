@@ -5,6 +5,13 @@
         .container .row{
             {{-- background: white; --}}
         }
+        .header-social-links a {
+            color: #1bbd36 !important;
+        }
+        .contact .info:hover i {
+            background: unset !important;
+            color: unset !important;
+        }
     </style>
     <!-- ======= Contact Section ======= -->
     <div class="map-section">
