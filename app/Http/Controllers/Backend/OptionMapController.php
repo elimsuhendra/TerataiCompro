@@ -110,6 +110,7 @@ class OptionMapController extends Controller
         $input = $request->all();
         unset($input['_method']);
         unset($input['_token']);
+        $input['updated_at'] = now();
 
         $result = OptionMap::where('serial',$serial)->update($input);
 

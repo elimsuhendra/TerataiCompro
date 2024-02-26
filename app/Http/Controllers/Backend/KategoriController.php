@@ -100,6 +100,7 @@ class KategoriController extends Controller
     {
 
         $input = $request->all();
+        $input['updated_at'] = now();
         unset($input['_method']);
         unset($input['_token']);
 

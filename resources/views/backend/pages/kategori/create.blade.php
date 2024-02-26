@@ -48,11 +48,6 @@ Kategori
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-12 col-sm-12">
-                                    <label for="name">Tanggal Ditambahkan</label>
-                                   
-                                    <input type="text" class="form-control" id="name"  value=" {{ now() }}">
-                                </div>
-                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Nama Kategori</label>
                                     <input type="text" class="form-control" id="name" name="nama_kategori" placeholder="Nama Kategori">
                                 </div>
@@ -66,13 +61,7 @@ Kategori
                                             <option value="{{ $row->serial }}">{{ $row->nama_kategori }}</option>
                                         @endforeach
                                     </select>
-                                </div>
-
-                                <div class="form-group col-md-12 col-sm-12">
-                                    <label for="name"></label>
-                                    <input type="text" class="form-control" id="name" name="nama_kategori" placeholder="Nama Kategori">
-                                </div>
-                                
+                                </div>                                
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="email">Deskripsi</label>
                                     <textarea class="form-control" id="pesan" name="deskripsi" rows="4"></textarea>

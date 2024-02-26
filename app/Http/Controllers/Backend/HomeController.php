@@ -118,6 +118,7 @@ class HomeController extends Controller
     public function update(Request $request, $serial)
     {
         $input = $request->all();
+        $input['updated_at'] = now();
         $input = $request->except(['_method', '_token','last_image']);
 
         $input['image'] = $request->last_image;

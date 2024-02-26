@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Kategori extends Model
 {
@@ -20,7 +21,7 @@ class Kategori extends Model
         'status',
         'created_by',
         'created_at',
-        'updat3ed_at'
+        'updated_at'
     ];
 
 
@@ -28,6 +29,24 @@ class Kategori extends Model
     {
         return $this->belongsTo(Kategori::class, 'parent_category', 'serial');
     }
+    
+    public static function MappingProduct()
+    {
+        $data = DB::table('kategori')
+                ->join('produk','produk.serial_kategori','kategori.serial')
+                ->where('produk.status','Active')
+                ->where('kategori.status','Active')
+                ->whereNull('kategori.deleted_at')
+                ->whereNull('produk.deleted_at')
+                ->select('kategori.nama_kategori','kategori.serial')
+                ->groupBy('kategori.serial')
+                ->groupBy('kategori.nama_kategori')
+                ->get();    
+
+        return $data;
+        
+    }
+
 
 
     public $timestamps = false;

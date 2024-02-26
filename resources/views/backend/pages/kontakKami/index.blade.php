@@ -61,7 +61,7 @@ Admins - Contact Us List
                         <h4 class="header-title float-left">Contact Us List</h4>
                         <p class="float-right mb-2">
                             @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                <a class="btn btn-primary text-white" href="{{ route('admin.kontakKami.create') }}">Tambah Data Baru</a>
+                                {{-- <a class="btn btn-primary text-white" href="{{ route('admin.kontakKami.create') }}">Tambah Data Baru</a> --}}
                             @endif
                         </p>
                         <div class="clearfix"></div>

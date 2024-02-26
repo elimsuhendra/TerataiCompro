@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Admins - Admin Panel
+Admins - User Panel
 @endsection
 
 @section('styles')
@@ -44,7 +44,7 @@ Admins - Admin Panel
                     <div class="card-body">
                         <p class="float-right mb-2">
                             @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                <a class="btn btn-primary text-white" href="{{ route('admin.admins.create') }}">Tambah User Baru</a>
+                                <a class="btn btn-primary text-white" href="{{ route('admin.admins.create') }}">Tambah</a>
                             @endif
                         </p>
 

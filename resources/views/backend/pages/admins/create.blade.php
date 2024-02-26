@@ -46,7 +46,8 @@ Admin Create - Admin Panel
                     </div><!-- end card header -->
                     <div class="card-body">
 
-                        <form action="{{ route('admin.admins.store') }}" method="POST">
+                        @include('backend.layouts.partials.messages')
+                        <form action="{{ route('admin.admins.store') }}" method="POST"  enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-12 col-sm-12">
@@ -84,8 +85,14 @@ Admin Create - Admin Panel
                                     <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
                                 </div>
                             </div>
-    
-                            
+                            <div class="form-row">
+                                
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="username"> Upload Image</label>
+                                    <input type="file" class="form-control-file" id="image" name="image" required>
+                                </div>
+                            </div>
+                        
                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
                         </form>
                  

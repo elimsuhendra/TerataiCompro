@@ -80,7 +80,6 @@ class ProdukController extends Controller
         $input['status'] = 'Active';
         $input['created_by'] = Auth::guard('admin')->user()->id;
 
-        // dd($input);
         // Handle file upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');        
@@ -143,6 +142,7 @@ class ProdukController extends Controller
     
         // Validate image if provided
         $input['image'] = $request->last_image;
+        $input['updated_at'] = now();
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust image validation rules as needed
