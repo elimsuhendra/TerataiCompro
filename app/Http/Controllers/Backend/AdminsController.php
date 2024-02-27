@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
 class AdminsController extends Controller
@@ -62,15 +63,31 @@ class AdminsController extends Controller
             'password' => 'required|min:6|confirmed',
         ]);
 
+
         $admin = new Admin();
         $admin->name = $request->name;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');        
+            $directory = 'public/images';
+            // Check if the directory exists, if not, create it
+            if (!Storage::exists($directory)) {
+                Storage::makeDirectory($directory, 0755, true);
+            }
+            $imagePath = $image->store($directory);        
+            $input['image'] = basename($imagePath);
+            $admin->image = basename($imagePath);
+
+        }
+
         $admin->username = $request->username;
         $admin->email = $request->email;
         $admin->password = Hash::make($request->password);
         $admin->save();
+        // dd($admin);
 
         if ($request->roles) {
-            $admin->assignRole($request->roles);
+            $ac=$admin->assignRole($request->roles);
+            // dd($ac);
         }
 
         session()->flash('success', 'Admin has been created !!');
@@ -140,6 +157,27 @@ class AdminsController extends Controller
         $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->username = $request->username;
+        $admin->updated_at = now();
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust image validation rules as needed
+            ]);
+            // Handle file upload
+            $image = $request->file('image');
+            $directory = 'public/images';
+            $filePath = 'public/images/' . $request->last_image;
+            if (Storage::exists($filePath)) {
+                Storage::delete($filePath);
+                // File has been successfully deleted
+            } 
+
+            // Store the new image and update input
+            $imagePath = $image->store($directory);
+            $admin->image = basename($imagePath);
+        }
+
+        $directory = 'public/images'.$request->last_image;
+
         if ($request->password) {
             $admin->password = Hash::make($request->password);
         }

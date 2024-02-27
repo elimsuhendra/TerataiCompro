@@ -64,6 +64,15 @@ Admin Edit - Admin Panel
                                         </select>                                
                                     </div>
                                 </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        <label for="key">Status</label>
+                                        <select class="form-control"  name="status">
+                                            <option value="Active" {{ $data->status == 'Active' ? 'selected' : '' }}>Active</option>
+                                            <option value="Non Active" {{ $data->status == 'Non Active' ? 'selected' : '' }}>Non Active</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="email">Deskripsi</label>
                                     <textarea class="form-control" id="pesan" name="deskripsi" rows="4">{{ $data->deskripsi }}</textarea>

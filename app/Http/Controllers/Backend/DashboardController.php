@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Kategori;
 use App\Models\KontakKami;
 use App\Models\Produk;
 use Illuminate\Http\Request;
@@ -34,6 +35,20 @@ class DashboardController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to view dashboard !');
         }
 
+        $kategori=Kategori::MappingProduct();
+
+        // dd($kategori);
+
+        $record=null;
+        foreach($kategori as $key=>$value){
+
+            $produks[$key]= Produk::where('serial_kategori' ,$value->serial)->where('produk.status','Active')->whereNull('produk.deleted_at')->count();
+            $record[$key]=array('serial'=>$value->serial,'nama_kategori'=>$value->nama_kategori,'jumlah'=>$produks[$key]);
+
+        }
+        // dd($record);
+        
+        // dd(count($kategori));
         $total_roles = count(Role::select('id')->get());
         $total_roles = count(Role::select('id')->get());
         $notifiacation = count(KontakKami::where('is_read',0)->get());
@@ -41,6 +56,6 @@ class DashboardController extends Controller
 
         $total_admins = count(Admin::select('id')->get());
         $total_produk = count(Produk::select('serial')->where('status','Active')->get());
-        return view('backend.pages.dashboard.index', compact('total_admins', 'total_roles', 'total_produk','notifiacation'));
+        return view('backend.pages.dashboard.index', compact('total_admins', 'total_roles', 'total_produk','notifiacation','record'));
     }
 }

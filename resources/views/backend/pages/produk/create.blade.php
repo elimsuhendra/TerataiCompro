@@ -48,11 +48,7 @@
                         <form method="POST" action="{{ route('admin.produks.store') }}"  enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
-                                {{-- <div class="form-group col-md-12 col-sm-12">
-                                    <label for="name">Tanggal Ditambahkan</label>
-                                   
-                                    <input type="text" class="form-control" id="name"  value=" {{ now() }}">
-                                </div> --}}
+                              
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Nama Produk</label>
                                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Produk"  required>

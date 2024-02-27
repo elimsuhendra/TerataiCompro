@@ -32,7 +32,6 @@ class Produk extends Model
         return $this->belongsTo(Kategori::class, 'serial_kategori', 'serial');
     }
 
-
     public function account()
     {
         return $this->belongsTo(Admin::class, 'created_by', 'id');

@@ -106,3 +106,6 @@ Role Edit - Admin Panel
 </div>
 
 @endsection
+@section('scripts')
+     @include('backend.pages.roles.partials.scripts')
+@endsection

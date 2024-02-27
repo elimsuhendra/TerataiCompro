@@ -14,11 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class KategoriController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public $user;
 
     public function __construct()
@@ -35,7 +31,7 @@ class KategoriController extends Controller
     }
     public function index()
     {
-        if (is_null($this->user) || !$this->user->can('admin.view')) {
+        if (is_null($this->user) || !$this->user->can('kategori.list')) {
             abort(403, 'Sorry !! You are Unauthorized to view any admin !');
     
         }
@@ -47,11 +43,11 @@ class KategoriController extends Controller
 
     public function create()
     {
-        if (is_null($this->user) || !$this->user->can('admin.create')) {
-            abort(403, 'Sorry !! You are Unauthorized to create any admin !');
-        }
+        // if (is_null($this->user) || !$this->user->can('kategori.create')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to create any admin !');
+        // }
 
-        $kategori = Kategori::where('deleted_at',null)->where('parent_category',null)->get();
+        $kategori = Kategori::where('deleted_at',null)->where('status','Active')->get();
 
         return view('backend.pages.kategori.create',compact('kategori'));        
     }
@@ -93,7 +89,7 @@ class KategoriController extends Controller
         }
 
         $data = Kategori::where('serial',$serial)->first();
-        $kategori = Kategori::where('deleted_at',null)->where('parent_category',null)->get();
+        $kategori = Kategori::where('deleted_at',null)->where('status','Active')->get();
         $title="Kategori";
 
         return view('backend.pages.kategori.edit', compact('data','title','kategori'));
@@ -104,6 +100,7 @@ class KategoriController extends Controller
     {
 
         $input = $request->all();
+        $input['updated_at'] = now();
         unset($input['_method']);
         unset($input['_token']);
 

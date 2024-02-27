@@ -71,9 +71,6 @@ class KontakKamiController extends Controller
             'email' => 'required|max:100',
         ]);
 
-        // dd(KontakKami::create($input));
-
-
         try {
           
            KontakKami::create($input);
@@ -117,6 +114,7 @@ class KontakKamiController extends Controller
     {
 
         $input = $request->all();
+        $input['updated_at'] = now();
         unset($input['_method']);
         unset($input['_token']);
 
