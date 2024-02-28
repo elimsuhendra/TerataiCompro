@@ -33,7 +33,6 @@ class KategoriController extends Controller
     {
         if (is_null($this->user) || !$this->user->can('kategori.list')) {
             abort(403, 'Sorry !! You are Unauthorized to view any admin !');
-    
         }
 
         $datas = Kategori::all();
@@ -120,7 +119,6 @@ class KategoriController extends Controller
 
     public function destroy($serial)
     {
-        // dd($serial);
         $data = Kategori::Where('serial',$serial)->first();
         $result = $data->delete();
         if ($result == true) {
