@@ -34,23 +34,25 @@ Dashboard Page - Admin Panel
                             <div class="col-lg-8">
                                 <div class="row">
                                     {{-- {{ dd($record) }} --}}
+                                    @if ($record)
                                     @foreach ($record as $rows)
-                                    {{-- {{ $rows }} --}}
-                                    <div class="col-md-6 mt-5 mb-3">
-                                        <div class="card">
-                                            <div class="seo-fact sbg1">
-                                                <a href="{{ route('admin.roles.index') }}">
-                                                    <div class="p-4 d-flex justify-content-between align-items-center">
-                                                        <div class="seofct-icon"><i class="fa fa-users"></i> Jumlah Produk {{ $rows['nama_kategori'] }} (Aktif)</div>
-                                                        <h2>{{ $rows['jumlah'] }}</h2>
-                                                    </div>
-                                                </a>
+                                        <div class="col-md-6 mt-5 mb-3">
+                                            <div class="card">
+                                                <div class="seo-fact sbg1">
+                                                    <a href="{{ route('admin.roles.index') }}">
+                                                        <div class="p-4 d-flex justify-content-between align-items-center">
+                                                            <div class="seofct-icon"><i class="fa fa-users"></i> Jumlah Produk {{ $rows['nama_kategori'] }} (Aktif)</div>
+                                                            <h2>{{ $rows['jumlah'] }}</h2>
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>    
-
+                                        </div>    
                                     @endforeach
-                                        
+                                @else
+                                    <p>No records found.</p>
+                                @endif
+                                                                        
                                     {{-- <div class="col-md-6 mt-5 mb-3">
                                         <div class="card">
                                             <div class="seo-fact sbg1">
