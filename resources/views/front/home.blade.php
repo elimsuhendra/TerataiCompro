@@ -13,6 +13,15 @@
             align-items: center;
             justify-content: center;
         }
+        .d-flex {
+            flex-flow: column;
+        }
+        .team .member .member-img {
+            height: 28vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 

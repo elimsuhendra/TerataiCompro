@@ -13,7 +13,7 @@ Route::get('/cafe', 'Front\ProductController@cafe')->name('cafe');
 Route::get('/edufarm', 'Front\ProductController@edufarm')->name('edufarm');
 Route::get('/article', 'Front\ArticleController@index')->name('article');
 Route::get('/article_detail', 'Front\ArticleController@detail')->name('article_detail');
-Route::get('/about_us', 'Front\AboutUsController@index')->name('about_us');
+Route::get('/about_us', 'Front\AboutusController@index')->name('about_us');
 Route::get('/contact_us', 'Front\ContactusController@index')->name('contact_us');
 Route::post('/contact_us/create', 'Front\ContactusController@create')->name('contact_us');
 
