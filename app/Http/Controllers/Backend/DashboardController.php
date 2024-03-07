@@ -36,26 +36,24 @@ class DashboardController extends Controller
         }
 
         $kategori=Kategori::MappingProduct();
-
-        // dd($kategori);
-
         $record=null;
-        foreach($kategori as $key=>$value){
 
-            $produks[$key]= Produk::where('serial_kategori' ,$value->serial)->where('produk.status','Active')->whereNull('produk.deleted_at')->count();
-            $record[$key]=array('serial'=>$value->serial,'nama_kategori'=>$value->nama_kategori,'jumlah'=>$produks[$key]);
+        foreach ($kategori ?? [] as $key => $value) {
 
+            $produks[$key]= Produk::where('serial_kategori' ,$value->serial)->where('produk.status','Active')->whereNull('produk.deleted_at')->count(); //count parent kategori to product
+            $kategori[$key]= Kategori::select('serial')->where('parent_category',$value->serial)->get()->toArray(); //get sub kategori
+            $produks2[$key]= Produk::whereIn('serial_kategori' ,$kategori[$key])->where('produk.status','Active')->whereNull('produk.deleted_at')->count(); //count parent sub kategori to product
+
+            $total[$key]=$produks2[$key] +  $produks[$key] ;
+            $record[$key]=array('serial'=>$value->serial,'nama_kategori'=>$value->nama_kategori,'jumlah'=>$total[$key]);
         }
-        // dd($record);
-        
-        // dd(count($kategori));
+
         $total_roles = count(Role::select('id')->get());
         $total_roles = count(Role::select('id')->get());
         $notifiacation = count(KontakKami::where('is_read',0)->get());
-
-
         $total_admins = count(Admin::select('id')->get());
         $total_produk = count(Produk::select('serial')->where('status','Active')->get());
+
         return view('backend.pages.dashboard.index', compact('total_admins', 'total_roles', 'total_produk','notifiacation','record'));
     }
 }

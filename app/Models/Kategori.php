@@ -34,7 +34,7 @@ class Kategori extends Model
     {
         $data = DB::table('kategori')
                 ->join('produk','produk.serial_kategori','kategori.serial')
-                ->whereIn('kategori.serial',['123321','123322','123323','123326']) //hardcode
+                ->whereIn('kategori.serial',['123321','123324','123326']) //hardcode
                 ->where('produk.status','Active')
                 ->where('kategori.status','Active')
                 ->whereNull('kategori.deleted_at')
