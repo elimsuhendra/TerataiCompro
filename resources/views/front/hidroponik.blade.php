@@ -15,6 +15,12 @@
             justify-content: center;
             align-items: center;
         }
+        .team .member .member-img {
+            height: 28vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 
     <!-- ======= Services Section ======= -->

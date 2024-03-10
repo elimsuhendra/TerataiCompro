@@ -10,6 +10,14 @@
         background: url();
         border-color: unset;
       }
+      .blog .entry .entry-img{
+        position: relative;
+        overflow: hidden;
+        height: 28vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     </style>
 
     <!-- ======= Blog Section ======= -->
