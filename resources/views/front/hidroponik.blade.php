@@ -47,7 +47,7 @@
                         <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                             <div class="member aos-init aos-animate" data-aos="fade-up">
                             <div class="member-img">
-                                <img src="{{$data['image_url']}}/product/{{$product->image}}" onerror="if (this.src != '{{$data['image_url']}}/default/600x600.jpg') this.src = '{{$data['image_url']}}/default/600x600.jpg';" class="img-fluid" alt="">
+                                <img src="{{ asset('storage/images/' . $product->image)}}" onerror="if (this.src != '{{$data['image_url']}}/default/600x600.jpg') this.src = '{{$data['image_url']}}/default/600x600.jpg';" class="img-fluid" alt="">
                             </div>
                             <div class="member-info">
                                 <h4>{{$product->nama}}</h4>
