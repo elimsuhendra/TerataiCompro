@@ -91,12 +91,12 @@
 
         <div class="section-title" data-aos="fade-up">
           <h2><strong>Visi</strong></h2>
-          <p class="tim_kami_desc">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p class="tim_kami_desc">{{$data['visi']->description}}</p>
         </div>
 
         <div class="section-title" data-aos="fade-up">
           <h2><strong>Misi</strong></h2>
-          <p class="tim_kami_desc">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p class="tim_kami_desc">{{$data['misi']->description}}</p>
         </div>
         <br><br>
         <div class="section-title" data-aos="fade-up">
@@ -104,20 +104,22 @@
         </div>
 
         <div class="row">
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up">
-              <div class="member-img">
-                <img src="front/assets/img/team/team-1.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
+          @foreach($data['tim_kami'] as $tk)
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+              <div class="member" data-aos="fade-up">
+                <div class="member-img">
+                  {{-- <img src="front/assets/img/team/team-1.jpg" class="img-fluid" alt=""> --}}
+                  <img src="{{ asset('storage/images/' . $tk->image) }}" onerror="if (this.src != '{{$data['image_url']}}/default/600x600.jpg') this.src = '{{$data['image_url']}}/default/600x600.jpg';" alt="" class="img-fluid">
+                </div>
+                <div class="member-info">
+                  <h4>{{$tk->nama}}</h4>
+                  <span>{{$tk->description}}</span>
+                </div>
               </div>
             </div>
-          </div>
+          @endforeach
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+          {{-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
               <div class="member-img">
                 <img src="front/assets/img/team/team-1.jpg" class="img-fluid" alt="">
@@ -151,7 +153,7 @@
                 <span>Accountant</span>
               </div>
             </div>
-          </div>
+          </div> --}}
 
         </div>
 

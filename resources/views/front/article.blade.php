@@ -28,7 +28,7 @@
 
           <div class="col-lg-12 col-md-12 col-xs-12 entries">
             <div class="row">
-                {{$data['data']}}
+                {{-- {{$data['data']}} --}}
                 @foreach($data['data'] as $datas)
                   <div class="col-lg-4 entries">
                       <article class="entry">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
+use DB;
 
 class AboutusController extends Controller
 {
@@ -28,7 +29,11 @@ class AboutusController extends Controller
      */
     public function index()
     {
+        $data['visi'] = DB::table('tentang_kita')->where([['status','Active'],['category','visi']])->first();
+        $data['misi'] = DB::table('tentang_kita')->where([['status','Active'],['category','misi']])->first();
+        $data['tim_kami'] = DB::table('tentang_kita')->where([['status','Active'],['category','Tim Kami']])->get();
         $data['page'] = 'about us';
+        $data['image_url'] = $this->image_url;
         return view('front/about_us', compact('data'));
     }
 }
