@@ -11,6 +11,7 @@ Route::get('/', 'Front\HomeController@index')->name('index');
 Route::get('/hidroponik', 'Front\ProductController@hidroponik')->name('hidroponik');
 Route::get('/cafe', 'Front\ProductController@cafe')->name('cafe');
 Route::get('/edufarm', 'Front\ProductController@edufarm')->name('edufarm');
+Route::get('/phone', 'Front\ProductController@phone')->name('phone');
 Route::get('/article', 'Front\ArticleController@index')->name('article');
 Route::get('/article_detail', 'Front\ArticleController@detail')->name('article_detail');
 Route::get('/about_us', 'Front\AboutusController@index')->name('about_us');

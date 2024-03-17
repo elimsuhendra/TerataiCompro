@@ -18,6 +18,7 @@ class HomeController extends Controller
         $this->serial_category_hidroponik = '123321';
         $this->serial_category_cafe = '123324';
         $this->serial_category_edufarm = '123326';
+        $this->serial_category_phone = '2cb3552122a70f095c4113defa640710';
     }
 
     public function redirectAdmin()
@@ -57,7 +58,14 @@ class HomeController extends Controller
                                 ->where([['produk.status','Active'],['kategori.parent_serial',$this->serial_category_edufarm]])
                                 ->select('produk.*','kategori.nama_kategori')
                                 ->limit(3)
-                                ->get(); 
+                                ->get();
+
+        $data['top_product_phone'] = DB::table('produk')
+                                ->join('kategori','kategori.serial','produk.serial_kategori')
+                                ->where([['produk.status','Active'],['kategori.parent_serial',$this->serial_category_phone]])
+                                ->select('produk.*','kategori.nama_kategori')
+                                ->limit(3)
+                                ->get();
 
         // dd($data['top_product_edufarm']);
 

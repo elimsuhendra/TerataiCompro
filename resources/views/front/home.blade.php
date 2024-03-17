@@ -155,5 +155,29 @@
         </div>
       </div>
     </section><!-- End Services Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 align-items-stretch title_product"><h3>3 Top Produk Phone</h3></div>
+        </div>
+        <div class="row row_center team">
+            @foreach ($data['top_product_phone'] as $top_product_phone)
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                  <div class="member aos-init aos-animate" data-aos="fade-up">
+                  <div class="member-img">
+                      <img src="{{ asset('storage/images/' . $top_product_phone->image) }}" onerror="if (this.src != '{{$data['image_url']}}/default/600x600.jpg') this.src = '{{$data['image_url']}}/default/600x600.jpg';" class="img-fluid" alt="">
+                  </div>
+                  <div class="member-info">
+                      <h4>{{$top_product_phone->nama}}</h4>
+                      {{-- <span>Chief Executive Officer</span> --}}
+                  </div>
+                  </div>
+              </div>
+            @endforeach
+        </div>
+      </div>
+    </section><!-- End Services Section -->
 </main>
 @endsection
