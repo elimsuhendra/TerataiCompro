@@ -31,6 +31,19 @@
         <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 </head>
+
+<style>
+#header .logo{
+  position: absolute;
+}
+#header .logo img{
+  max-height: 120px !important;
+}
+.navbar{
+  margin: auto;
+}
+</style>
+
 <body>
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">

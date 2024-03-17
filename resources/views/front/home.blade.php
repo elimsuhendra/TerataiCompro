@@ -13,7 +13,7 @@
             align-items: center;
             justify-content: center;
         }
-        .d-flex {
+        .team div.d-flex {
             flex-flow: column;
         }
         .team .member .member-img {
