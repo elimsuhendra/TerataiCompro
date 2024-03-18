@@ -18,6 +18,7 @@ class ProductController extends Controller
         $this->hidroponik_serial = '123321';
         $this->cafe_serial = '123324';
         $this->edufarm_serial = '123326';
+        $this->phone_serial = '2cb3552122a70f095c4113defa640710';
         $this->data['image_url'] = $this->image_url;
 
     }
@@ -109,5 +110,30 @@ class ProductController extends Controller
         $data['image_url'] = $this->image_url;
         // dd($data);
         return view('front/edufarm', compact('data'));
+    }
+
+    public function phone(Request $request)
+    {
+       $data['page'] = 'phone';
+        // get category
+        $data['category'] = DB::table('kategori')->where('parent_serial',$this->phone_serial)->get();
+
+        // get product by serial
+        $product = DB::table('produk')->where('status','Active');
+        
+        // query where serial_kategori
+        $serial_kategori = $request->input('serial_kategori');
+        if($serial_kategori){
+            $product =  $product->where('serial_kategori',$serial_kategori);
+        }else{
+            $categories = $data['category']->pluck('serial')->toArray();
+            $product =  $product->whereIn('serial_kategori',$categories);
+        }
+
+        $product = $product->get();
+        $data['data'] = $product;
+        $data['image_url'] = $this->image_url;
+        // dd($data);
+        return view('front/phone', compact('data'));
     }
 }
