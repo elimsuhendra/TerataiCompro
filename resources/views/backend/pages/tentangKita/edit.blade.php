@@ -42,27 +42,39 @@ Artikel Edit - Admin Panel
                         <h4 class="card-title mb-0 flex-grow-1">Edit {{ $title }}</h4>
                     </div><!-- end card header -->
                     <div class="card-body">
-                        @include('backend.layouts.partials.messages')
+                        @include('backend.layouts.tentangKita.messages')
                         <form action="{{ route('admin.artikels.update', $data->serial) }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-row">
                                 <div class="form-group col-md-12 col-sm-12">
-                                    <label for="key">Judul</label>
-                                    <input type="text" class="form-control" id="name" name="judul" placeholder="Judul" value="{{ $data->judul }}">
+                                    <label for="key">Nama</label>
+                                    <input type="text" class="form-control" id="name" name="judul" placeholder="Judul" value="{{ $data->nama }}">
                                 </div>
                             </div>
+
+                            <div class="form-group col-md-12 col-sm-12">
+                                <br>
+                                <label for="category">Kategori </label>
+                                <select name="category" id="category" class="form-control">
+                                    <option value="" class="">--</option>
+                                    <option value="Visi" {{($data->category === 'Visi') ? 'Selected' : ''}}>Visi</option>
+                                    <option value="Misi" {{($data->category === 'Misi') ? 'Selected' : ''}}>Misi</option>
+                                    <option value="Tim Kami" {{($data->category === 'Tim Kami') ? 'Selected' : ''}}>Tim Kami</option>
+                                </select>
+                            </div>
+
                             <div class="form-group col-md-12 col-sm-12">
                                 <br>
 
                                 <label for="image">Gambar Produk</label>
-                                <input type="hidden" name="last_image"  id="last_image" value="{{$data->image}}">
+                                <input type="hidden" name="last_image"  id="last_image" value="{{@$data->image}}">
                                 <input type="file" class="form-control-file" id="image" name="image">
                             </div>
                             <div class="form-group col-md-12 col-sm-12">
-                                <label for="pesan">Konten</label>
-                                <textarea class="form-control" id="editor" name="content" rows="4">{{ $data->content }}</textarea>
+                                <label for="pesan">Deskripsi</label>
+                                <textarea class="form-control" id="editor" name="content" rows="4">{{ $data->description }}</textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>

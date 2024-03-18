@@ -72,8 +72,6 @@ class TentangKitaController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust image validation rules as needed
         ]);
 
-
-
         if ($request->hasFile('image')) {
             $image = $request->file('image');
         
@@ -111,7 +109,7 @@ class TentangKitaController extends Controller
         $datas = $this->model->with('account')->where('serial',$id)->first();
         $title=$this->title;
 
-        return view('backend.pages.artikel.show', compact('datas','title'));    
+        return view('backend.pages.tentangKita.show', compact('datas','title'));    
     }
     public function edit($serial)
     {
@@ -121,7 +119,7 @@ class TentangKitaController extends Controller
 
         $data = $this->model->where('serial',$serial)->first();
         $title=$this->title;
-        return view('backend.pages.artikel.edit', compact('data','title'));
+        return view('backend.pages.tentangKita.edit', compact('data','title'));
 
     }
 
@@ -185,8 +183,4 @@ class TentangKitaController extends Controller
 
         return redirect()->route('admin.tentangKita.index');        
     }
-
-
-
-
 }

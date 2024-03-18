@@ -2,7 +2,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Admins - Kontak Kami List
+Admins - Mail Setting List
 @endsection
 
 @section('styles')
@@ -24,12 +24,12 @@ Admins - Kontak Kami List
         <div class="row align-items-center">
             <div class="col-sm-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Kategori</h4>
+                    <h4 class="mb-sm-0">Mail Setting</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.kategoris.index') }}">Kategori</a></li>
-                            <li class="breadcrumb-item active">List Kategori</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.mailSetting.index') }}">Mail Setting</a></li>
+                            <li class="breadcrumb-item active">List Mail Setting</li>
                             <li class="breadcrumb-item active">Status: &nbsp; </li>
                             <li>
                                 <select id="status-filter" class="breadcrumb-item active">
@@ -58,7 +58,7 @@ Admins - Kontak Kami List
                         {{-- <h4 class="header-title float-left">Kategir List</h4> --}}
                         <p class="float-right mb-2">
                             @if (Auth::guard('admin')->user()->can('admin.edit'))
-                                <a class="btn btn-primary text-white" href="{{ route('admin.kategoris.create') }}">Tambah Kategori Baru</a>
+                                <a class="btn btn-primary text-white" href="{{ route('admin.mailSetting.create') }}">Tambah Email Setting</a>
                             @endif
                         </p>
                         <div class="clearfix"></div>
@@ -67,9 +67,10 @@ Admins - Kontak Kami List
                                 <thead class="bg-light text-capitalize">
                                     <tr>
                                         <th width="5%">No</th>
-                                        <th width="10%">Nama Kategori</th>
+                                        <th width="10%">Host</th>
+                                        <th width="10%">Port</th>
+                                        <th width="10%">Email</th>
                                         <th width="10%">Status</th>
-                                        <th width="10%">Tanggal Ditambahkan</th>
                                         <th width="15%">Action</th>
                                     </tr>
                                 </thead>
@@ -77,13 +78,13 @@ Admins - Kontak Kami List
                                    @foreach ($datas as $data)
                                    <tr>
                                         <td>{{ $loop->index+1 }}</td>
-                                        <td>{{ $data->nama_kategori }}</td>
-                                        <td>{{ $data->status }}</td>
-                                        <td>{{ $data->created_at }}</td>
-                                        
+                                        <td>{{ $data->host }}</td>
+                                        <td>{{ $data->port }}</td>
+                                        <td>{{ $data->email }}</td>
+                                        <td>{{ $data->_status }}</td>
                                         <td>
 
-                                            @if (Auth::guard('admin')->user()->can('kategori.show'))
+                                            {{-- @if (Auth::guard('admin')->user()->can('kategori.show'))
                                                 <a class="btn btn-info text-white" href="{{ route('admin.kategoris.show', $data->serial) }}">Show</a>
                                             @endif
                                             @if (Auth::guard('admin')->user()->can('kategori.edit'))
@@ -99,7 +100,7 @@ Admins - Kontak Kami List
                                                 @method('DELETE')
                                                 @csrf
                                             </form>
-                                            @endif
+                                            @endif --}}
                                         </td>
                                     </tr>
                                    @endforeach
@@ -140,7 +141,7 @@ Admins - Kontak Kami List
             var selectedStatus = $(this).val();
 
             // Filter the table based on selected status
-            dataTable.column(2).search(selectedStatus === '' ? '' : '^' + selectedStatus + '$', true, false).draw();
+            dataTable.column(4).search(selectedStatus === '' ? '' : '^' + selectedStatus + '$', true, false).draw();
         });
 
      </script>

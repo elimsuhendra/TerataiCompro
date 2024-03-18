@@ -54,6 +54,15 @@ Artikel Create - Admin Panel
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12">
                                     <br>
+                                    <label for="category">Kategori </label>
+                                    <select name="category" id="category" class="form-control">
+                                        <option value="Visi" class="">Visi</option>
+                                        <option value="Misi" class="">Misi</option>
+                                        <option value="Tim Kami" class="">Tim Kami</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <br>
                                     <label for="image">Gambar </label>
                                     <input type="file" class="form-control-file" id="image" name="image" required>
                                 </div>

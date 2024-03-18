@@ -46,7 +46,7 @@ Admins - {{ $title }} List
                 <div class="card">
                     <div class="card-body">
                         @include('backend.layouts.partials.messages')
-                        <h6 class="header-title float-left">Produk List
+                        <h6 class="header-title float-left">Tentang Kami List
                           
                         </h6>
                         <p class="float-right mb-2">
@@ -79,20 +79,20 @@ Admins - {{ $title }} List
 
     
                                         <td>
-                                            @if (Auth::guard('admin')->user()->can('produks.show'))
-                                                <a class="btn btn-info text-white" href="{{ route('admin.produks.show', $data->serial) }}">Show</a>
+                                            @if (Auth::guard('admin')->user()->can('aboutUs.show'))
+                                                <a class="btn btn-info text-white" href="{{ route('admin.tentangKita.show', $data->serial) }}">Show</a>
                                             @endif
 
-                                            @if (Auth::guard('admin')->user()->can('produks.edit'))
-                                                <a class="btn btn-success text-white" href="{{ route('admin.produks.edit', $data->serial) }}">Edit</a>
+                                            @if (Auth::guard('admin')->user()->can('aboutUs.edit'))
+                                                <a class="btn btn-success text-white" href="{{ route('admin.tentangKita.edit', $data->serial) }}">Edit</a>
                                             @endif
                                             
-                                            @if (Auth::guard('admin')->user()->can('produks.delete'))
-                                            <a class="btn btn-danger text-white" href="{{ route('admin.produks.destroy', $data->serial) }}"
+                                            @if (Auth::guard('admin')->user()->can('tentangKita.delete'))
+                                            <a class="btn btn-danger text-white" href="{{ route('admin.tentangKita.destroy', $data->serial) }}"
                                             onclick="event.preventDefault(); document.getElementById('delete-form-{{ $data->serial }}').submit();">
                                                 Delete
                                             </a>
-                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.produks.destroy', $data->serial) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $data->serial }}" action="{{ route('admin.tentangKita.destroy', $data->serial) }}" method="POST" style="display: none;">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>

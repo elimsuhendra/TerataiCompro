@@ -12,6 +12,9 @@ use Illuminate\Support\Str;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Formatter;
+use App\Models\ReplyMessage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 
 
 class KontakKamiController extends Controller
@@ -92,10 +95,11 @@ class KontakKamiController extends Controller
     public function show($id)
     {
         $datas = KontakKami::find($id);
+        $replay = ReplyMessage::where('serial_kontak_kami',$datas->serial)->get();
         $title="Kontak Kami";
         $result = $datas->update(['is_read' => 1]);
 
-        return view('backend.pages.kontakKami.show', compact('datas','title'));
+        return view('backend.pages.kontakKami.show', compact('datas','title','replay'));
     }
 
     public function edit($serial)
@@ -107,6 +111,41 @@ class KontakKamiController extends Controller
         $data = KontakKami::where('serial',$serial)->first();
 
         return view('backend.pages.kontakKami.edit', compact('data'));
+
+    }
+
+    public function replayMessage(Request $request){
+
+        $input = $request->all();
+        $findata=KontakKami::find($request->serial_kontak_kami);
+        $input['serial'] =md5(Str::random(14));
+        $input['created_at'] = date('Y-m-d H:i');
+        unset($input['_method']);
+        unset($input['_token']);
+
+
+        $data = [
+            'subject' => $findata->subject.' Replay',
+            'body' => $findata->pesan
+        ];
+
+        Mail::to($findata->email)->send(new SendMail($data));
+
+        try {
+          
+            ReplyMessage::create($input);
+             session()->flash('success', 'Data Sudah Ditambahkan !!');
+ 
+         }catch (QueryException $e) {
+ 
+             session()->flash('error', $e);
+ 
+         } catch (\Exception $e) {
+ 
+             session()->flash('error', 'An unexpected error occurred');
+         }
+
+         return redirect()->route('admin.kontakKami.show', $request->serial_kontak_kami);
 
     }
 

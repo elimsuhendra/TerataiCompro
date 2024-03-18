@@ -41,10 +41,17 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('produks', 'Backend\ProdukController', ['names' => 'admin.produks']);
     Route::resource('kategoris', 'Backend\KategoriController', ['names' => 'admin.kategoris']);
     Route::resource('kontakKami', 'Backend\KontakKamiController', ['names' => 'admin.kontakKami']);
+    Route::post('replayMessage', 'Backend\KontakKamiController@replayMessage')->name('admin.replayMessage');
+
+
+    
     // Route::resource('kontakUnitBisnis', 'Backend\KontakUnitBisnisController', ['names' => 'admin.kontakUnitBisnis']);
     Route::resource('visiMisi', 'Backend\VisiMisiController', ['names' => 'admin.visiMisi']);
     Route::resource('artikels', 'Backend\ArtikelController', ['names' => 'admin.artikels']);
     Route::resource('kontakBisnis', 'Backend\KontakUnitBisnisController', ['names' => 'admin.kontakBisnis']);
     Route::resource('homes', 'Backend\HomeController', ['names' => 'admin.homes']);
     Route::resource('tentangKita', 'Backend\TentangKitaController', ['names' => 'admin.tentangKita']);
+    Route::resource('mailSetting', 'Backend\TableMailSettingController', ['names' => 'admin.mailSetting']);
+
+    
 });

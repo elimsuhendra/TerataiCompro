@@ -5,20 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TableMailSetting extends Model
+class ReplyMessage extends Model
 {
     use HasFactory;
-    protected $table = 'table_mail_setting';
+    protected $table = 'reply_message';
     protected $primaryKey = 'serial'; 
     public $incrementing = false;
     protected $fillable = [
         'serial',
-        'host',
-        'port',
-        'username',
-        'password',
-        '_status',
-        'email',
+        'serial_kontak_kami',
+        'pesan',
+        'created_by',
+        'created_at',
     ];
 
     public $timestamps = false;
