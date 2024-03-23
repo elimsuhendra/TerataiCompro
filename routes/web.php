@@ -28,6 +28,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('admins', 'Backend\AdminsController', ['names' => 'admin.admins']);
     // Login Routes
     Route::get('/login', 'Backend\Auth\LoginController@showLoginForm')->name('admin.login');
+    Route::get('/forgotPassword', 'Backend\Auth\ForgotPasswordController@showForgotPasswordForm')->name('admin.forgotPassword');
+
     Route::post('/login/submit', 'Backend\Auth\LoginController@login')->name('admin.login.submit');
 
     // Logout Routes
