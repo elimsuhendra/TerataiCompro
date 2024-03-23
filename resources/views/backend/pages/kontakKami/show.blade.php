@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="col-xxl-12 col-md-12">
                                     <label for="nama" class="form-label">Deskripsi</label>
-                                    <textarea class="form-control" id="editor" name="pesan" rows="4">{{ $row->pesan }}</textarea>
+                                    <textarea class="form-control editor_all" id="editor_all" name="pesan" rows="4">{{ $row->pesan }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -139,11 +139,10 @@
                     <input type="hidden" name="serial_kontak_kami" value="{{ $datas->serial }}">
                     <div class="form-group">
                         <label for="message">Pesan: {{ $datas->subject }}</label>
-                        <textarea class="form-control" name="pesan" id="pesan" rows="3"></textarea>
+                        <textarea class="form-control" name="pesan" id="editor2" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
                     <button type="submit" class="btn btn-primary">Send</button>
                 </div>
             </form>
@@ -161,6 +160,16 @@
     ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
     console.error(error);
     });
+
+    ClassicEditor.create(document.querySelector("#editor2")).catch((error) => {
+        console.error(error);
+    });
+
+    ClassicEditor.create(document.querySelector(".editor_all")).catch((error) => {
+        console.error(error);
+    });
+
+
 
     $(document).ready(function() {
         $('.select2').select2();

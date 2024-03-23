@@ -72,8 +72,6 @@ Admin Create - Admin Panel
             </div>
             <!--end col-->
         </div>
-        <!--end row-->
-
     </div>
 </div>
 
@@ -83,9 +81,11 @@ Admin Create - Admin Panel
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script src="{{ asset('sidebackend/assets/js/ckeditor.js')}}"></script>
 <script>
+    
     ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
         console.error(error);
     });
+
     $(document).ready(function() {
         $('.select2').select2();
     })
