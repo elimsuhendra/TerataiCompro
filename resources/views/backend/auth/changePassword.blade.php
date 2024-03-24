@@ -76,11 +76,18 @@
                                             @endif
 
 
-                                            <form method="POST" action="{{ route('admin.forgotPassword.checkSendMail') }}">
+                                            <form method="POST" action="{{ route('admin.forgotPassword.checkPassword') }}">
                                                 @csrf
                                                 <div class="mb-3">
-                                                    <label for="username" class="form-label">Send Mail</label>
-                                                    <input type="text" class="form-control" id="username" name="email" placeholder="Enter email or username">
+                                                    <label for="username" class="form-label">Password</label>
+                                                    <input type="password" class="form-control" id="username" name="password" placeholder="Password">
+                                                    @error('email')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="username" class="form-label">Confirmation Password</label>
+                                                    <input type="password" class="form-control" id="username" name="password_confirmation" placeholder="Confirmation Password">
                                                     @error('email')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror

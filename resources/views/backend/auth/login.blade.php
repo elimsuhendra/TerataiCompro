@@ -69,6 +69,12 @@
                                                 </div>
                                             @endif
 
+                                            @if(session('success'))
+                                                <div class="alert alert-info">
+                                                    {{ session('success') }}
+                                                </div>
+                                            @endif
+
                                             <form method="POST" action="{{ route('admin.login.submit') }}">
                                                 @csrf
                                                 <div class="mb-3">

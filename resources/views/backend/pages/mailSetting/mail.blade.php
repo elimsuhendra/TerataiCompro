@@ -15,6 +15,7 @@
                 <p class="card-text">Here are some details:</p>
                 <ul class="list-group">
                     <li class="list-group-item">Name: {{ $data['subject'] }}</li>
+                    {{ $data['body'] }}
                     {{-- <li class="list-group-item">Email: {{ $email }}</li>
                     <li class="list-group-item">Message: {{ $messageContent }}</li> --}}
                 </ul>

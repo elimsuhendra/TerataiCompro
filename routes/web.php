@@ -31,6 +31,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/forgotPassword', 'Backend\Auth\ForgotPasswordController@showForgotPasswordForm')->name('admin.forgotPassword');
 
     Route::post('/login/submit', 'Backend\Auth\LoginController@login')->name('admin.login.submit');
+    Route::post('/checkSendMail', 'Backend\Auth\ForgotPasswordController@checkSendMail')->name('admin.forgotPassword.checkSendMail');
+    Route::get('/verifyToken/{token}', 'Backend\Auth\ForgotPasswordController@verifyToken')->name('admin.forgotPassword.verifyToken');
+    Route::post('/checkPassword', 'Backend\Auth\ForgotPasswordController@checkPassword')->name('admin.forgotPassword.checkPassword');
 
     // Logout Routes
     Route::post('/logout/submit', 'Backend\Auth\LoginController@logout')->name('admin.logout.submit');

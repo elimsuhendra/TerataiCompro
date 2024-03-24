@@ -36,8 +36,12 @@ class SendMail extends Mailable
         //     ->subject('Send Mail')
         //     ->view('backend.pages.mailSetting.mail', compact('message'));
 
-        return $this->subject($this->data['subject'])->view('backend.pages.mailSetting.mail');
+        if($this->data['type'] == 'fogot password'){
 
+            return $this->subject($this->data['subject'])->view('backend.pages.mailSetting.mailForgotPassword');            
+        }
+
+        return $this->subject($this->data['subject'])->view('backend.pages.mailSetting.mail');
     }
 
     /**

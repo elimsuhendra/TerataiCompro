@@ -126,7 +126,8 @@ class KontakKamiController extends Controller
 
         $data = [
             'subject' => $findata->subject.' Replay',
-            'body' => $findata->pesan
+            'body' => $findata->pesan,
+            'type'=>'replay'
         ];
 
         Mail::to($findata->email)->send(new SendMail($data));
