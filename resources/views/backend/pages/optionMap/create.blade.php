@@ -66,7 +66,7 @@
                                         <option value="">Pilih Kategori</option>
 
                                         @foreach ($kategori as $row)
-                                            <option value="{{ $row->serial }}">{{ $row->nama_kategori }}</option>
+                                            <option value="{{ $row->value }}">{{ $row->value }}</option>
                                         @endforeach
                                     </select>
                                 </div>

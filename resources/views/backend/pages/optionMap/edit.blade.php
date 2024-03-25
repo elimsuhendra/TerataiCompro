@@ -63,7 +63,7 @@ Admin Edit - Admin Panel
                                     <select name="kategori" class="form-control" >
                                         <option value="">--Pilih Kategori--</option>
                                         @foreach ($kategori as $row)
-                                            <option value="{{ $row->serial }}" @if($data->serial_kategori == $row->serial) selected='selected' @endif> {{ strtoupper($row->nama_kategori) }}</option>
+                                            <option value="{{ $row->value }}" @if($data->serial_kategori == $row->value) selected='selected' @endif> {{ strtoupper($row->value) }}</option>
                                         @endforeach
                                     </select>                                
                                 </div>

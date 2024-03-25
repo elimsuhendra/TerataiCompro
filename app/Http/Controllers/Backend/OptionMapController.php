@@ -30,6 +30,9 @@ class OptionMapController extends Controller
     
             return $next($request);
         });
+
+        $this->kategori = OptionMap::where([['key',"Category"],["status","Active"]])->get();
+
     }
 
     public function index()
@@ -40,6 +43,7 @@ class OptionMapController extends Controller
         }
 
         $datas = OptionMap::with('kategoris','account')->get();
+        // dd($datas);
         $title=$this->title;
 
         return view('backend.pages.optionMap.index', compact('datas','title'));
@@ -52,7 +56,7 @@ class OptionMapController extends Controller
         }
 
         $title=$this->title;
-        $kategori=Kategori::select('serial','nama_kategori')->get();
+        $kategori= $this->kategori;
 
 
         return view('backend.pages.optionMap.create',compact('title','kategori'));        
@@ -100,9 +104,9 @@ class OptionMapController extends Controller
 
         $data = OptionMap::where('serial',$serial)->first();
         $title=$this->title;
-        $kategori=Kategori::where('status',"Active")->whereNull('deleted_at')->get();
-        return view('backend.pages.optionMap.edit', compact('data','title','kategori'));
+        $kategori = $this->kategori;
 
+        return view('backend.pages.optionMap.edit', compact('data','title','kategori'));
     }
 
     public function update(Request $request, $serial)

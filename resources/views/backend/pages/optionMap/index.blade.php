@@ -71,8 +71,8 @@ Admins - {{ $title }} List
                                    <tr>
                                         <td>{{ $loop->index+1 }}</td>
                                         <td>{{ $data->key }}</td>
-                                        <td>{{ $data->value }}</td>
-                                        <td>{{ @$data->kategoris->nama_kategori }}</td>
+                                        <td>{{ Str::of($data->value)->limit(20) }}</td>
+                                        <td>{{ @$data->kategoris->value }}</td>
                                         <td>{{ @$data->status }}</td>
     
                                         <td>
