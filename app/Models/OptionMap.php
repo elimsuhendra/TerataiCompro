@@ -35,6 +35,11 @@ class OptionMap extends Model
         return $this->belongsTo(Kategori::class, 'kategori', 'serial');
     }
 
+    public function optionMaps()
+    {
+        return $this->belongsTo(OptionMap::class, 'kategori', 'serial');
+    }
+
 
     public $timestamps = false;
 }

@@ -39,7 +39,7 @@ class OptionMapController extends Controller
     
         }
 
-        $datas = OptionMap::with('kategoris','account')->get();
+        $datas = OptionMap::with('kategoris','account','optionMaps')->get();
         $title=$this->title;
 
         return view('backend.pages.optionMap.index', compact('datas','title'));
@@ -52,8 +52,7 @@ class OptionMapController extends Controller
         }
 
         $title=$this->title;
-        // $kategori=Kategori::select('serial','nama_kategori')->get();
-        $optionmap=OptionMap::select('serial','key')->where('key','=','category')->get();
+        $optionmap=OptionMap::select('serial','key','value')->where('key','=','category')->get();
 
         return view('backend.pages.optionMap.create',compact('title','optionmap'));        
     }
@@ -93,15 +92,16 @@ class OptionMapController extends Controller
 
     public function edit($serial)
     {
-        if (is_null($this->user) || !$this->user->can('admin.edit')) {
-            abort(403, 'Sorry !! You are Unauthorized to edit any admin !');
-        }
-
-        // $data = OptionMap::where('serial',$serial)->first();
-        $data=OptionMap::select('serial','key')->where('key','=','category')->get();
+        // if (is_null($this->user) || !$this->user->can('admin.edit')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to edit any admin !');
+        // }
+        // dd(33);
+        $data = OptionMap::where('serial',$serial)->first();
+        // $data = OptionMap::where('key', '=', 'category')->get();
+        // dd($data);
         $title=$this->title;
         $kategori=Kategori::where('status',"Active")->whereNull('deleted_at')->get();
-        $optionMap=OptionMap::select('serial','key')->where('key','=','category')->get();
+        $optionMap=OptionMap::select('serial','key','value')->where('key','=','category')->get();
 
         return view('backend.pages.optionMap.edit', compact('data','title','kategori','optionMap'));
     }

@@ -66,7 +66,7 @@
                                         <option value="">Pilih Kategori</option>
 
                                         @foreach ($optionmap as $row)
-                                            <option value="{{ $row->serial }}">{{ $row->key }}</option>
+                                            <option value="{{ $row->serial }}">{{ $row->value }}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -72,7 +72,7 @@ Admins - {{ $title }} List
                                         <td>{{ $loop->index+1 }}</td>
                                         <td>{{ $data->key }}</td>
                                         <td>{{ $data->value }}</td>
-                                        <td>{{ @$data->kategoris->nama_kategori }}</td>
+                                        <td>{{ @$data->optionMaps->value }}</td>
                                         <td>{{ @$data->status }}</td>
     
                                         <td>
