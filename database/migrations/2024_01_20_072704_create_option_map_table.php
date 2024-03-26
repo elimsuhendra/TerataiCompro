@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('serial');
             $table->string('key');
             $table->string('value');
-            $table->string('kategori');
+            $table->string('kategori')->nullable();
             $table->text('description')->nullable();
             $table->timestamps(); // This will automatically add created_at and updated_at columns.
         });

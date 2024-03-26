@@ -62,8 +62,8 @@ Admin Edit - Admin Panel
                                     <label for="key">Kategori </label>
                                     <select name="kategori" class="form-control" >
                                         <option value="">--Pilih Kategori--</option>
-                                        @foreach ($kategori as $row)
-                                            <option value="{{ $row->serial }}" @if($data->serial_kategori == $row->serial) selected='selected' @endif> {{ strtoupper($row->nama_kategori) }}</option>
+                                        @foreach ($optionMap as $row)
+                                            <option value="{{ $row->serial }}" @if($data->serial == $row->serial) selected='selected' @endif> {{ strtoupper($row->key) }}</option>
                                         @endforeach
                                     </select>                                
                                 </div>

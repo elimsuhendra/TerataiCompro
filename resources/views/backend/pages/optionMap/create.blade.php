@@ -61,12 +61,12 @@
                                     <input type="text" class="form-control" id="email" name="kategori" placeholder="Kategori">
                                 </div> --}}
                                 <div class="form-group col-md-12 col-sm-12">
-                                    <label for="name">Kategori Produk</label>
+                                    <label for="name">Type Kategori</label>
                                     <select name="kategori" id="kategori" class="form-control ">
                                         <option value="">Pilih Kategori</option>
 
-                                        @foreach ($kategori as $row)
-                                            <option value="{{ $row->serial }}">{{ $row->nama_kategori }}</option>
+                                        @foreach ($optionmap as $row)
+                                            <option value="{{ $row->serial }}">{{ $row->key }}</option>
                                         @endforeach
                                     </select>
                                 </div>

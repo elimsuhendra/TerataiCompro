@@ -122,7 +122,7 @@
                                         </div>
 
                                         <div class="mt-5 text-center">
-                                            <p class="mb-0">Forget Password? <a href="auth-signup-cover.html" class="fw-semibold text-primary text-decoration-underline"> Send Access To Mail</a> </p>
+                                            <p class="mb-0">Forget Password? <a href="{{ route('admin.forgotPassword') }}" class="fw-semibold text-primary text-decoration-underline"> Send Access To Mail</a> </p>
                                         </div>
                                     </div>
                                 </div>
