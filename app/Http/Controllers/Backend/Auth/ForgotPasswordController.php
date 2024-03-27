@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 use App\Models\ForgotPassword;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 
@@ -61,15 +62,23 @@ class ForgotPasswordController extends Controller
         }
 
         return view('backend.auth.changePassword',compact('tokencheck'));
-        // return redirect()->route('admin.forgotPassword');
     }
 
     public function checkPassword(Request $request){
+
+
+        $tokencheck=ForgotPassword::where('serial',$request->serial)->first();
 
         if($request->password != $request->password_confirmation){
             
             return view('backend.auth.changePassword')->with('error', 'Password Not Match');
         }
+
+        $result = ForgotPassword::where('serial',$request->serial)->update(['_status'=>'Non Active']);
+
+        $admin = Admin::find($tokencheck->id_user);
+        $admin->password = Hash::make($request->password);
+        $admin->save();
 
         return redirect()->route('admin.login')->with('success', 'Password Update Success');
     }

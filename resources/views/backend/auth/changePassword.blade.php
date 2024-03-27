@@ -78,6 +78,8 @@
 
                                             <form method="POST" action="{{ route('admin.forgotPassword.checkPassword') }}">
                                                 @csrf
+                                                <input type="text" class="form-control" id="username" name="serial"  value="{{ @$tokencheck->serial }}">
+
                                                 <div class="mb-3">
                                                     <label for="username" class="form-label">Password</label>
                                                     <input type="password" class="form-control" id="username" name="password" placeholder="Password">
